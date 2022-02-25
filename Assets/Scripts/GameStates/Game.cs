@@ -1,4 +1,5 @@
-﻿using SceneLoading;
+﻿using Gameplay.Cards.CardsElement.Base;
+using SceneLoading;
 using Services;
 
 namespace GameStates
@@ -7,9 +8,9 @@ namespace GameStates
   {
     public readonly GameStateMachine StateMachine;
 
-    public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, ref AllServices services)
+    public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, ref AllServices services, Card cardPrefab)
     {
-      StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner,curtain), ref services, coroutineRunner);
+      StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner,curtain), ref services, coroutineRunner, cardPrefab);
     }
   }
 }

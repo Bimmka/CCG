@@ -2,7 +2,7 @@ namespace Gameplay.GameMachine.States
 {
   public abstract class GameplayState : GameState
   {
-    protected GameplayStateMachine gameplay;
+    protected readonly GameplayStateMachine gameplay;
 
 
     protected GameplayState(GameplayStateMachine gameMachine, StateMachine stateMachine) : base(stateMachine)

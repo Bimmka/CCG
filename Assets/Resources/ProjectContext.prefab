@@ -75,3 +75,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameBootstrapp: {fileID: 3112875836380353390, guid: ec10f3daf2b6af741ad8deaeca51faa5, type: 3}
   curtain: {fileID: 8075571456176229582, guid: f20aee6b00472ae49a0feb1e2abbf484, type: 3}
+  cardPrefab: {fileID: 270799776064698423, guid: a0ae86c58cfcd9d448b583df8f925275, type: 3}

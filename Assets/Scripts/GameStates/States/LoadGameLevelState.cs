@@ -1,6 +1,8 @@
 ﻿using Gameplay.Table;
 using GameStates.States.Interfaces;
 using SceneLoading;
+using Services.Cards.Decks.GameOpponent;
+using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
 using Services.StaticData;
@@ -18,13 +20,19 @@ namespace GameStates.States
     private readonly IUIFactory uiFactory;
     private readonly IStaticDataService staticData;
     private readonly IFieldCreateService fieldCreateService;
+    private readonly IOpponentDeck opponentDeck;
+    private readonly IPlayerDeck playerDeck;
+
+    private string lastPayload;
 
     public LoadGameLevelState(ISceneLoader sceneLoader, 
       IGameStateMachine gameStateMachine, 
       IGameFactory gameFactory, 
       IUIFactory uiFactory, 
       IStaticDataService staticData,
-      IFieldCreateService fieldCreateService)
+      IFieldCreateService fieldCreateService,
+      IOpponentDeck opponentDeck,
+      IPlayerDeck playerDeck)
     {
       this.sceneLoader = sceneLoader;
       this.gameStateMachine = gameStateMachine;
@@ -32,10 +40,13 @@ namespace GameStates.States
       this.uiFactory = uiFactory;
       this.staticData = staticData;
       this.fieldCreateService = fieldCreateService;
+      this.opponentDeck = opponentDeck;
+      this.playerDeck = playerDeck;
     }
 
     public void Enter(string payload)
     {
+      lastPayload = payload;
       sceneLoader.Load(payload, OnLoaded);
     }
 
@@ -55,8 +66,14 @@ namespace GameStates.States
       GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
       SetCameraToHud(hud, camera);
+      InitDecks();
     }
-    
+
+    private void InitDecks()
+    {
+      opponentDeck.UpdateDeck(staticData.ForOpponent(lastPayload));
+    }
+
     private GameObject CreateHud(GameObject hero, Transform uiRoot) => 
       gameFactory.CreateHud(hero, uiRoot);
 

@@ -1,8 +1,12 @@
-﻿using Gameplay.Table;
+﻿using Gameplay.Cards.CardsElement.Base;
+using Gameplay.Table;
 using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
 using Services.Assets;
+using Services.Cards.Decks.GameOpponent;
+using Services.Cards.Decks.Player;
+using Services.Cards.Spawners;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
 using Services.Progress;
@@ -19,12 +23,12 @@ namespace GameStates.States
     private readonly IGameStateMachine gameStateMachine;
     private readonly AllServices services;
 
-    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner)
+    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab)
     {
       this.gameStateMachine = gameStateMachine;
       this.sceneLoader = sceneLoader;
       this.services = services;
-      RegisterServices(coroutineRunner);
+      RegisterServices(coroutineRunner, cardPrefab);
     }
 
     public void Enter()
@@ -37,7 +41,7 @@ namespace GameStates.States
       
     }
 
-    private void RegisterServices(ICoroutineRunner coroutineRunner)
+    private void RegisterServices(ICoroutineRunner coroutineRunner, Card cardPrefab)
     {
       RegisterStateMachine();
       RegisterRandom();
@@ -48,7 +52,10 @@ namespace GameStates.States
       RegisterWindowsService();
       RegisterGameFactory();
       RegisterFieldCreateService();
-
+      RegisterPlayerDeck();
+      RegisterOpponentDeck();
+      RegisterCardFactory(cardPrefab);
+      RegisterCardSpawner();
     }
 
     private void RegisterGameFactory()
@@ -94,13 +101,35 @@ namespace GameStates.States
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));
-    
+
 
     private void RegisterFieldCreateService()
     {
       services.RegisterSingle(new FieldCreateService(
         services.Single<IAssetProvider>(), 
         services.Single<IStaticDataService>().ForFieldCreate()));  
+    }
+
+    private void RegisterPlayerDeck()
+    {
+      services.RegisterSingle(new PlayerDeck(
+        services.Single<IRandomService>()));
+    }
+
+    private void RegisterOpponentDeck()
+    {
+      services.RegisterSingle(new OpponentDeck(
+        services.Single<IRandomService>()));
+    }
+
+    private void RegisterCardFactory(Card prefab)
+    {
+      services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab));
+    }
+
+    private void RegisterCardSpawner()
+    {
+      services.RegisterSingle(new CardSpawner(services.Single<ICardFactory>()));
     }
   }
 }

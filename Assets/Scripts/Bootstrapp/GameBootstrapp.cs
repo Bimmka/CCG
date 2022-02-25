@@ -1,4 +1,5 @@
 using System;
+using Gameplay.Cards.CardsElement.Base;
 using GameStates;
 using GameStates.States;
 using SceneLoading;
@@ -17,9 +18,9 @@ namespace Bootstrapp
       game.StateMachine.Enter<LoadProgressState>();
     }
 
-    public void Init(ref AllServices services,  LoadingCurtain loadingCurtain)
+    public void Init(ref AllServices services,  LoadingCurtain loadingCurtain, Card cardPrefab)
     {
-      game = new Game(this, loadingCurtain, ref services);
+      game = new Game(this, loadingCurtain, ref services, cardPrefab);
       game.StateMachine.Enter<BootstrapState>();
     }
 

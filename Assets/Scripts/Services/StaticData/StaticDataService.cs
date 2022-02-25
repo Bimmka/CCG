@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using ConstantsValue;
+using Gameplay.Cards.CardsElement.Base;
 using Services.UI.Factory;
+using StaticData.Gameplay.Cards.Decks;
+using StaticData.Gameplay.Cards.Elements;
 using StaticData.Gameplay.Table;
 using StaticData.UI;
 using UnityEngine;
@@ -11,6 +14,7 @@ namespace Services.StaticData
   public class StaticDataService : IStaticDataService
   {
     private Dictionary<WindowId, WindowInstantiateData> windows;
+    private Dictionary<string, List<CardStaticData>> opponentDecks;
 
     private FieldCreateStaticData fieldCreateStaticData;
     
@@ -20,6 +24,10 @@ namespace Services.StaticData
         .Load<WindowsStaticData>(AssetsPath.WindowsDataPath)
         .InstantiateData
         .ToDictionary(x => x.ID, x => x);
+
+      opponentDecks = Resources.
+        LoadAll<OpponentDeckStaticData>(AssetsPath.OpponentDecksPath)
+        .ToDictionary(x => x.LevelKey, x => x.Cards);
 
       fieldCreateStaticData = Resources.Load<FieldCreateStaticData>(AssetsPath.FieldCreatePath);
     }
@@ -31,5 +39,10 @@ namespace Services.StaticData
 
     public FieldCreateStaticData ForFieldCreate() => 
       fieldCreateStaticData;
+
+    public List<CardStaticData> ForOpponent(string levelName) =>
+      opponentDecks.TryGetValue(levelName, out List<CardStaticData> staticData)
+        ? staticData 
+        : new List<CardStaticData>();
   }
 }

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Table;
 using GameStates.States;
 using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
+using Services.Cards.Decks.GameOpponent;
+using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
 using Services.Progress;
@@ -19,11 +22,11 @@ namespace GameStates
     private readonly Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine(ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner)
+    public GameStateMachine(ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab)
     {
       _states = new Dictionary<Type, IExitableState>
       {
-        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner),
+        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner, cardPrefab),
         [typeof(LoadProgressState)] = new LoadProgressState(this, sceneLoader, services.Single<IPersistentProgressService>()),
         [typeof(GameLoopState)] = new GameLoopState(this),
         [typeof(LoadGameLevelState)] = new LoadGameLevelState(
@@ -32,7 +35,9 @@ namespace GameStates
           services.Single<IGameFactory>(), 
           services.Single<IUIFactory>(), 
           services.Single<IStaticDataService>(),
-          services.Single<IFieldCreateService>()
+          services.Single<IFieldCreateService>(),
+          services.Single<IOpponentDeck>(),
+          services.Single<IPlayerDeck>()
         ),
         [typeof(MainMenuState)] = new MainMenuState(services.Single<IUIFactory>(), services.Single<IWindowsService>(), sceneLoader)
       };

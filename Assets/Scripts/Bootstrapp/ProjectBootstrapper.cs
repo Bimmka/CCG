@@ -1,9 +1,13 @@
 using System.Collections;
 using ConstantsValue;
+using Gameplay.Cards.CardsElement.Base;
 using GameStates;
 using SceneLoading;
 using Services;
 using Services.Assets;
+using Services.Cards.Decks.GameOpponent;
+using Services.Cards.Decks.Player;
+using Services.Cards.Spawners;
 using Services.FieldCreate;
 using Services.Progress;
 using Services.Random;
@@ -19,6 +23,7 @@ namespace Bootstrapp
     {
       [SerializeField] private GameBootstrapp gameBootstrapp;
       [SerializeField] private LoadingCurtain curtain;
+      [SerializeField] private Card cardPrefab;
         
 
         private LoadingCurtain spawnedCurtain;
@@ -40,6 +45,9 @@ namespace Bootstrapp
           BindRandomService();
           BindAssetsService();
           BindFieldCreatingService();
+          BindPlayerDeck();
+          BindOpponentDeck();
+          BindCardSpawner();
         }
 
        
@@ -60,7 +68,7 @@ namespace Bootstrapp
         private void InstantiateBootstrapper()
         {
           spawnedGameBootstrapp = Instantiate(gameBootstrapp, transform);
-          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain);
+          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab);
         }
         
         private void BindProgressService() => 
@@ -84,5 +92,12 @@ namespace Bootstrapp
         private void BindFieldCreatingService() => 
           Container.Bind<IFieldCreateService>().To<IFieldCreateService>().FromInstance(allServices.Single<IFieldCreateService>()).AsCached();
         
+        private void BindPlayerDeck() => 
+          Container.Bind<IPlayerDeck>().To<IPlayerDeck>().FromInstance(allServices.Single<IPlayerDeck>()).AsCached();
+        private void BindOpponentDeck() => 
+          Container.Bind<IOpponentDeck>().To<IOpponentDeck>().FromInstance(allServices.Single<IOpponentDeck>()).AsCached(); 
+        private void BindCardSpawner() => 
+          Container.Bind<ICardSpawner>().To<ICardSpawner>().FromInstance(allServices.Single<ICardSpawner>()).AsCached();
+
     }
 }
