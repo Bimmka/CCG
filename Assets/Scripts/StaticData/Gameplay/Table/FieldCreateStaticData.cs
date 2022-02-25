@@ -10,6 +10,6 @@ namespace StaticData.Gameplay.Table
     public Vector2Int FieldSize = new Vector2Int(3,4);
     public Vector2 ElementsOffset;
     public TableView TablePrefab;
-    public GameObject MapCellPrefab;
+    public FieldCell MapCellPrefab;
   }
 }

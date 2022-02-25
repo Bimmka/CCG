@@ -6,6 +6,8 @@ namespace Gameplay.Cards.CardsElement.Base
 {
   public class Card : MonoBehaviour
   {
+    [SerializeField] private CardView view;
+
     private CardMover mover;
     private CardUseStrategy useStrategy;
 

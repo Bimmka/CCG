@@ -43,3 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b094eef1e8894a2eb87ea45011c5f58d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  field: {fileID: 0}
+  cardSpawner: {fileID: 0}

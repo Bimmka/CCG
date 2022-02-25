@@ -129,7 +129,7 @@ namespace GameStates.States
 
     private void RegisterCardSpawner()
     {
-      services.RegisterSingle(new CardSpawner(services.Single<ICardFactory>()));
+      services.RegisterSingle(new CardSpawnerService(services.Single<ICardFactory>()));
     }
   }
 }

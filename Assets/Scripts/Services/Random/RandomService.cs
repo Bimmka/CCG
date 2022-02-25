@@ -2,7 +2,7 @@
 {
   public class RandomService : IRandomService
   {
-    private readonly System.Random random;
+    private System.Random random;
 
     public RandomService()
     {
@@ -20,5 +20,10 @@
 
     public double NextDouble() => 
       random.NextDouble();
+
+    public void UpdateSeed(int seed)
+    {
+      random = new System.Random(seed);
+    }
   }
 }

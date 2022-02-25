@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Cards.Spawners;
 using Gameplay.GameMachine.States;
 using Gameplay.Table;
 using Services.FieldCreate;
@@ -10,6 +11,7 @@ namespace Gameplay.GameMachine
   public class GameplayStateMachine : MonoBehaviour
   {
     [SerializeField] private Field field;
+    [SerializeField] private CardSpawner cardSpawner;
     
     private IFieldCreateService fieldCreateService;
 
@@ -58,9 +60,7 @@ namespace Gameplay.GameMachine
       fieldCreateService.CreateField(field);
     }
 
-    public void SpawnFirstOpponentsCard()
-    {
-      
-    }
+    public void SpawnFirstOpponentsCard() => 
+      cardSpawner.FirstOpponentSpawn();
   }
 }

@@ -97,7 +97,7 @@ namespace Bootstrapp
         private void BindOpponentDeck() => 
           Container.Bind<IOpponentDeck>().To<IOpponentDeck>().FromInstance(allServices.Single<IOpponentDeck>()).AsCached(); 
         private void BindCardSpawner() => 
-          Container.Bind<ICardSpawner>().To<ICardSpawner>().FromInstance(allServices.Single<ICardSpawner>()).AsCached();
+          Container.Bind<ICardSpawnerService>().To<ICardSpawnerService>().FromInstance(allServices.Single<ICardSpawnerService>()).AsCached();
 
     }
 }

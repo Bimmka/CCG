@@ -5,7 +5,7 @@ using StaticData.Gameplay.Cards.Elements;
 
 namespace Services.Cards.Decks.Player
 {
-  public class PlayerDeck : IDeck
+  public class PlayerDeck : IPlayerDeck
   {
     private readonly IRandomService randomService;
     

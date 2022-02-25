@@ -43,3 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1845f0c268584259975f1dec8513d15f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chanceToSetCard: 0.5

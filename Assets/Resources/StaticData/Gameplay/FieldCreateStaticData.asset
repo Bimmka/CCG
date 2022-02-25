@@ -16,4 +16,4 @@ MonoBehaviour:
   FieldSize: {x: 3, y: 4}
   ElementsOffset: {x: 0.19, y: 0.23}
   TablePrefab: {fileID: 8591490954555179458, guid: dc81eeaf7bd455341be108aded6488dc, type: 3}
-  MapCellPrefab: {fileID: 7805436327122364329, guid: fe8c8488d9f9cb046ad726f15706bd75, type: 3}
+  MapCellPrefab: {fileID: 9215902921701068179, guid: fe8c8488d9f9cb046ad726f15706bd75, type: 3}

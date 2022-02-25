@@ -4,7 +4,7 @@ using StaticData.Gameplay.Cards.Elements;
 
 namespace Services.Cards.Decks.GameOpponent
 {
-  public class OpponentDeck : IDeck
+  public class OpponentDeck : IOpponentDeck
   {
     private readonly IRandomService randomService;
     

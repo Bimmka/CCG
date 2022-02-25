@@ -2,6 +2,7 @@
 using Services.Assets;
 using Services.StaticData;
 using StaticData.Gameplay.Cards.Elements;
+using UnityEngine;
 
 namespace Services.Cards.Spawners
 {
@@ -15,9 +16,9 @@ namespace Services.Cards.Spawners
       prefab = cardPrefab;
     }
     
-    public Card CreateCard(CardStaticData data, bool isPlayer)
+    public Card CreateCard(Transform transform, CardStaticData data, bool isPlayer)
     {
-      return assets.Instantiate(prefab);
+      return assets.Instantiate(prefab, transform);
     }
 
     public Card RecreateCard(Card pooledCard, CardStaticData data, bool isPlayer)

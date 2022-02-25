@@ -6,5 +6,6 @@
     int Next(int max);
     float NextFloat();
     double NextDouble();
+    void UpdateSeed(int seed);
   }
 }

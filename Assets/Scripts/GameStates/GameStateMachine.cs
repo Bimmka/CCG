@@ -11,6 +11,7 @@ using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
 using Services.Progress;
+using Services.Random;
 using Services.StaticData;
 using Services.UI.Factory;
 using Services.UI.Windows;
@@ -35,9 +36,9 @@ namespace GameStates
           services.Single<IGameFactory>(), 
           services.Single<IUIFactory>(), 
           services.Single<IStaticDataService>(),
-          services.Single<IFieldCreateService>(),
           services.Single<IOpponentDeck>(),
-          services.Single<IPlayerDeck>()
+          services.Single<IPlayerDeck>(),
+          services.Single<IRandomService>()
         ),
         [typeof(MainMenuState)] = new MainMenuState(services.Single<IUIFactory>(), services.Single<IWindowsService>(), sceneLoader)
       };
