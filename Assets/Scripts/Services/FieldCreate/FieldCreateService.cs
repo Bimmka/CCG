@@ -1,4 +1,5 @@
-﻿using Gameplay.Table;
+﻿using Gameplay.Cards.CardsElement.Base;
+using Gameplay.Table;
 using Services.Assets;
 using StaticData.Gameplay.Table;
 using UnityEngine;
@@ -34,11 +35,21 @@ namespace Services.FieldCreate
       {
         for (int j = 0; j < data.FieldSize.y; j++)
         {
+          Vector2Int gridPosition = new Vector2Int(i, j);
           cell = SpawnCell(table.transform);
+          cell.SetGridPosition(gridPosition);
+          cell.SetCellType(CellType(gridPosition));
           cell.transform.localPosition = startSpawnLocalPoint + new Vector3(i * data.ElementsOffset.x, 0, -j * data.ElementsOffset.y);
-          field.AddCell(cell, new Vector2Int(i,j));
+          field.AddCell(cell, gridPosition);
         }
       } 
+    }
+
+    private PlayingZoneType CellType(Vector2Int position)
+    {
+      if (position.y < data.FieldSize.y - 1)
+        return PlayingZoneType.Opponent;
+      return PlayingZoneType.Player;
     }
     private TableView SpawnTable() => 
       assets.Instantiate(data.TablePrefab, data.TableSpawnPosition);

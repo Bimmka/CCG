@@ -16,20 +16,18 @@ namespace Services.Cards.Spawners
       pool = new Queue<Card>(10);
     }
 
-    public void SpawnEnemyCard(Vector3 localPosition, Transform parent, CardStaticData data)
+    public Card SpawnEnemyCard(Vector3 localPosition, Transform parent, CardStaticData data)
     {
       if (pool.Count > 0)
-        RespawnCard(pool.Dequeue(), localPosition, data, false);
-      else
-        SpawnCard(localPosition, parent, data, false);
+        return RespawnCard(pool.Dequeue(), localPosition, data, false);
+      return SpawnCard(localPosition, parent, data, false);
     }
 
-    public void SpawnPlayerCard(Vector3 localPosition, Transform parent, CardStaticData data)
+    public Card SpawnPlayerCard(Vector3 localPosition, Transform parent, CardStaticData data)
     {
       if (pool.Count > 0)
-        RespawnCard(pool.Dequeue(), localPosition, data, true);
-      else
-        SpawnCard(localPosition, parent, data, true);
+        return RespawnCard(pool.Dequeue(), localPosition, data, true);
+      return SpawnCard(localPosition, parent, data, true);
     }
 
     public Card SpawnPlayerCardProps(Vector3 localPosition, Transform parent, int index)
@@ -39,19 +37,21 @@ namespace Services.Cards.Spawners
       return card;
     }
 
-    private void SpawnCard(Vector3 localPosition, Transform parent, CardStaticData data, bool isPlayer)
+    private Card SpawnCard(Vector3 localPosition, Transform parent, CardStaticData data, bool isPlayer)
     {
       Card card = cardFactory.CreateCard(parent, data, isPlayer);
       card.transform.localPosition = localPosition;
       card.Hiden += ReturnCard;
       card.Show();
+      return card;
     }
 
-    private void RespawnCard(Card card, Vector3 localPosition, CardStaticData data, bool isPlayer)
+    private Card RespawnCard(Card card, Vector3 localPosition, CardStaticData data, bool isPlayer)
     {
       card = cardFactory.RecreateCard(card, data, isPlayer);
       card.transform.localPosition = localPosition;
       card.Show();
+      return card;
     }
 
     private void ReturnCard(Card card)

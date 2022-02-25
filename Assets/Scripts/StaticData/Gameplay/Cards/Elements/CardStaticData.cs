@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Cards.CardsElement.Base;
+using UnityEngine;
 
 namespace StaticData.Gameplay.Cards.Elements
 {
@@ -8,5 +9,6 @@ namespace StaticData.Gameplay.Cards.Elements
     public int ID;
     public string Name;
     public string Description;
+    public PlayingZoneType PlayingZoneType;
   }
 }

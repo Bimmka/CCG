@@ -2,6 +2,7 @@
 using Gameplay.Cards.Decks;
 using Gameplay.Cards.Hand;
 using Gameplay.Cards.Spawners;
+using Gameplay.Clicks;
 using Gameplay.GameMachine.States;
 using Gameplay.Table;
 using Services.FieldCreate;
@@ -16,6 +17,7 @@ namespace Gameplay.GameMachine
     [SerializeField] private CardSpawner cardSpawner;
     [SerializeField] private GameplayPlayerDeck playerDeck;
     [SerializeField] private GameplayPlayerHand playerHand;
+    [SerializeField] private PlayerClickHandler clickHandler;
     
     private IFieldCreateService fieldCreateService;
 
@@ -48,9 +50,9 @@ namespace Gameplay.GameMachine
     private void CreateStates()
     {
       PrepareGameStateState = new PrepareGameState(this, stateMachine);
-      PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand);
+      PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand, clickHandler);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
-      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine);
+      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler);
       GameEndState = new GameEnd(this, stateMachine);
     }
 
@@ -59,16 +61,13 @@ namespace Gameplay.GameMachine
       stateMachine.Initialize(PrepareGameStateState);
     }
 
-    public void CreateField()
-    {
+    public void CreateField() => 
       fieldCreateService.CreateField(field);
-    }
 
     public void SpawnFirstOpponentsCard() => 
       cardSpawner.FirstOpponentSpawn();
 
     public void SpawnPlayerDeckProps() => 
       playerDeck.Init();
-    
   }
 }

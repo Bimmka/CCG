@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee1e0ec06cb54fc5905f7541af9fc61c, type: 3}
   m_Name: Simple Card
   m_EditorClassIdentifier: 
+  ID: 0
   Name: Simple Card
   Description: Test Card
+  PlayingZoneType: 1

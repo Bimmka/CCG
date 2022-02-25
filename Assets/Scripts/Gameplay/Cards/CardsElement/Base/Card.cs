@@ -12,12 +12,15 @@ namespace Gameplay.Cards.CardsElement.Base
     private CardUseStrategy useStrategy;
 
     private CardStaticData data;
+    
+    public PlayingZoneType PlayingZoneType { get; private set; }
 
     public event Action<Card> Hiden;
 
     public void Construct(CardStaticData staticData)
     {
       data = staticData;
+      PlayingZoneType = data.PlayingZoneType;
     }
 
     public void Show()

@@ -11,6 +11,7 @@ namespace Services.Cards.Hand
     private readonly int maxCardCount;
 
     public event Action<CardStaticData> AddedCard;
+    public event Action<CardStaticData> RemovedCard;
 
     public PlayerHand()
     {
@@ -18,7 +19,7 @@ namespace Services.Cards.Hand
       collectedCards = new List<CardStaticData>(maxCardCount);
     }
 
-    public void RemoveCards()
+    public void ResetCards()
     {
       collectedCards.Clear();
     }
@@ -32,6 +33,7 @@ namespace Services.Cards.Hand
     public void UseCard(CardStaticData card)
     {
       collectedCards.Remove(card);
+      RemovedCard?.Invoke(card);
     }
 
     public bool IsCanAddCards(int count) => 

@@ -1,11 +1,13 @@
-﻿using StaticData.Gameplay.Cards.Elements;
+﻿using System;
+using StaticData.Gameplay.Cards.Elements;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace UI.Windows.PlayerHand
 {
-  public class UIPlayerHandCard : MonoBehaviour
+  public class UIPlayerHandCard : MonoBehaviour, IPointerClickHandler
   {
     [SerializeField] private Image mainViewImage;
     [SerializeField] private TextMeshProUGUI nameText;
@@ -13,6 +15,7 @@ namespace UI.Windows.PlayerHand
     
     private CardStaticData data;
 
+    public event Action<CardStaticData> Clicked; 
     public int CardID => data == null ? -1 : data.ID;
 
     public void Show()
@@ -35,6 +38,9 @@ namespace UI.Windows.PlayerHand
       this.data = data;
       DisplayCardData();
     }
+
+    public void OnPointerClick(PointerEventData eventData) => 
+      Clicked?.Invoke(data);
 
     public void ResetData()
     {

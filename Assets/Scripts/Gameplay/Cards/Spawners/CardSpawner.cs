@@ -4,6 +4,7 @@ using Gameplay.Cards.Decks;
 using Gameplay.Table;
 using Services.Cards.Spawners;
 using Services.Random;
+using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 using Zenject;
 
@@ -57,6 +58,11 @@ namespace Gameplay.Cards.Spawners
       }
 
       return cards;
+    }
+
+    public Card SpawnPlayerCard(CardStaticData card, Vector3 localPosition, Transform parent)
+    {
+      return cardSpawnerService.SpawnPlayerCard(UppedPosition(localPosition), parent, card);
     }
 
     private bool IsApplyOpponentSpawn() => 

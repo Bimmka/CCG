@@ -6,8 +6,8 @@ namespace Services.Cards.Spawners
 {
   public interface ICardSpawnerService : IService
   {
-    void SpawnEnemyCard(Vector3 localPosition,Transform parent, CardStaticData data);
-    void SpawnPlayerCard(Vector3 localPosition, Transform parent, CardStaticData data);
+    Card SpawnEnemyCard(Vector3 localPosition,Transform parent, CardStaticData data);
+    Card SpawnPlayerCard(Vector3 localPosition, Transform parent, CardStaticData data);
     Card SpawnPlayerCardProps(Vector3 localPosition, Transform playerDeckParent, int index);
   }
 }

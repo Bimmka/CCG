@@ -19,6 +19,9 @@ namespace UI.Windows.PlayerHand
     
     private IAssetProvider assets;
 
+    public event Action<CardStaticData> Clicked;
+    public event Func<bool> IsCanClicked;
+
     [Inject]
     private void Construct(IAssetProvider assetProvider) => 
       assets = assetProvider;
@@ -33,6 +36,16 @@ namespace UI.Windows.PlayerHand
     {
       playerHand.AddedCard -= OnCardAdded;
       playerHand.RemovedCard -= OnCardRemoved;
+    }
+
+    public void ReturnCard(CardStaticData card)
+    {
+      Debug.Log("Returned Card");
+    }
+
+    public void RemoveCard(CardStaticData card)
+    {
+      OnCardRemoved(card);
     }
 
     private void OnCardAdded(CardStaticData card)
@@ -57,6 +70,7 @@ namespace UI.Windows.PlayerHand
 
     private void RemoveCard(UIPlayerHandCard cardInHand)
     {
+      cardsInHand.Remove(cardInHand);
       cardInHand.Hide();
       cardInHand.ResetData();
       pool.Enqueue(cardInHand);
@@ -73,9 +87,17 @@ namespace UI.Windows.PlayerHand
     private void CreateCard(CardStaticData card)
     {
       UIPlayerHandCard cardInHand = assets.Instantiate(prefab, cardsParent);
+      cardInHand.Clicked += OnCardClick;
       cardInHand.ForceHide();
       cardInHand.SetData(card);
       cardInHand.Show();
+      cardsInHand.Add(cardInHand);
+    }
+
+    private void OnCardClick(CardStaticData card)
+    {
+      if (IsCanClicked.Invoke())
+        Clicked?.Invoke(card);
     }
   }
 }
