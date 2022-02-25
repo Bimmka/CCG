@@ -6,6 +6,7 @@ using Services;
 using Services.Assets;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
+using Services.Cards.Hand;
 using Services.Cards.Spawners;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
@@ -56,6 +57,7 @@ namespace GameStates.States
       RegisterOpponentDeck();
       RegisterCardFactory(cardPrefab);
       RegisterCardSpawner();
+      RegisterPlayerHand();
     }
 
     private void RegisterGameFactory()
@@ -112,8 +114,7 @@ namespace GameStates.States
 
     private void RegisterPlayerDeck()
     {
-      services.RegisterSingle(new PlayerDeck(
-        services.Single<IRandomService>()));
+      services.RegisterSingle(new PlayerDeck());
     }
 
     private void RegisterOpponentDeck()
@@ -122,14 +123,13 @@ namespace GameStates.States
         services.Single<IRandomService>()));
     }
 
-    private void RegisterCardFactory(Card prefab)
-    {
+    private void RegisterCardFactory(Card prefab) => 
       services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab));
-    }
 
-    private void RegisterCardSpawner()
-    {
+    private void RegisterCardSpawner() => 
       services.RegisterSingle(new CardSpawnerService(services.Single<ICardFactory>()));
-    }
+
+    private void RegisterPlayerHand() => 
+      services.RegisterSingle(new PlayerHand());
   }
 }

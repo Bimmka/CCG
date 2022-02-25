@@ -8,12 +8,13 @@ namespace Gameplay.Table
     private readonly Dictionary<Vector2Int, FieldCell> field = new Dictionary<Vector2Int, FieldCell>(15);
     
     public Transform FieldParent { get; private set; }
+    public Transform PlayerDeckParent { get; private set; }
     public Vector2Int Size { get; private set; }
     
-    public void SetFieldParent(Transform parent)
-    {
+    public void SetFieldParent(Transform parent) => 
       FieldParent = parent;
-    }
+    public void SetPlayerDeckParent(Transform parent) => 
+      PlayerDeckParent = parent;
 
     public void SetSize(Vector2Int size) => 
       Size = size;

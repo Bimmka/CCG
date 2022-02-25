@@ -13,5 +13,6 @@ namespace Services.StaticData
     WindowInstantiateData ForWindow(WindowId id);
     FieldCreateStaticData ForFieldCreate();
     List<CardStaticData> ForOpponent(string levelName);
+    List<CardStaticData> ForPlayer();
   }
 }

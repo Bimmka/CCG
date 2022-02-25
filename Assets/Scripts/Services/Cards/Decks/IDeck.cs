@@ -6,6 +6,6 @@ namespace Services.Cards.Decks
   public interface IDeck : IService
   {
     void UpdateDeck(List<CardStaticData> deck);
-    CardStaticData GetRandomCard();
+    CardStaticData GetCard();
   }
 }

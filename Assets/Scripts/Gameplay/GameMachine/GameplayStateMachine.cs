@@ -1,4 +1,6 @@
 ﻿using System;
+using Gameplay.Cards.Decks;
+using Gameplay.Cards.Hand;
 using Gameplay.Cards.Spawners;
 using Gameplay.GameMachine.States;
 using Gameplay.Table;
@@ -12,6 +14,8 @@ namespace Gameplay.GameMachine
   {
     [SerializeField] private Field field;
     [SerializeField] private CardSpawner cardSpawner;
+    [SerializeField] private GameplayPlayerDeck playerDeck;
+    [SerializeField] private GameplayPlayerHand playerHand;
     
     private IFieldCreateService fieldCreateService;
 
@@ -29,7 +33,7 @@ namespace Gameplay.GameMachine
       this.fieldCreateService = fieldCreateService;
     }
 
-    private void Awake()
+    private void Start()
     {
       CreateStateMachine();
       CreateStates();
@@ -44,7 +48,7 @@ namespace Gameplay.GameMachine
     private void CreateStates()
     {
       PrepareGameStateState = new PrepareGameState(this, stateMachine);
-      PlayerStartTurnState = new PlayerStartTurn(this, stateMachine);
+      PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
       PlayerEndTurnState = new PlayerEndTurn(this, stateMachine);
       GameEndState = new GameEnd(this, stateMachine);
@@ -62,5 +66,9 @@ namespace Gameplay.GameMachine
 
     public void SpawnFirstOpponentsCard() => 
       cardSpawner.FirstOpponentSpawn();
+
+    public void SpawnPlayerDeckProps() => 
+      playerDeck.Init();
+    
   }
 }

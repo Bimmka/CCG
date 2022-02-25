@@ -7,6 +7,7 @@ using Services;
 using Services.Assets;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
+using Services.Cards.Hand;
 using Services.Cards.Spawners;
 using Services.FieldCreate;
 using Services.Progress;
@@ -48,16 +49,17 @@ namespace Bootstrapp
           BindPlayerDeck();
           BindOpponentDeck();
           BindCardSpawner();
+          BindPlayerHand();
         }
 
-       
+
         private void InstantiateComponents()
         {
           InitServices();
           InstantiateCurtain();
           InstantiateBootstrapper();
         }
-        
+
 
         private void InitServices() => 
           allServices = new AllServices();
@@ -70,7 +72,7 @@ namespace Bootstrapp
           spawnedGameBootstrapp = Instantiate(gameBootstrapp, transform);
           spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab);
         }
-        
+
         private void BindProgressService() => 
           Container.Bind<IPersistentProgressService>().To<IPersistentProgressService>().FromInstance(allServices.Single<IPersistentProgressService>()).AsCached();
 
@@ -85,19 +87,25 @@ namespace Bootstrapp
 
         private void BindRandomService() => 
           Container.Bind<IRandomService>().To<IRandomService>().FromInstance(allServices.Single<IRandomService>()).AsCached();
-        
+
         private void BindAssetsService() => 
           Container.Bind<IAssetProvider>().To<IAssetProvider>().FromInstance(allServices.Single<IAssetProvider>()).AsCached();
-        
+
         private void BindFieldCreatingService() => 
           Container.Bind<IFieldCreateService>().To<IFieldCreateService>().FromInstance(allServices.Single<IFieldCreateService>()).AsCached();
-        
+
         private void BindPlayerDeck() => 
           Container.Bind<IPlayerDeck>().To<IPlayerDeck>().FromInstance(allServices.Single<IPlayerDeck>()).AsCached();
+
         private void BindOpponentDeck() => 
-          Container.Bind<IOpponentDeck>().To<IOpponentDeck>().FromInstance(allServices.Single<IOpponentDeck>()).AsCached(); 
+          Container.Bind<IOpponentDeck>().To<IOpponentDeck>().FromInstance(allServices.Single<IOpponentDeck>()).AsCached();
+
         private void BindCardSpawner() => 
           Container.Bind<ICardSpawnerService>().To<ICardSpawnerService>().FromInstance(allServices.Single<ICardSpawnerService>()).AsCached();
 
+        private void BindPlayerHand()
+        {
+          Container.Bind<IPlayerHand>().To<IPlayerHand>().FromInstance(allServices.Single<IPlayerHand>()).AsCached();
+        }
     }
 }

@@ -80,6 +80,7 @@ namespace GameStates.States
     private void InitDecks()
     {
       opponentDeck.UpdateDeck(staticData.ForOpponent(lastPayload));
+      playerDeck.UpdateDeck(staticData.ForPlayer());
     }
 
     private GameObject CreateHud(GameObject hero, Transform uiRoot) => 

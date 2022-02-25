@@ -16,6 +16,6 @@ namespace Gameplay.Cards.Decks
     }
 
     public CardStaticData GetRandomCard() => 
-      deck.GetRandomCard();
+      deck.GetCard();
   }
 }

@@ -7,25 +7,41 @@ namespace Services.Cards.Decks.Player
 {
   public class PlayerDeck : IPlayerDeck
   {
-    private readonly IRandomService randomService;
-    
+
     private List<CardStaticData> cards;
+    private int currentCardIndex = 0;
 
+    public int Length => cards.Count;
+
+    public event Action<int> CardUsed;
     public event Action Empty;
-
-    public PlayerDeck(IRandomService randomService)
-    {
-      this.randomService = randomService;
-    }
+    
 
     public void UpdateDeck(List<CardStaticData> deck)
     {
       cards = deck;
+      currentCardIndex = 0;
     }
 
-    public CardStaticData GetRandomCard()
+    public void ShuffleDeck()
     {
-      return cards[randomService.Next(0, cards.Count)];
+      currentCardIndex = 0;
     }
+
+    public CardStaticData GetCard()
+    {
+      CardStaticData card = cards[currentCardIndex];
+      NotifyAboutUse(currentCardIndex);
+      currentCardIndex++;
+      if (currentCardIndex >= cards.Count)
+        NotifyAboutEmpty();
+      return card;
+    }
+
+    private void NotifyAboutUse(int index) => 
+      CardUsed?.Invoke(index);
+
+    private void NotifyAboutEmpty() => 
+      Empty?.Invoke();
   }
 }

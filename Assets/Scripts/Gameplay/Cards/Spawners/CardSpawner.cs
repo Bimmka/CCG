@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Cards.Decks;
 using Gameplay.Table;
 using Services.Cards.Spawners;
@@ -12,8 +13,11 @@ namespace Gameplay.Cards.Spawners
   {
     [SerializeField] private Field field;
     [SerializeField] private GameplayOpponentDeck opponentDeck;
+    [SerializeField] private GameplayPlayerDeck playerDeck;
     [SerializeField] private float chanceToApplySpawnOpponentCard = 1f;
+    [SerializeField] private float enemyFieldCardYOffset = 0.5f;
     
+
     private ICardSpawnerService cardSpawnerService;
     private IRandomService randomService;
 
@@ -30,7 +34,7 @@ namespace Gameplay.Cards.Spawners
       for (int i = 0; i < localPositions.Count; i++)
       {
         if (IsApplyOpponentSpawn())
-          cardSpawnerService.SpawnEnemyCard(localPositions[i], field.FieldParent, opponentDeck.GetRandomCard());
+          cardSpawnerService.SpawnEnemyCard(UppedPosition(localPositions[i]), field.FieldParent, opponentDeck.GetRandomCard());
       }
     }
 
@@ -40,11 +44,27 @@ namespace Gameplay.Cards.Spawners
       for (int i = 0; i < localPositions.Count; i++)
       {
           if (IsApplyOpponentSpawn())
-            cardSpawnerService.SpawnEnemyCard(localPositions[i], field.FieldParent,opponentDeck.GetRandomCard());
+            cardSpawnerService.SpawnEnemyCard(UppedPosition(localPositions[i]), field.FieldParent,opponentDeck.GetRandomCard());
       }
     }
-    
+
+    public List<Card> SpawnPlayerDeck()
+    {
+      List<Card> cards = new List<Card>(playerDeck.DeckLength());
+      for (int i = 0; i < playerDeck.DeckLength(); i++)
+      {
+        cards.Add(cardSpawnerService.SpawnPlayerCardProps(UppedPosition(field.PlayerDeckParent.localPosition), field.PlayerDeckParent, i));
+      }
+
+      return cards;
+    }
+
     private bool IsApplyOpponentSpawn() => 
       randomService.NextDouble() <= chanceToApplySpawnOpponentCard;
+
+    private Vector3 UppedPosition(Vector3 localPosition)
+    {
+      return localPosition + Vector3.up * enemyFieldCardYOffset;
+    }
   }
 }

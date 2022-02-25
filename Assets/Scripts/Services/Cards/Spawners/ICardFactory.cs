@@ -8,5 +8,6 @@ namespace Services.Cards.Spawners
   {
     Card CreateCard(Transform transform, CardStaticData data, bool isPlayer);
     Card RecreateCard(Card pooledCard, CardStaticData data, bool isPlayer);
+    Card SpawnPropsCard( Transform parent, bool isPlayer);
   }
 }

@@ -24,5 +24,10 @@ namespace Gameplay.Cards.CardsElement.Base
     {
       gameObject.SetActive(true);
     }
+
+    public void Hide()
+    {
+      gameObject.SetActive(false);
+    }
   }
 }

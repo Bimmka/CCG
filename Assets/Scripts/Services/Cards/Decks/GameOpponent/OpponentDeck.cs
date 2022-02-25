@@ -20,7 +20,7 @@ namespace Services.Cards.Decks.GameOpponent
       cards = deck;
     }
 
-    public CardStaticData GetRandomCard()
+    public CardStaticData GetCard()
     {
       return cards[randomService.Next(0, cards.Count)];
     }

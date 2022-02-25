@@ -25,5 +25,10 @@ namespace Services.Cards.Spawners
     {
       return pooledCard;
     }
+
+    public Card SpawnPropsCard( Transform parent, bool isPlayer)
+    {
+      return assets.Instantiate(prefab, parent);
+    }
   }
 }

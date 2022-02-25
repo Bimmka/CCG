@@ -11,22 +11,20 @@ namespace Gameplay.GameMachine.States
             base.Enter();
             CreateField();
             SpawnFirstCards();
+            SpawnPlayerDeck();
             StartPlayerTurn();
         }
 
-        private void CreateField()
-        {
+        private void CreateField() => 
             gameplay.CreateField();
-        }
 
-        private void SpawnFirstCards()
-        {
-            gameplay.SpawnFirstOpponentsCard();    
-        }
+        private void SpawnFirstCards() => 
+            gameplay.SpawnFirstOpponentsCard();
 
-        private void StartPlayerTurn()
-        {
-            stateMachine.ChangeState(gameplay.PlayerStartTurnState);    
-        }
+        private void SpawnPlayerDeck() => 
+            gameplay.SpawnPlayerDeckProps();
+
+        private void StartPlayerTurn() => 
+            stateMachine.ChangeState(gameplay.PlayerStartTurnState);
     }
 }

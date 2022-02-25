@@ -22,6 +22,7 @@ namespace Services.FieldCreate
       TableView table = SpawnTable();
       field.SetSize(data.FieldSize);
       field.SetFieldParent(table.transform);
+      field.SetPlayerDeckParent(table.PlayerDeckParent);
       SpawnCells(table, field);
     }
 
