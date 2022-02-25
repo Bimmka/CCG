@@ -1,6 +1,7 @@
 ﻿using GameStates.States.Interfaces;
 using SceneLoading;
 using Services.Factories.GameFactories;
+using Services.FieldCreate;
 using Services.StaticData;
 using Services.UI.Factory;
 using UnityEngine;
@@ -15,18 +16,21 @@ namespace GameStates.States
     private readonly IGameFactory gameFactory;
     private readonly IUIFactory uiFactory;
     private readonly IStaticDataService staticData;
+    private readonly IFieldCreateService fieldCreateService;
 
     public LoadGameLevelState(ISceneLoader sceneLoader, 
       IGameStateMachine gameStateMachine, 
       IGameFactory gameFactory, 
       IUIFactory uiFactory, 
-      IStaticDataService staticData)
+      IStaticDataService staticData,
+      IFieldCreateService fieldCreateService)
     {
       this.sceneLoader = sceneLoader;
       this.gameStateMachine = gameStateMachine;
       this.gameFactory = gameFactory;
       this.uiFactory = uiFactory;
       this.staticData = staticData;
+      this.fieldCreateService = fieldCreateService;
     }
 
     public void Enter(string payload)
@@ -50,6 +54,13 @@ namespace GameStates.States
       GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
       SetCameraToHud(hud, camera);
+
+      InitGameField();
+    }
+
+    private void InitGameField()
+    {
+      fieldCreateService.CreateField();
     }
 
     private GameObject CreateHud(GameObject hero, Transform uiRoot) => 

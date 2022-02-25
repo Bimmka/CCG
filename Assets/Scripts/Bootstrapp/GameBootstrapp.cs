@@ -1,4 +1,5 @@
-﻿using GameStates;
+using System;
+using GameStates;
 using GameStates.States;
 using SceneLoading;
 using Services;
@@ -8,21 +9,19 @@ namespace Bootstrapp
 {
   public class GameBootstrapp : MonoBehaviour, ICoroutineRunner
   {
-    [SerializeField] private LoadingCurtain curtainPrefab;
+
     private Game game;
-    private AllServices allServices;
 
-    private void Awake()
+    private void Start()
     {
-      allServices = new AllServices();
-      game = new Game(this, Instantiate(curtainPrefab), ref allServices);
+      game.StateMachine.Enter<LoadProgressState>();
+    }
+
+    public void Init(ref AllServices services,  LoadingCurtain loadingCurtain)
+    {
+      game = new Game(this, loadingCurtain, ref services);
       game.StateMachine.Enter<BootstrapState>();
-      DontDestroyOnLoad(this);
     }
 
-    private void OnDestroy()
-    {
-      allServices.Cleanup();
-    }
   }
 }

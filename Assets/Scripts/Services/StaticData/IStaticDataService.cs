@@ -1,4 +1,5 @@
 ﻿using Services.UI.Factory;
+using StaticData.Gameplay.Table;
 using StaticData.UI;
 
 namespace Services.StaticData
@@ -7,5 +8,6 @@ namespace Services.StaticData
   {
     void Load();
     WindowInstantiateData ForWindow(WindowId id);
+    FieldCreateStaticData ForFieldCreate();
   }
 }

@@ -3,6 +3,7 @@ using SceneLoading;
 using Services;
 using Services.Assets;
 using Services.Factories.GameFactories;
+using Services.FieldCreate;
 using Services.Progress;
 using Services.Random;
 using Services.StaticData;
@@ -27,7 +28,7 @@ namespace GameStates.States
 
     public void Enter()
     {
-      gameStateMachine.Enter<LoadProgressState>();
+     
     }
 
     public void Exit()
@@ -45,10 +46,10 @@ namespace GameStates.States
       RegisterUIFactory();
       RegisterWindowsService();
       RegisterGameFactory();
+      RegisterFieldCreateService();
 
-      
     }
-    
+
     private void RegisterGameFactory()
     {
       services.RegisterSingle<IGameFactory>(
@@ -62,7 +63,7 @@ namespace GameStates.States
 
     private void RegisterStateMachine() => 
       services.RegisterSingle(gameStateMachine);
-    
+
 
     private void RegisterAssets()
     {
@@ -92,5 +93,10 @@ namespace GameStates.States
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));
+
+    private void RegisterFieldCreateService()
+    {
+      services.RegisterSingle(new FieldCreateService(services.Single<IAssetProvider>(), services.Single<IStaticDataService>().ForFieldCreate()));  
+    }
   }
 }

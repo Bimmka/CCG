@@ -5,6 +5,7 @@ using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
 using Services.Factories.GameFactories;
+using Services.FieldCreate;
 using Services.Progress;
 using Services.StaticData;
 using Services.UI.Factory;
@@ -29,7 +30,8 @@ namespace GameStates
           this, 
           services.Single<IGameFactory>(), 
           services.Single<IUIFactory>(), 
-          services.Single<IStaticDataService>()
+          services.Single<IStaticDataService>(),
+          services.Single<IFieldCreateService>()
           ),
         [typeof(MainMenuState)] = new MainMenuState(services.Single<IUIFactory>(), services.Single<IWindowsService>(), sceneLoader)
       };

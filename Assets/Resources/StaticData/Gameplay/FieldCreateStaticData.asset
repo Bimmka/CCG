@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76deecb58f2241ad9ec183e09dd042c0, type: 3}
+  m_Name: FieldCreateStaticData
+  m_EditorClassIdentifier: 
+  TableSpawnPosition: {x: 0, y: -5, z: 0.2431}
+  FieldSize: {x: 3, y: 4}
+  ElementsOffset: {x: 0.19, y: 0.23}
+  TablePrefab: {fileID: 8591490954555179458, guid: dc81eeaf7bd455341be108aded6488dc, type: 3}
+  MapCellPrefab: {fileID: 7805436327122364329, guid: fe8c8488d9f9cb046ad726f15706bd75, type: 3}
