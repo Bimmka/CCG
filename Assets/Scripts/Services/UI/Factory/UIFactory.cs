@@ -6,6 +6,7 @@ using Services.Progress;
 using Services.StaticData;
 using StaticData.UI;
 using UI.Base;
+using UI.Windows;
 using UnityEngine;
 
 namespace Services.UI.Factory
@@ -45,11 +46,22 @@ namespace Services.UI.Factory
       WindowInstantiateData config = LoadWindowInstantiateData(id);
       switch (id)
       {
+        case WindowId.MainMenu:
+          CreateMainMenuWindow(config, id, gameStateMachine);
+          break;
         default:
           CreateWindow(config, id);
           break;
       }
     }
+
+    private void CreateMainMenuWindow(WindowInstantiateData config, WindowId id, IGameStateMachine stateMachine)
+    {
+      BaseWindow window = InstantiateWindow(config);
+      ((UIMainMenu) window).Construct(stateMachine);
+      NotifyAboutCreateWindow(id, window);
+    }
+
     private void CreateWindow(WindowInstantiateData config, WindowId id)
     {
       BaseWindow window = InstantiateWindow(config);
