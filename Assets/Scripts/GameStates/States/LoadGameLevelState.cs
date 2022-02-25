@@ -1,4 +1,5 @@
-﻿using GameStates.States.Interfaces;
+﻿using Gameplay.Table;
+using GameStates.States.Interfaces;
 using SceneLoading;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
@@ -54,15 +55,8 @@ namespace GameStates.States
       GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
       SetCameraToHud(hud, camera);
-
-      InitGameField();
     }
-
-    private void InitGameField()
-    {
-      fieldCreateService.CreateField();
-    }
-
+    
     private GameObject CreateHud(GameObject hero, Transform uiRoot) => 
       gameFactory.CreateHud(hero, uiRoot);
 

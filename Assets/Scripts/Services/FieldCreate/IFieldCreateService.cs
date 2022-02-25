@@ -1,7 +1,9 @@
-﻿namespace Services.FieldCreate
+﻿using Gameplay.Table;
+
+namespace Services.FieldCreate
 {
   public interface IFieldCreateService : IService
   {
-    void CreateField();
+    void CreateField(Field field);
   }
 }

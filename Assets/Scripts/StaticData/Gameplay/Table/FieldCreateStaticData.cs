@@ -7,9 +7,9 @@ namespace StaticData.Gameplay.Table
   public class FieldCreateStaticData : ScriptableObject
   {
     public Vector3 TableSpawnPosition;
-    public Vector2 FieldSize = new Vector2(3,4);
+    public Vector2Int FieldSize = new Vector2Int(3,4);
     public Vector2 ElementsOffset;
-    public Field TablePrefab;
+    public TableView TablePrefab;
     public GameObject MapCellPrefab;
   }
 }

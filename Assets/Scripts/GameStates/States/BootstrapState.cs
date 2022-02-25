@@ -1,4 +1,5 @@
-﻿using GameStates.States.Interfaces;
+﻿using Gameplay.Table;
+using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
 using Services.Assets;
@@ -93,10 +94,13 @@ namespace GameStates.States
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));
+    
 
     private void RegisterFieldCreateService()
     {
-      services.RegisterSingle(new FieldCreateService(services.Single<IAssetProvider>(), services.Single<IStaticDataService>().ForFieldCreate()));  
+      services.RegisterSingle(new FieldCreateService(
+        services.Single<IAssetProvider>(), 
+        services.Single<IStaticDataService>().ForFieldCreate()));  
     }
   }
 }

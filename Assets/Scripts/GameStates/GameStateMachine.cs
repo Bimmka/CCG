@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Gameplay.Table;
 using GameStates.States;
 using GameStates.States.Interfaces;
 using SceneLoading;
@@ -32,7 +33,7 @@ namespace GameStates
           services.Single<IUIFactory>(), 
           services.Single<IStaticDataService>(),
           services.Single<IFieldCreateService>()
-          ),
+        ),
         [typeof(MainMenuState)] = new MainMenuState(services.Single<IUIFactory>(), services.Single<IWindowsService>(), sceneLoader)
       };
     }

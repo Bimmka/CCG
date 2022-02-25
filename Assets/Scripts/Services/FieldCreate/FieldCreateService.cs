@@ -8,7 +8,7 @@ namespace Services.FieldCreate
   public class FieldCreateService : IFieldCreateService
   {
     private readonly FieldCreateStaticData data;
-      
+
     private readonly IAssetProvider assets;
 
     public FieldCreateService(IAssetProvider assetProvider, FieldCreateStaticData staticData)
@@ -17,13 +17,14 @@ namespace Services.FieldCreate
       data = staticData;
     }
 
-    public void CreateField()
+    public void CreateField(Field field)
     {
-      Field table = SpawnTable();
-      SpawnCells(table);
+      TableView table = SpawnTable();
+      field.SetSize(data.FieldSize);
+      SpawnCells(table, field);
     }
 
-    private void SpawnCells(Field table)
+    private void SpawnCells(TableView table, Field field)
     {
       Vector3 startSpawnLocalPoint = table.SpawnLocalPosition;
       for (int i = 0; i < data.FieldSize.x; i++)
@@ -32,10 +33,11 @@ namespace Services.FieldCreate
         {
           GameObject cell = SpawnCell(table.transform);
           cell.transform.localPosition = startSpawnLocalPoint + new Vector3(i * data.ElementsOffset.x, 0, -j * data.ElementsOffset.y);
+          field.AddCell(cell, new Vector2Int(i,j));
         }
       } 
     }
-    private Field SpawnTable() => 
+    private TableView SpawnTable() => 
       assets.Instantiate(data.TablePrefab, data.TableSpawnPosition);
 
     private GameObject SpawnCell(Transform table) => 
