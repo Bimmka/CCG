@@ -10,6 +10,8 @@ namespace Services.Cards.Hand
     private readonly List<CardStaticData> collectedCards;
     private readonly int maxCardCount;
 
+    public bool IsNeedSaveCard { get; private set; }
+
     public event Action<CardStaticData> AddedCard;
     public event Action<CardStaticData> RemovedCard;
 
@@ -33,10 +35,22 @@ namespace Services.Cards.Hand
     public void UseCard(CardStaticData card)
     {
       collectedCards.Remove(card);
-      RemovedCard?.Invoke(card);
+      NotifyAboutRemove(card);
     }
 
-    public bool IsCanAddCards(int count) => 
-      collectedCards.Count + count <= maxCardCount;
+    public void ReleaseCard()
+    {
+      for (int i = 0; i < collectedCards.Count; i++)
+      {
+        NotifyAboutRemove(collectedCards[i]);
+      }
+      collectedCards.Clear();
+    }
+
+    public bool IsCanAddCard() => 
+      collectedCards.Count < maxCardCount;
+
+    private void NotifyAboutRemove(CardStaticData card) => 
+      RemovedCard?.Invoke(card);
   }
 }

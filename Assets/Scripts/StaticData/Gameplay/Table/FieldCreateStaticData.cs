@@ -9,6 +9,7 @@ namespace StaticData.Gameplay.Table
     public Vector3 TableSpawnPosition;
     public Vector2Int FieldSize = new Vector2Int(3,4);
     public Vector2 ElementsOffset;
+    public int PlayerRowsCount = 1;
     public TableView TablePrefab;
     public FieldCell MapCellPrefab;
   }

@@ -7,9 +7,11 @@ namespace Services.Cards.Hand
   {
     event Action<CardStaticData> AddedCard;
     event Action<CardStaticData> RemovedCard;
+    bool IsNeedSaveCard { get; }
     void AddCard(CardStaticData card);
     void UseCard(CardStaticData card);
-    bool IsCanAddCards(int count);
+    void ReleaseCard();
+    bool IsCanAddCard();
     void ResetCards();
   }
 }

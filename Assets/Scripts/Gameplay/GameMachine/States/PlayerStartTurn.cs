@@ -19,12 +19,9 @@ namespace Gameplay.GameMachine.States
     public override void Enter()
     {
       base.Enter();
-      if (playerHand.IsCanCollectCards())
-      {
-        playerHand.CollectCards();
-        stateMachine.ChangeState(gameplay.PlayerTurnState);
-        playerClickHandler.UnlockCLick();
-      }
+      playerHand.CollectCards();
+      playerClickHandler.UnlockCLick();
+      stateMachine.ChangeState(gameplay.PlayerTurnState);
     }
     
   }

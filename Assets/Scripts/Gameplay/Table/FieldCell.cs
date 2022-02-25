@@ -10,6 +10,7 @@ namespace Gameplay.Table
     public Vector2Int GridPosition { get; private set; }
     public PlayingZoneType Type { get; private set; }
     public Vector3 LocalPosition => transform.localPosition;
+    public bool IsFill => CurrentCard != null;
 
 
     public void SetCellType(PlayingZoneType type)

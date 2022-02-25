@@ -4,8 +4,10 @@ using Gameplay.Cards.Hand;
 using Gameplay.Cards.Spawners;
 using Gameplay.Clicks;
 using Gameplay.GameMachine.States;
+using Gameplay.GameplayActionPipeline;
 using Gameplay.Table;
 using Services.FieldCreate;
+using UI.Windows.PlayerHand;
 using UnityEngine;
 using Zenject;
 
@@ -17,7 +19,9 @@ namespace Gameplay.GameMachine
     [SerializeField] private CardSpawner cardSpawner;
     [SerializeField] private GameplayPlayerDeck playerDeck;
     [SerializeField] private GameplayPlayerHand playerHand;
+    [SerializeField] private PlayerHandWindow playerHandWindow;
     [SerializeField] private PlayerClickHandler clickHandler;
+    [SerializeField] private ActionPipeline actionPipeline;
     
     private IFieldCreateService fieldCreateService;
 
@@ -33,6 +37,18 @@ namespace Gameplay.GameMachine
     private void Construct(IFieldCreateService fieldCreateService)
     {
       this.fieldCreateService = fieldCreateService;
+    }
+
+    private void Awake()
+    {
+      playerHandWindow.EndTurnClicked += OnTurnEndClicked;
+      actionPipeline.Ended += OnActionsEnd;
+    }
+
+    private void OnDestroy()
+    {
+      playerHandWindow.EndTurnClicked -= OnTurnEndClicked;
+      actionPipeline.Ended -= OnActionsEnd;
     }
 
     private void Start()
@@ -52,7 +68,7 @@ namespace Gameplay.GameMachine
       PrepareGameStateState = new PrepareGameState(this, stateMachine);
       PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand, clickHandler);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
-      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler);
+      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler, actionPipeline);
       GameEndState = new GameEnd(this, stateMachine);
     }
 
@@ -69,5 +85,17 @@ namespace Gameplay.GameMachine
 
     public void SpawnPlayerDeckProps() => 
       playerDeck.Init();
+
+    private void OnTurnEndClicked()
+    {
+      if (stateMachine.State == PlayerTurnState)
+        stateMachine.ChangeState(PlayerEndTurnState);
+    }
+
+    private void OnActionsEnd()
+    {
+      if (true)
+        stateMachine.ChangeState(PlayerStartTurnState);
+    }
   }
 }

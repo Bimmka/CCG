@@ -4,12 +4,14 @@ using Gameplay.Cards.Hand;
 using Services.Assets;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace UI.Windows.PlayerHand
 {
   public class PlayerHandWindow : MonoBehaviour
   {
+    [SerializeField] private Button endTurnButton;
     [SerializeField] private RectTransform cardsParent;
     [SerializeField] private GameplayPlayerHand playerHand;
     [SerializeField] private UIPlayerHandCard prefab;
@@ -20,6 +22,7 @@ namespace UI.Windows.PlayerHand
     private IAssetProvider assets;
 
     public event Action<CardStaticData> Clicked;
+    public event Action EndTurnClicked;
     public event Func<bool> IsCanClicked;
 
     [Inject]
@@ -30,12 +33,14 @@ namespace UI.Windows.PlayerHand
     {
       playerHand.AddedCard += OnCardAdded;
       playerHand.RemovedCard += OnCardRemoved;
+      endTurnButton.onClick.AddListener(NotifyAboutEndTurnClick);
     }
 
     private void OnDestroy()
     {
       playerHand.AddedCard -= OnCardAdded;
       playerHand.RemovedCard -= OnCardRemoved;
+      endTurnButton.onClick.RemoveListener(NotifyAboutEndTurnClick);
     }
 
     public void ReturnCard(CardStaticData card)
@@ -82,6 +87,7 @@ namespace UI.Windows.PlayerHand
       cardInHand.SetData(card);
       cardInHand.transform.SetAsLastSibling();
       cardInHand.Show();
+      SaveInHand(cardInHand);
     }
 
     private void CreateCard(CardStaticData card)
@@ -91,6 +97,11 @@ namespace UI.Windows.PlayerHand
       cardInHand.ForceHide();
       cardInHand.SetData(card);
       cardInHand.Show();
+      SaveInHand(cardInHand);
+    }
+
+    private void SaveInHand(UIPlayerHandCard cardInHand)
+    {
       cardsInHand.Add(cardInHand);
     }
 
@@ -98,6 +109,11 @@ namespace UI.Windows.PlayerHand
     {
       if (IsCanClicked.Invoke())
         Clicked?.Invoke(card);
+    }
+
+    private void NotifyAboutEndTurnClick()
+    {
+      EndTurnClicked?.Invoke();
     }
   }
 }

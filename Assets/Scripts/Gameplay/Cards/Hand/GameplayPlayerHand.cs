@@ -32,11 +32,6 @@ namespace Gameplay.Cards.Hand
       hand.ResetCards();
     }
 
-    public bool IsCanCollectCards()
-    {
-      return hand.IsCanAddCards(deck.NumberOfCardsToTake);
-    }
-
     public void UseCard(CardStaticData card)
     {
       hand.UseCard(card);
@@ -44,11 +39,24 @@ namespace Gameplay.Cards.Hand
 
     public void CollectCards()
     {
+      if (hand.IsCanAddCard() == false)
+        return;
+      
       List<CardStaticData> cards = deck.GetNeededCard();
-      for (int i = 0; i < cards.Count; i++)
+      for (int i = 0; i < cards.Count && hand.IsCanAddCard(); i++)
       {
+        if (hand.IsCanAddCard() == false)
+          break;
         hand.AddCard(cards[i]);
       }
+    }
+
+    public void ReleaseHand()
+    {
+      if (hand.IsNeedSaveCard)
+        return;
+      
+      hand.ReleaseCard();
     }
 
     private void NotifyAboutAddedCard(CardStaticData card) => 

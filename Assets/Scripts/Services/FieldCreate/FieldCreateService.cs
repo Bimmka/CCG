@@ -24,6 +24,7 @@ namespace Services.FieldCreate
       field.SetSize(data.FieldSize);
       field.SetFieldParent(table.transform);
       field.SetPlayerDeckParent(table.PlayerDeckParent);
+      field.SetPlayerRowsCount(data.PlayerRowsCount);
       SpawnCells(table, field);
     }
 
@@ -47,7 +48,7 @@ namespace Services.FieldCreate
 
     private PlayingZoneType CellType(Vector2Int position)
     {
-      if (position.y < data.FieldSize.y - 1)
+      if (position.y < data.FieldSize.y - data.PlayerRowsCount)
         return PlayingZoneType.Opponent;
       return PlayingZoneType.Player;
     }

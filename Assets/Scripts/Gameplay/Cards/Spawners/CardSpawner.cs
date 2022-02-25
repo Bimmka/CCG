@@ -31,21 +31,33 @@ namespace Gameplay.Cards.Spawners
 
     public void FirstOpponentSpawn()
     {
-      List<Vector3> localPositions = field.RandomOpponentPositions();
-      for (int i = 0; i < localPositions.Count; i++)
+      List<FieldCell> rowCells = field.OpponentPositions();
+      for (int i = 0; i < rowCells.Count; i++)
       {
         if (IsApplyOpponentSpawn())
-          cardSpawnerService.SpawnEnemyCard(UppedPosition(localPositions[i]), field.FieldParent, opponentDeck.GetRandomCard());
+          rowCells[i].SetCard(
+            cardSpawnerService.SpawnEnemyCard(
+              UppedPosition(rowCells[i].LocalPosition),
+              field.FieldParent, 
+              opponentDeck.GetRandomCard()
+            )
+          );
       }
     }
 
     public void SpawnOnTopRow()
     {
-      List<Vector3> localPositions = field.RandomTopRowPositions();
-      for (int i = 0; i < localPositions.Count; i++)
+      List<FieldCell> rowCells = field.TopRowPositions();
+      for (int i = 0; i < rowCells.Count; i++)
       {
-          if (IsApplyOpponentSpawn())
-            cardSpawnerService.SpawnEnemyCard(UppedPosition(localPositions[i]), field.FieldParent,opponentDeck.GetRandomCard());
+        if (IsApplyOpponentSpawn())
+          rowCells[i].SetCard(
+            cardSpawnerService.SpawnEnemyCard(
+              UppedPosition(rowCells[i].LocalPosition),
+            field.FieldParent, 
+              opponentDeck.GetRandomCard()
+              )
+            );
       }
     }
 
