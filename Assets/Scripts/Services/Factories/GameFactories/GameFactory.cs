@@ -1,4 +1,5 @@
-﻿using Services.Assets;
+﻿using ConstantsValue;
+using Services.Assets;
 using Services.Progress;
 using Services.StaticData;
 using Services.UI.Buttons;
@@ -33,10 +34,11 @@ namespace Services.Factories.GameFactories
       return heroGameObject;
     }
 
-    public GameObject CreateHud(GameObject hero)
+    public GameObject CreateHud(GameObject hero, Transform uiRoot)
     {
-      
-      return null;
+      GameObject hud = InstantiateObject(AssetsPath.Hud, uiRoot);
+      InitButtons(hud);
+      return hud;
     }
 
     private void InitButtons(GameObject hud)
@@ -48,7 +50,7 @@ namespace Services.Factories.GameFactories
       }
     }
     
-    private GameObject InstantiateObject(GameObject prefab, Vector3 at) => 
-      assets.Instantiate(prefab, at);
+    private GameObject InstantiateObject(string path, Transform parent) => 
+      assets.Instantiate<GameObject>(path, parent);
   }
 }

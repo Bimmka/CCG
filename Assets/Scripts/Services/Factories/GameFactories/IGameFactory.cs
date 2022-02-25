@@ -5,6 +5,6 @@ namespace Services.Factories.GameFactories
   public interface IGameFactory : IService
   {
     GameObject CreateHero();
-    GameObject CreateHud(GameObject gameObject);
+    GameObject CreateHud(GameObject hero, Transform uiRoot);
   }
 }

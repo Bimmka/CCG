@@ -22,7 +22,9 @@ namespace Services.UI.Factory
 
     private Camera mainCamera;
 
+    public Transform UIRoot => uiRoot;
     public event Action<WindowId,BaseWindow> Spawned;
+
 
     public UIFactory(IGameStateMachine gameStateMachine,
       IAssetProvider assets,

@@ -47,13 +47,13 @@ namespace GameStates.States
       InitUIRoot();
 
       GameObject hero = gameFactory.CreateHero();
-      GameObject hud = CreateHud(hero);
+      GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
       SetCameraToHud(hud, camera);
     }
 
-    private GameObject CreateHud(GameObject hero) => 
-      gameFactory.CreateHud(hero);
+    private GameObject CreateHud(GameObject hero, Transform uiRoot) => 
+      gameFactory.CreateHud(hero, uiRoot);
 
     private void InitUIRoot() => 
       uiFactory.CreateUIRoot();
