@@ -4,6 +4,7 @@ using GameStates;
 using SceneLoading;
 using Services;
 using Services.Assets;
+using Services.FieldCreate;
 using Services.Progress;
 using Services.Random;
 using Services.UI.Factory;
@@ -38,6 +39,7 @@ namespace Bootstrapp
           BindWindowsService();
           BindRandomService();
           BindAssetsService();
+          BindFieldCreatingService();
         }
 
        
@@ -78,6 +80,9 @@ namespace Bootstrapp
         
         private void BindAssetsService() => 
           Container.Bind<IAssetProvider>().To<IAssetProvider>().FromInstance(allServices.Single<IAssetProvider>()).AsCached();
+        
+        private void BindFieldCreatingService() => 
+          Container.Bind<IFieldCreateService>().To<IFieldCreateService>().FromInstance(allServices.Single<IFieldCreateService>()).AsCached();
         
     }
 }
