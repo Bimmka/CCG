@@ -19,4 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bcaee85fe5ae5e54493aa0ca746558d4, type: 2}
   - {fileID: 11400000, guid: 125445d40f27fff4fb58216fb73b43ed, type: 2}
   - {fileID: 11400000, guid: ca8995d734a8ddc4aa92161a627743ad, type: 2}
+  - {fileID: 11400000, guid: 5186c3858bb26f34cabe1770a3ee5a2c, type: 2}
+  - {fileID: 11400000, guid: 9fd03c75e350f6941869f3ff5f6c2348, type: 2}
+  - {fileID: 11400000, guid: c1849d142feaf914990241b41a704cac, type: 2}
   LevelKey: Game

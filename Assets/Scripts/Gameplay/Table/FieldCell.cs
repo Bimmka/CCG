@@ -1,5 +1,7 @@
-﻿using ConstantsValue;
+﻿using System;
+using ConstantsValue;
 using Gameplay.Cards.CardsElement.Base;
+using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 
 namespace Gameplay.Table
@@ -7,6 +9,8 @@ namespace Gameplay.Table
   [RequireComponent(typeof(BoxCollider))]
   public class FieldCell : MonoBehaviour
   {
+    [SerializeField] private FieldCellView view;
+    
     private int lockTurnsCount;
     
     public Card CurrentCard { get; private set; }
@@ -15,6 +19,9 @@ namespace Gameplay.Table
     public bool IsLocking => lockTurnsCount > 0;
     public Vector3 OffsetedYLocalPosition => transform.localPosition + Vector3.up * Constants.YOffset;
     public bool IsFill => CurrentCard != null;
+
+    public static event Action<CardStaticData> Entered;
+    public static event Action Exited;
 
     public void SetCellType(PlayingZoneType type) => 
       Type = type;
@@ -28,10 +35,8 @@ namespace Gameplay.Table
     public void RemoveCard() => 
       CurrentCard = null;
 
-    public void LockForNextTurn()
-    {
+    public void LockForNextTurn() => 
       lockTurnsCount++;
-    }
 
     public void Unlock()
     {
@@ -39,14 +44,24 @@ namespace Gameplay.Table
         lockTurnsCount--;
     }
 
-    public void SetUnlockView()
+    public void SetUnlockView() => 
+      view.SetUnlockView();
+
+    public void SetLockedView() => 
+      view.SetLockedView();
+
+    public void OnMouseEnter()
     {
-      
+      if (IsFill)
+        Entered?.Invoke(CurrentCard.Data);
     }
 
-    public void SetLockedView()
+    public void OnMouseExit()
     {
+      if (IsFill)
+        Exited?.Invoke();
       
+      view.SetBaseView();
     }
   }
 }

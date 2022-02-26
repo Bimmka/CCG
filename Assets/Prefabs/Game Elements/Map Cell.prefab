@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5276585574335259408}
   - component: {fileID: 6708956233711715551}
   - component: {fileID: 9215902921701068179}
+  - component: {fileID: 4444927729073390077}
   m_Layer: 6
   m_Name: Map Cell
   m_TagString: Untagged
@@ -106,5 +107,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e3132afe11504641a87764147057e3f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  view: {fileID: 4444927729073390077}
+--- !u!114 &4444927729073390077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7805436327122364329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a60cfc48a244c55941a28f4b8895934, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

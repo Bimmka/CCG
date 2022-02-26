@@ -24,6 +24,9 @@ namespace Gameplay.Clicks
 
     public bool IsCanClick { get; private set; }
 
+    public event Action<CardStaticData> ClickedCard;
+    public event Action RemovedCard;
+
     private void Awake()
     {
       handWindow.IsCanClicked += IsCanClicked;
@@ -54,6 +57,7 @@ namespace Gameplay.Clicks
     {
       StopAllCoroutines();
       StartCoroutine(ApplyingClicks(card));
+      ClickedCard?.Invoke(card);
 
     }
 
@@ -62,18 +66,21 @@ namespace Gameplay.Clicks
       while (gameObject.activeSelf && IsCanClick)
       {
         yield return null;
+        
+        if (Input.GetMouseButtonUp(1))
+        {
+          ReturnCard(card);
+          RemovedCard?.Invoke();
+          yield break;
+        }
+        
         if (HitCell() && hits[0].collider.TryGetComponent(out FieldCell cell))
         {
-          if (Input.GetMouseButtonUp(1))
-          {
-            ReturnCard(card);
-            yield break;
-          }
-
           if (Input.GetMouseButtonUp(0) && IsCanSetCardToCell(card, cell))
           {
             SetCardToCell(card, cell);
             UseCard(card);
+            RemovedCard?.Invoke();
             yield break;
           }
           

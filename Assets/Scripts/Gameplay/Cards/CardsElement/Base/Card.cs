@@ -19,6 +19,8 @@ namespace Gameplay.Cards.CardsElement.Base
     public CardStatus Status { get; private set; }
     public CardMover Mover { get; private set; }
 
+    public CardStaticData Data => data;
+
     public event Action<Card> Hiden;
     public event Action<Card> Destroyed;
 
