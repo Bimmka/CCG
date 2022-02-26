@@ -7,15 +7,13 @@ namespace Gameplay.Cards.CardsElement.Base
   public class BlockPlayerCellStrategy : CardUseStrategy, IMultipliedCard
   {
     private readonly Field field;
-    private readonly Vector2Int cardPosition;
 
-    public BlockPlayerCellStrategy(CardStrategyStaticData data, Field field, Vector2Int cardPosition) : base(data)
+    public BlockPlayerCellStrategy(CardStrategyStaticData data, Field field) : base(data)
     {
       this.field = field;
-      this.cardPosition = cardPosition;
     }
 
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       FieldCell playerCell = field.Cell(cardPosition + Vector2Int.up);
 

@@ -49,6 +49,8 @@ namespace Gameplay.Cards.Hand
           break;
         hand.AddCard(cards[i]);
       }
+      
+      deck.ResetNumberOfCardsToTake();
     }
 
     public void ReleaseHand()
@@ -61,9 +63,7 @@ namespace Gameplay.Cards.Hand
       
       hand.ReleaseCard();
     }
-
-    public void SaveHandForTurn() => 
-      hand.SetSaveCard();
+    
 
     private void NotifyAboutAddedCard(CardStaticData card) => 
       AddedCard?.Invoke(card);

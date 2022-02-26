@@ -10,6 +10,7 @@ using Services.Cards.Hand;
 using Services.Cards.Spawners;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
+using Services.Hero;
 using Services.Progress;
 using Services.Random;
 using Services.StaticData;
@@ -55,9 +56,10 @@ namespace GameStates.States
       RegisterFieldCreateService();
       RegisterPlayerDeck();
       RegisterOpponentDeck();
+      RegisterPlayerHand();
+      RegisterPlayerGold();
       RegisterCardFactory(cardPrefab);
       RegisterCardSpawner();
-      RegisterPlayerHand();
     }
 
     private void RegisterGameFactory()
@@ -112,19 +114,23 @@ namespace GameStates.States
         services.Single<IStaticDataService>().ForFieldCreate()));  
     }
 
-    private void RegisterPlayerDeck()
-    {
+    private void RegisterPlayerDeck() => 
       services.RegisterSingle(new PlayerDeck());
-    }
 
-    private void RegisterOpponentDeck()
+    private void RegisterOpponentDeck() => 
+      services.RegisterSingle(new OpponentDeck(services.Single<IRandomService>()));
+
+    private void RegisterPlayerGold()
     {
-      services.RegisterSingle(new OpponentDeck(
-        services.Single<IRandomService>()));
+      services.RegisterSingle(new PlayerGold());
     }
 
     private void RegisterCardFactory(Card prefab) => 
-      services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab));
+      services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab,
+        services.Single<IStaticDataService>(),
+        services.Single<IPlayerGold>(),
+        services.Single<IPlayerDeck>(),
+        services.Single<IPlayerHand>()));
 
     private void RegisterCardSpawner() => 
       services.RegisterSingle(new CardSpawnerService(services.Single<ICardFactory>()));

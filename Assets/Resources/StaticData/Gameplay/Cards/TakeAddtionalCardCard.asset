@@ -10,9 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee1e0ec06cb54fc5905f7541af9fc61c, type: 3}
-  m_Name: Simple Card
+  m_Name: TakeAddtionalCardCard
   m_EditorClassIdentifier: 
-  ID: 0
-  Name: Simple Card
-  Description: Test Card
+  ID: 4
+  Name: Take Addtional Card
+  Description: Take Addtional Card
   PlayingZoneType: 1
+  ActionType: 4
+  Shirt: {fileID: 0}
+  Icon: {fileID: 0}
+  SecondIcon: {fileID: 0}
+  MainArt: {fileID: 0}

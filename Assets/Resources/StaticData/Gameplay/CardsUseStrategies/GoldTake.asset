@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df8663b03d84280a3330b899f3e1369, type: 3}
   m_Name: GoldTake
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 2
   MinOperationsNumber: 1
   GoldTakeCount: 10

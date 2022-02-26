@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3b26d8e35df4446af51e985df3ea203, type: 3}
   m_Name: MultiplierProperty
   m_EditorClassIdentifier: 
-  Type: 0
+  Type: 11
   MinOperationsNumber: 1
   MultiplierCoeff: 2

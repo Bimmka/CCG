@@ -21,8 +21,11 @@ namespace Services.Cards.Hand
       collectedCards = new List<CardStaticData>(maxCardCount);
     }
 
-    public void ResetCards() => 
+    public void ResetCards()
+    {
       collectedCards.Clear();
+      IsNeedSaveCard = false;
+    }
 
     public void ResetSaveCard() => 
       IsNeedSaveCard = false;

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Gameplay.Cards.CardsElement.Base;
+using Gameplay.Table;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 
@@ -36,6 +37,9 @@ namespace Services.Cards.Spawners
       card.transform.localPosition += Vector3.up * index * (card.transform.localScale.y);
       return card;
     }
+
+    public void SetField(Field field) => 
+      cardFactory.SetCurrentField(field);
 
     private Card SpawnCard(Vector3 localPosition, Transform parent, CardStaticData data, bool isPlayer)
     {

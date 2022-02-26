@@ -27,6 +27,7 @@ namespace Gameplay.Cards.Spawners
     {
       this.cardSpawnerService = cardSpawnerService;
       this.randomService = randomService;
+      this.cardSpawnerService.SetField(field);
     }
 
     public void FirstOpponentSpawn()

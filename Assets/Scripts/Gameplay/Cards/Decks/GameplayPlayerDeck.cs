@@ -13,13 +13,11 @@ namespace Gameplay.Cards.Decks
   {
     [SerializeField] private CardSpawner spawner;
     [SerializeField] private Field field;
-    
-    private int minNumberOfCardsToTake = 2;
 
     private IPlayerDeck deck;
     private List<Card> spawnedCards;
-    
-    public int NumberOfCardsToTake { get; private set; }
+
+    public int NumberOfCardsToTake => deck.CurrentNumberOfCardsToTake;
       
     [Inject]
     private void Construct(IPlayerDeck playerDeck)
@@ -32,15 +30,11 @@ namespace Gameplay.Cards.Decks
     public void Init()
     {
       spawnedCards = spawner.SpawnPlayerDeck();
-      minNumberOfCardsToTake = field.Size.x - 1;
-      ResetNumberOfCardsToTake();
+      deck.SetMinNumberOfCardsToTake(field.Size.x - 1);
     }
 
     public int DeckLength() => 
       deck.Length;
-
-    public void IncNumberOfCardsToTake(int count) => 
-      NumberOfCardsToTake += count;
 
     public List<CardStaticData> GetNeededCard()
     {
@@ -50,6 +44,11 @@ namespace Gameplay.Cards.Decks
         cards.Add(deck.GetCard());
       }
       return cards;
+    }
+
+    public void ResetNumberOfCardsToTake()
+    {
+      deck.ResetNumberOfCardsToTake();
     }
 
     private void OnCardUsed(int index) => 
@@ -69,7 +68,6 @@ namespace Gameplay.Cards.Decks
       }
     }
 
-    private void ResetNumberOfCardsToTake() => 
-      NumberOfCardsToTake = minNumberOfCardsToTake;
+   
   }
 }

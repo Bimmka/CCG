@@ -1,5 +1,6 @@
 ﻿using Services.Hero;
 using StaticData.Gameplay.Cards.Strategies;
+using UnityEngine;
 
 namespace Gameplay.Cards.CardsElement.Base
 {
@@ -16,7 +17,7 @@ namespace Gameplay.Cards.CardsElement.Base
       GoldCount = ((GoldTakeStrategyStaticData) data).GoldTakeCount;
     }
     
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       if (isGet)
         playerGold.Add(GoldCount);

@@ -7,18 +7,15 @@ namespace Gameplay.Cards.CardsElement.Base
   public class MultiplierPropertyStrategy : CardUseStrategy
   {
     private readonly Field field;
-    private readonly Vector2Int cardPosition;
-
     private readonly int MultiplierCoeff;
 
-    public MultiplierPropertyStrategy(CardStrategyStaticData data, Field field, Vector2Int cardPosition) : base(data)
+    public MultiplierPropertyStrategy(CardStrategyStaticData data, Field field) : base(data)
     {
       this.field = field;
-      this.cardPosition = cardPosition;
       MultiplierCoeff = ((MultiplierPropertyStrategyStaticData) data).MultiplierCoeff;
     }
 
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       FieldCell cell;
       for (int i = 0; i < field.Size.x; i++)

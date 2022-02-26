@@ -8,5 +8,6 @@
     public static string FieldCreatePath = "StaticData/Gameplay/FieldCreateStaticData";
     public static string OpponentDecksPath = "StaticData/Gameplay/OpponentDecks";
     public static string PlayerDeckPath = "StaticData/Gameplay/PlayerDeck/DeckStaticData";
+    public static string CardStrategies = "StaticData/Gameplay/CardsUseStrategies";
   }
 }

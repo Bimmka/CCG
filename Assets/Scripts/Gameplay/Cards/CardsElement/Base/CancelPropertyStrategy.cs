@@ -10,14 +10,13 @@ namespace Gameplay.Cards.CardsElement.Base
     private readonly Field field;
     private readonly Vector2Int useDirection;
 
-    public CancelPropertyStrategy(CardStrategyStaticData data, Vector2Int cardPosition, Field field, Vector2Int useDirection) : base(data)
+    public CancelPropertyStrategy(CardStrategyStaticData data, Field field, Vector2Int useDirection) : base(data)
     {
-      this.cardPosition = cardPosition;
       this.field = field;
       this.useDirection = useDirection;
     }
     
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       FieldCell forwardCell = field.Cell(cardPosition + useDirection);
 

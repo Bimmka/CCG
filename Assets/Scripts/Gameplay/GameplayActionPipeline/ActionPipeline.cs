@@ -58,7 +58,7 @@ namespace Gameplay.GameplayActionPipeline
         if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
         {
           activatedCells.Add(fieldCell);
-          fieldCell.CurrentCard.Activate();
+          fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
           yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
         }
       }
@@ -79,7 +79,7 @@ namespace Gameplay.GameplayActionPipeline
         if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
         {
           activatedCells.Add(fieldCell);
-          fieldCell.CurrentCard.Activate();
+          fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
           yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
         }
       }

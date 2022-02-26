@@ -2,7 +2,7 @@
 
 namespace Services.Hero
 {
-  public interface IPlayerGold
+  public interface IPlayerGold : IService
   {
     event Action Changed;
     int Count { get; }

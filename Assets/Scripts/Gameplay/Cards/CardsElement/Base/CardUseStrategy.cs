@@ -1,6 +1,7 @@
 ﻿using System;
 using Services.Cards.Decks.Player;
 using StaticData.Gameplay.Cards.Strategies;
+using UnityEngine;
 
 namespace Gameplay.Cards.CardsElement.Base
 {
@@ -15,7 +16,7 @@ namespace Gameplay.Cards.CardsElement.Base
     {
       currentOperationsNumber = data.MinOperationsNumber;
     }
-    public abstract void Use();
+    public abstract void Use(Vector2Int startPosition);
 
     protected void MultiplyOperations(int multiplier) => 
       currentOperationsNumber *= multiplier;

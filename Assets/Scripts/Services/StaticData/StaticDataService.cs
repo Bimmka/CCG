@@ -5,6 +5,7 @@ using Gameplay.Cards.CardsElement.Base;
 using Services.UI.Factory;
 using StaticData.Gameplay.Cards.Decks;
 using StaticData.Gameplay.Cards.Elements;
+using StaticData.Gameplay.Cards.Strategies;
 using StaticData.Gameplay.Table;
 using StaticData.UI;
 using UnityEngine;
@@ -15,6 +16,7 @@ namespace Services.StaticData
   {
     private Dictionary<WindowId, WindowInstantiateData> windows;
     private Dictionary<string, List<CardStaticData>> opponentDecks;
+    private Dictionary<PlayingActionType, CardStrategyStaticData> strategies;
     private DeckStaticData playerDeck;
 
     private FieldCreateStaticData fieldCreateStaticData;
@@ -29,6 +31,10 @@ namespace Services.StaticData
       opponentDecks = Resources.
         LoadAll<OpponentDeckStaticData>(AssetsPath.OpponentDecksPath)
         .ToDictionary(x => x.LevelKey, x => x.Cards);
+      
+      strategies = Resources.
+        LoadAll<CardStrategyStaticData>(AssetsPath.CardStrategies)
+        .ToDictionary(x => x.Type, x => x);
       
       playerDeck = Resources.Load<DeckStaticData>(AssetsPath.PlayerDeckPath);
 
@@ -50,5 +56,10 @@ namespace Services.StaticData
     
     public List<CardStaticData> ForPlayer() =>
       playerDeck.Cards;
+
+    public CardStrategyStaticData ForStrategy(PlayingActionType actionType) =>
+      strategies.TryGetValue(actionType, out CardStrategyStaticData staticData)
+        ? staticData 
+        : null;
   }
 }

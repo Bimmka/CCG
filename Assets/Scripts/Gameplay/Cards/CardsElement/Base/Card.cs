@@ -51,7 +51,7 @@ namespace Gameplay.Cards.CardsElement.Base
       UpdateStatus(CardStatus.None);
     }
 
-    public void Activate()
+    public void Activate(Vector2Int cardPosition)
     {
       IsActivated = true;
       
@@ -59,7 +59,7 @@ namespace Gameplay.Cards.CardsElement.Base
         return;
       
       UpdateStatus(CardStatus.Using);
-      useStrategy.Use();
+      useStrategy.Use(cardPosition);
     }
 
     public void Block() => 
@@ -81,11 +81,8 @@ namespace Gameplay.Cards.CardsElement.Base
     public bool IsCanBeMultiplied() => 
       useStrategy is IMultipliedCard;
 
-    public bool IsCanBeBlocking()
-    {
-      Debug.Log("Update this");
-      return true;
-    }
+    public bool IsCanBeBlocking() => 
+      data.ImmuneType == CardImmuneType.Blocking;
 
     private void ResetUseStrategy()
     {

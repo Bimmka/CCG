@@ -11,6 +11,7 @@ namespace StaticData.Gameplay.Cards.Elements
     public string Description;
     public PlayingZoneType PlayingZoneType;
     public PlayingActionType ActionType;
+    public CardImmuneType ImmuneType = CardImmuneType.Blocking;
     public Sprite Shirt;
     public Sprite Icon;
     public Sprite SecondIcon;

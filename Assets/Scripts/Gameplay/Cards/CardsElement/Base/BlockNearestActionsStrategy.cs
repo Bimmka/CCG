@@ -13,7 +13,7 @@ namespace Gameplay.Cards.CardsElement.Base
       this.field = field;
     }
 
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       int rowIndex = field.Size.y - field.PlayerRows;
 

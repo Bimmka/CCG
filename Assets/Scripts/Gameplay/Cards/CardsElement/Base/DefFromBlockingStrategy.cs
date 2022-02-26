@@ -7,15 +7,13 @@ namespace Gameplay.Cards.CardsElement.Base
   public class DefFromBlockingStrategy : CardUseStrategy
   {
     private readonly Field field;
-    private readonly Vector2Int cardPosition;
 
-    public DefFromBlockingStrategy(CardStrategyStaticData data, Field field, Vector2Int cardPosition) : base(data)
+    public DefFromBlockingStrategy(CardStrategyStaticData data, Field field) : base(data)
     {
       this.field = field;
-      this.cardPosition = cardPosition;
     }
 
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       if (cardPosition.x > field.Size.x - 1)
         NotifyAboutEnd();

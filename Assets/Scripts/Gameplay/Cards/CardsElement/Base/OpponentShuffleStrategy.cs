@@ -1,5 +1,6 @@
 ﻿using Gameplay.Table;
 using StaticData.Gameplay.Cards.Strategies;
+using UnityEngine;
 
 namespace Gameplay.Cards.CardsElement.Base
 {
@@ -12,7 +13,7 @@ namespace Gameplay.Cards.CardsElement.Base
       this.field = field;
     }
 
-    public override void Use()
+    public override void Use(Vector2Int cardPosition)
     {
       for (int i = 0; i < OperationsCount; i++)
       {
