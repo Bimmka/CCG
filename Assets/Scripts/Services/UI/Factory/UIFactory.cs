@@ -8,6 +8,7 @@ using Services.StaticData;
 using StaticData.UI;
 using UI.Base;
 using UI.Windows;
+using UI.Windows.LooseMenu;
 using UnityEngine;
 
 namespace Services.UI.Factory
@@ -22,6 +23,7 @@ namespace Services.UI.Factory
 
     private Camera mainCamera;
     private IPlayerGold playerGold;
+    private readonly IPlayerTurns playerTurns;
 
     public Transform UIRoot => uiRoot;
     public event Action<WindowId,BaseWindow> Spawned;
@@ -30,12 +32,14 @@ namespace Services.UI.Factory
     public UIFactory(IGameStateMachine gameStateMachine,
       IAssetProvider assets,
       IStaticDataService staticData, 
-      IPlayerGold playerGold)
+      IPlayerGold playerGold,
+      IPlayerTurns playerTurns)
     {
       this.gameStateMachine = gameStateMachine;
       this.assets = assets;
       this.staticData = staticData;
       this.playerGold = playerGold;
+      this.playerTurns = playerTurns;
     }
 
     public void CreateUIRoot()
@@ -52,6 +56,9 @@ namespace Services.UI.Factory
         case WindowId.MainMenu:
           CreateMainMenuWindow(config, id, gameStateMachine);
           break;
+        case WindowId.DeathMenu:
+          CreateDeathMenuWindow(config, id, gameStateMachine, playerTurns);
+          break;
         default:
           CreateWindow(config, id);
           break;
@@ -62,6 +69,13 @@ namespace Services.UI.Factory
     {
       BaseWindow window = InstantiateWindow(config);
       ((UIMainMenu) window).Construct(stateMachine);
+      NotifyAboutCreateWindow(id, window);
+    }
+
+    private void CreateDeathMenuWindow(WindowInstantiateData config, WindowId id, IGameStateMachine stateMachine, IPlayerTurns turns)
+    {
+      BaseWindow window = InstantiateWindow(config);
+      ((UIDeathMenu) window).Construct(stateMachine, turns);
       NotifyAboutCreateWindow(id, window);
     }
 

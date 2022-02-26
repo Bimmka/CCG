@@ -49,7 +49,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public void Hide()
     {
-      view.Hide();
+      view.Hide(OnHide);
     }
 
     public void Activate(Vector2Int cardPosition)
@@ -104,10 +104,15 @@ namespace Gameplay.Cards.CardsElement.Base
     {
       UpdateStatus(CardStatus.None);
       ResetData();
-      Destroyed?.Invoke(this);
+      Hiden?.Invoke(this);
     }
 
     private void OnShown()
+    {
+      
+    }
+
+    private void OnHide()
     {
       
     }

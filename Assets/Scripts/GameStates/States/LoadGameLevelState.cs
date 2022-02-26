@@ -70,18 +70,18 @@ namespace GameStates.States
     private void InitGameWorld()
     {
       InitUIRoot();
+      UpdatePlayerGold();
 
       GameObject hero = gameFactory.CreateHero();
       GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
-      UpdatePlayerGold();
       SetCameraToHud(hud, camera);
     }
 
     private void UpdatePlayerGold()
     {
       PlayerGoldStaticData goldData = staticData.ForPlayerGold();
-      playerGold.Set(goldData.MinValue, goldData.MinValue);
+      playerGold.Set(goldData.MinValue, goldData.MaxValue);
     }
 
     private void UpdateRandomService()

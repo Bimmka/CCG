@@ -52,6 +52,7 @@ namespace Bootstrapp
           BindCardSpawner();
           BindPlayerHand();
           BindPLayerGold();
+          BindPlayerTurn();
         }
 
 
@@ -110,5 +111,8 @@ namespace Bootstrapp
 
         private void BindPLayerGold() => 
           Container.Bind<IPlayerGold>().To<IPlayerGold>().FromInstance(allServices.Single<IPlayerGold>()).AsCached();
+
+        private void BindPlayerTurn() => 
+          Container.Bind<IPlayerTurns>().To<IPlayerTurns>().FromInstance(allServices.Single<IPlayerTurns>()).AsCached();
     }
 }

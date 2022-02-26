@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: WindowsStaticData
   m_EditorClassIdentifier: 
   InstantiateData:
-  - ID: 4
+  - ID: 1
     Window: {fileID: 7128944520629862041, guid: 1512cc7d27487bd4292396d584872e1c, type: 3}
+  - ID: 2
+    Window: {fileID: 740138811405981916, guid: 21444cc4bf716684eb8db234c26b1d10, type: 3}

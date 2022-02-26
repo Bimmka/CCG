@@ -8,6 +8,7 @@ using Gameplay.GameplayActionPipeline;
 using Gameplay.Table;
 using Services.FieldCreate;
 using Services.Hero;
+using Services.UI.Windows;
 using UI.Windows.PlayerHand;
 using UnityEngine;
 using Zenject;
@@ -28,6 +29,8 @@ namespace Gameplay.GameMachine
 
     private StateMachine stateMachine;
     private IPlayerGold playerGold;
+    private IPlayerTurns playerTurns;
+    private IWindowsService windowsService;
 
     private bool isGameEnd;
 
@@ -38,10 +41,13 @@ namespace Gameplay.GameMachine
     public GameEnd GameEndState { get; private set; }
 
     [Inject]
-    private void Construct(IFieldCreateService fieldCreateService, IPlayerGold playerGold)
+    private void Construct(IFieldCreateService fieldCreateService, IPlayerGold playerGold, IPlayerTurns playerTurns, IWindowsService windowsService)
     {
       this.fieldCreateService = fieldCreateService;
+      this.playerTurns = playerTurns;
+      this.windowsService = windowsService;
       this.playerGold = playerGold;
+      
       this.playerGold.Ended += OnGoldEnded;
     }
 
@@ -57,6 +63,7 @@ namespace Gameplay.GameMachine
       actionPipeline.Ended -= OnActionsEnd;
       playerGold.Ended -= OnGoldEnded;
       playerGold.Reset();
+      playerTurns.Reset();
     }
 
     private void Start()
@@ -77,7 +84,7 @@ namespace Gameplay.GameMachine
       PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand, clickHandler);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
       PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler, actionPipeline, field);
-      GameEndState = new GameEnd(this, stateMachine);
+      GameEndState = new GameEnd(this, stateMachine, windowsService);
     }
 
     private void InitStateMachine()
@@ -105,7 +112,10 @@ namespace Gameplay.GameMachine
       if (isGameEnd)
         stateMachine.ChangeState(GameEndState);
       else
+      {
         stateMachine.ChangeState(PlayerStartTurnState);
+        playerTurns.IncCount();
+      }
     }
 
     private void OnGoldEnded()

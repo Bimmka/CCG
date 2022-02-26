@@ -51,6 +51,7 @@ namespace GameStates.States
       RegisterProgress();
       RegisterAssets();
       RegisterPlayerGold();
+      RegisterPlayerTurn();
       RegisterUIFactory();
       RegisterWindowsService();
       RegisterGameFactory();
@@ -101,7 +102,8 @@ namespace GameStates.States
         services.Single<IGameStateMachine>(),
         services.Single<IAssetProvider>(),
         services.Single<IStaticDataService>(), 
-        services.Single<IPlayerGold>()));
+        services.Single<IPlayerGold>(),
+        services.Single<IPlayerTurns>()));
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));
@@ -139,5 +141,8 @@ namespace GameStates.States
 
     private void RegisterPlayerHand() => 
       services.RegisterSingle(new PlayerHand());
+    
+    private void RegisterPlayerTurn() => 
+      services.RegisterSingle(new PlayerTurns());
   }
 }
