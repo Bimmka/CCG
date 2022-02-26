@@ -13,7 +13,12 @@ namespace Gameplay.Cards.CardsElement.Base
       this.cardTransform = cardTransform;
       this.data = data;
     }
-    
+
+    public void SetPosition(Vector3 offsetedYLocalPosition)
+    {
+      cardTransform.localPosition = offsetedYLocalPosition;
+    }
+
     public void MoveTo(Vector3 localPosition) => 
       MoveSequence(localPosition);
 

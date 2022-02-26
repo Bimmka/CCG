@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Extensions;
 using Services.Random;
 using StaticData.Gameplay.Cards.Elements;
 
@@ -7,6 +8,7 @@ namespace Services.Cards.Decks.Player
 {
   public class PlayerDeck : IPlayerDeck
   {
+    private readonly IRandomService randomService;
 
     private int minNumberOfCardsToTake = 2;
     private List<CardStaticData> cards;
@@ -17,6 +19,11 @@ namespace Services.Cards.Decks.Player
 
     public event Action<int> CardUsed;
     public event Action Empty;
+
+    public PlayerDeck(IRandomService randomService)
+    {
+      this.randomService = randomService;
+    }
     
 
     public void UpdateDeck(List<CardStaticData> deck)
@@ -25,8 +32,11 @@ namespace Services.Cards.Decks.Player
       currentCardIndex = 0;
     }
 
-    public void ShuffleDeck() => 
+    public void ShuffleDeck()
+    {
       currentCardIndex = 0;
+      cards.Shuffle(randomService);
+    }
 
     public void SetMinNumberOfCardsToTake(int count)
     {

@@ -58,7 +58,7 @@ namespace GameStates.States
       RegisterPlayerDeck();
       RegisterOpponentDeck();
       RegisterPlayerHand();
-      RegisterCardFactory(cardPrefab);
+      RegisterCardFactory(cardPrefab, coroutineRunner);
       RegisterCardSpawner();
     }
 
@@ -115,7 +115,7 @@ namespace GameStates.States
     }
 
     private void RegisterPlayerDeck() => 
-      services.RegisterSingle(new PlayerDeck());
+      services.RegisterSingle(new PlayerDeck(services.Single<IRandomService>()));
 
     private void RegisterOpponentDeck() => 
       services.RegisterSingle(new OpponentDeck(services.Single<IRandomService>()));
@@ -125,12 +125,14 @@ namespace GameStates.States
       services.RegisterSingle(new PlayerGold());
     }
 
-    private void RegisterCardFactory(Card prefab) => 
+    private void RegisterCardFactory(Card prefab, ICoroutineRunner coroutineRunner) => 
       services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab,
         services.Single<IStaticDataService>(),
         services.Single<IPlayerGold>(),
         services.Single<IPlayerDeck>(),
-        services.Single<IPlayerHand>()));
+        services.Single<IPlayerHand>(),
+        coroutineRunner,
+        services.Single<IRandomService>()));
 
     private void RegisterCardSpawner() => 
       services.RegisterSingle(new CardSpawnerService(services.Single<ICardFactory>()));

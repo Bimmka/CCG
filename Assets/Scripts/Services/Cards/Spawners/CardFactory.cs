@@ -5,6 +5,7 @@ using Services.Assets;
 using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
 using Services.Hero;
+using Services.Random;
 using Services.StaticData;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
@@ -18,10 +19,12 @@ namespace Services.Cards.Spawners
     private readonly IPlayerGold playerGold;
     private readonly IPlayerDeck playerDeck;
     private readonly IPlayerHand playerHand;
+    private readonly ICoroutineRunner coroutineRunner;
+    private readonly IRandomService randomService;
     private readonly IAssetProvider assets;
     private Field field;
 
-    public CardFactory(IAssetProvider assetProvider, Card cardPrefab, IStaticDataService staticDataService, IPlayerGold playerGold, IPlayerDeck playerDeck, IPlayerHand playerHand)
+    public CardFactory(IAssetProvider assetProvider, Card cardPrefab, IStaticDataService staticDataService, IPlayerGold playerGold, IPlayerDeck playerDeck, IPlayerHand playerHand, ICoroutineRunner coroutineRunner, IRandomService randomService)
     {
       assets = assetProvider;
       prefab = cardPrefab;
@@ -29,6 +32,8 @@ namespace Services.Cards.Spawners
       this.playerGold = playerGold;
       this.playerDeck = playerDeck;
       this.playerHand = playerHand;
+      this.coroutineRunner = coroutineRunner;
+      this.randomService = randomService;
     }
     
     public Card CreateCard(Transform transform, CardStaticData data, bool isPlayer)
@@ -75,9 +80,9 @@ namespace Services.Cards.Spawners
         case PlayingActionType.BlockNearestActions:
           return new BlockNearestActionsStrategy(staticData.ForStrategy(actionType), field);
         case PlayingActionType.OpponentShuffle:
-          return new OpponentShuffleStrategy(staticData.ForStrategy(actionType), field);
+          return new OpponentShuffleStrategy(staticData.ForStrategy(actionType), field, randomService, coroutineRunner);
         case PlayingActionType.PlayerShuffle:
-          return new PlayerShuffleStrategy(staticData.ForStrategy(actionType), field);
+          return new PlayerShuffleStrategy(staticData.ForStrategy(actionType), field, randomService, coroutineRunner);
         case PlayingActionType.DefFromBlocking:
           return new DefFromBlockingStrategy(staticData.ForStrategy(actionType), field);
         case PlayingActionType.MultiplierProperty:
