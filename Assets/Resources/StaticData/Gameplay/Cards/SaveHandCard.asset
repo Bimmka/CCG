@@ -17,7 +17,8 @@ MonoBehaviour:
   Description: Save Hand
   PlayingZoneType: 1
   ActionType: 6
-  Shirt: {fileID: 0}
-  Icon: {fileID: 0}
+  ImmuneType: 0
+  Shirt: {fileID: 21300012, guid: 975570a90d56c477582e12d440dc9931, type: 3}
+  Icon: {fileID: 21300006, guid: 975570a90d56c477582e12d440dc9931, type: 3}
   SecondIcon: {fileID: 0}
   MainArt: {fileID: 0}

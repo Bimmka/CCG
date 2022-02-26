@@ -38,6 +38,7 @@ namespace Gameplay.Cards.Decks
     {
       spawnedCards = spawner.SpawnPlayerDeck();
       deck.SetMinNumberOfCardsToTake(field.Size.x - 1);
+      ShowAllCards();
     }
 
     public int DeckLength() => 
@@ -59,7 +60,7 @@ namespace Gameplay.Cards.Decks
     }
 
     private void OnCardUsed(int index) => 
-      spawnedCards[index].Hide();
+      spawnedCards[spawnedCards.Count - 1 - index].Hide();
 
     private void OnDeckEnded()
     {

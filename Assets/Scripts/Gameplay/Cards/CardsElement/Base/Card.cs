@@ -41,19 +41,15 @@ namespace Gameplay.Cards.CardsElement.Base
     public void Destroy()
     {
       UpdateStatus(CardStatus.Destroying);
-      view.Hide();
-      UpdateStatus(CardStatus.None);
-      ResetData();
-      Destroyed?.Invoke(this);
+      view.Hide(OnDestroyed);
     }
 
     public void Show() => 
-      view.Show();
+      view.Show(OnShown);
 
     public void Hide()
     {
-      view.Hide();
-      UpdateStatus(CardStatus.None);
+      view.Hide(() => UpdateStatus(CardStatus.None));
     }
 
     public void Activate(Vector2Int cardPosition)
@@ -103,6 +99,18 @@ namespace Gameplay.Cards.CardsElement.Base
 
     private void OnUseEnd() => 
       UpdateStatus(CardStatus.None);
+
+    private void OnDestroyed()
+    {
+      UpdateStatus(CardStatus.None);
+      ResetData();
+      Destroyed?.Invoke(this);
+    }
+
+    private void OnShown()
+    {
+      
+    }
 
 
     private void UpdateStatus(CardStatus status) => 
