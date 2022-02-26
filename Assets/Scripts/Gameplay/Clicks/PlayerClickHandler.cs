@@ -98,7 +98,7 @@ namespace Gameplay.Clicks
 
     private void ProcessingCell(CardStaticData card, FieldCell cell)
     {
-      if (IsCanSetCardToCell(card, cell) && cell.IsLocking == false)
+      if (IsCanSetCardToCell(card, cell))
         cell.SetUnlockView();
       else
         cell.SetLockedView();
@@ -111,7 +111,7 @@ namespace Gameplay.Clicks
     }
 
     private bool IsCanSetCardToCell(CardStaticData card, FieldCell cell) => 
-      card.PlayingZoneType == cell.Type && cell.CurrentCard == null;
+      card.PlayingZoneType == cell.Type && cell.CurrentCard == null && cell.IsLocking == false;
 
     private bool HitCell() => 
       HitCount() > 0;

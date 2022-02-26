@@ -31,7 +31,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public bool IsCanBeTriggered(CardUseStrategy strategy)
     {
-      return strategy.GetType() == typeof(BlockNearestActionsStrategy) || strategy.GetType() == typeof(CancelPlayerPropertyStrategy);
+      return strategy.GetType() == typeof(BlockNearestActionsStrategy) || strategy.GetType() == typeof(CancelOpponentPropertyStrategy);
     }
 
     public void Trigger() => 

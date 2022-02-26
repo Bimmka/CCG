@@ -18,6 +18,7 @@ namespace Gameplay.Cards.CardsElement.Base
       int rowIndex = field.Size.y - field.PlayerRows;
 
       FieldCell cell;
+      Debug.Log("Block Nearest");
       while (IsCorrectIndex(rowIndex))
       {
         for (int i = 0; i < field.Size.x; i++)
@@ -42,6 +43,6 @@ namespace Gameplay.Cards.CardsElement.Base
     }
 
     private bool IsCorrectIndex(int playerRowIndex) => 
-      playerRowIndex >= field.FirstCommonRow;
+      playerRowIndex > field.FirstCommonRow;
   }
 }
