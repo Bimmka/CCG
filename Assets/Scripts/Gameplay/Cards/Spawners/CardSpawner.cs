@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Cards.Decks;
 using Gameplay.Table;
@@ -28,6 +29,11 @@ namespace Gameplay.Cards.Spawners
       this.cardSpawnerService = cardSpawnerService;
       this.randomService = randomService;
       this.cardSpawnerService.SetField(field);
+    }
+
+    private void OnDestroy()
+    {
+      cardSpawnerService.ResetPool();
     }
 
     public void FirstOpponentSpawn()

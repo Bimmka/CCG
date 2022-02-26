@@ -17,6 +17,11 @@ namespace Services.Cards.Spawners
       pool = new Queue<Card>(10);
     }
 
+    public void ResetPool()
+    {
+      pool.Clear();
+    }
+
     public Card SpawnEnemyCard(Vector3 localPosition, Transform parent, CardStaticData data)
     {
       if (pool.Count > 0)
