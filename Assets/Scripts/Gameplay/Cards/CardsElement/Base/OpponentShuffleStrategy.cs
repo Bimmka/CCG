@@ -24,13 +24,14 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public override void Use(Vector2Int cardPosition)
     {
+      Debug.Log("Start Shuffle");
       coroutineRunner.StartCoroutine(Shuffle(cardPosition));
     }
 
     private IEnumerator Shuffle(Vector2Int cardPosition)
     {
       (List<FieldCell>, List<Card>) cellsAndCards = FirstRowCollectCardsAndCellsAndDisableCard(cardPosition);
-      cellsAndCards = CollectCardsAndCellsAndDisableCard(cellsAndCards);
+      cellsAndCards = CollectCardsAndCellsAndDisableCard(cellsAndCards, cardPosition);
       yield return new WaitForSeconds(1f);
       
       cellsAndCards.Item1.Shuffle(randomService);
@@ -49,7 +50,7 @@ namespace Gameplay.Cards.CardsElement.Base
       List<FieldCell> cells = new List<FieldCell>(12);
       List<Card> cards = new List<Card>(10);
       FieldCell cell;
-      for (int i = cardPosition.x; i < field.Size.x; i++)
+      for (int i = cardPosition.x + 1; i < field.Size.x; i++)
       {
         cell = field.Cell(new Vector2Int(i, cardPosition.y));
         OperateCell(cells, cards, cell);
@@ -59,10 +60,10 @@ namespace Gameplay.Cards.CardsElement.Base
     }
 
 
-    private (List<FieldCell> cells, List<Card> cards) CollectCardsAndCellsAndDisableCard((List<FieldCell>, List<Card>) cellsAndCards)
+    private (List<FieldCell> cells, List<Card> cards) CollectCardsAndCellsAndDisableCard((List<FieldCell>, List<Card>) cellsAndCards, Vector2Int cardPosition)
     {
       FieldCell cell;
-      int startRow = field.Size.y - field.PlayerRows - 1;
+      int startRow = cardPosition.y - 1;
       while (startRow >= 0)
       {
         for (int i = 0; i < field.Size.x; i++)

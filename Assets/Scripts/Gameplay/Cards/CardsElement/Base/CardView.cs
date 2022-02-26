@@ -24,7 +24,7 @@ namespace Gameplay.Cards.CardsElement.Base
       mainImage.sprite = data.Icon;
     }
     
-    public void Show(Action callback)
+    public void Show(Action callback = null)
     {
       Activate();
       StopAllCoroutines();
@@ -35,7 +35,7 @@ namespace Gameplay.Cards.CardsElement.Base
       StartCoroutine(Wait(1f,callback));
     }
     
-    public void Hide(Action callback)
+    public void Hide(Action callback = null)
     {
       StopAllCoroutines();
       StartCoroutine(Dissolve(backgroundDisolve, 1f, Time.deltaTime, 1, IsBigger));

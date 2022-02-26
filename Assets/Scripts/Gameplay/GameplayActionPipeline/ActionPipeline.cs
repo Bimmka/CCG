@@ -18,7 +18,7 @@ namespace Gameplay.GameplayActionPipeline
     [SerializeField] private GameplayPlayerHand playerHand;
     [SerializeField] private CardMoverStaticData cardMoverStaticData;
     
-    private readonly List<FieldCell> activatedCells = new List<FieldCell>(20);
+    private List<FieldCell> activatedCells = new List<FieldCell>(20);
 
     private bool isInterraptActions;
 
@@ -58,22 +58,20 @@ namespace Gameplay.GameplayActionPipeline
       IEnumerable<FieldCell> cells = field.PlayerRow;
       foreach (FieldCell fieldCell in cells)
       {
-        if (fieldCell.IsFill)
+        if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
         {
-          activatedCells.Add(fieldCell);
-          if (fieldCell.CurrentCard.IsActivated == false)
-          {
 
-            fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
-            yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
-          }
+          fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
+          yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
         }
+        
       }
     }
 
     private IEnumerator ActivateOpponentActions()
     {
       IEnumerable<FieldCell> cells = field.OpponentDownRow;
+      Card card;
       foreach (FieldCell fieldCell in cells)
       {
         if (isInterraptActions)
@@ -82,16 +80,11 @@ namespace Gameplay.GameplayActionPipeline
           StopAllCoroutines();
           yield break;
         }
-
-        if (fieldCell.IsFill)
+        if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
         {
-          activatedCells.Add(fieldCell);
-          if (fieldCell.CurrentCard.IsActivated == false)
-          {
-
-            fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
-            yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
-          }
+          card = fieldCell.CurrentCard;
+          card.Activate(fieldCell.GridPosition);
+          yield return StartCoroutine(WaitCardActivateEnd(card));
         }
       }
     }
@@ -103,6 +96,7 @@ namespace Gameplay.GameplayActionPipeline
 
     private IEnumerator WaitDestroyCards()
     {
+      CalculateActivatedCells();
       for (int i = 0; i < activatedCells.Count; i++)
       {
         activatedCells[i].CurrentCard.Destroy();
@@ -119,6 +113,22 @@ namespace Gameplay.GameplayActionPipeline
       }
       
       activatedCells.Clear();
+    }
+
+    private void CalculateActivatedCells()
+    {
+      int startRow = field.Size.y - field.PlayerRows;
+      FieldCell cell;
+      while (startRow > field.FirstCommonRow)
+      {
+        for (int i = 0; i < field.Size.x; i++)
+        {
+          cell = field.Cell(new Vector2Int(i, startRow));
+          if (cell != null && cell.IsFill)
+            activatedCells.Add(cell);
+        }
+        startRow--;
+      }
     }
 
     private IEnumerator WaitCardMove()

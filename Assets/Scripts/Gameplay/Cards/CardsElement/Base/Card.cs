@@ -49,7 +49,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public void Hide()
     {
-      view.Hide(() => UpdateStatus(CardStatus.None));
+      view.Hide();
     }
 
     public void Activate(Vector2Int cardPosition)
