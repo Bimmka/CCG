@@ -61,7 +61,7 @@ namespace Services.Cards.Spawners
         case PlayingActionType.GoldSteal:
           return new GoldStealStrategy(staticData.ForStrategy(actionType), playerGold);
         case PlayingActionType.CancelOpponentProperty:
-          return new CancelPropertyStrategy(staticData.ForStrategy(actionType), field, Vector2Int.down);
+          return new CancelOpponentPropertyStrategy(staticData.ForStrategy(actionType), field, Vector2Int.down);
         case PlayingActionType.GetGold:
           return new GetGoldStrategy(staticData.ForStrategy(actionType), playerGold);
         case PlayingActionType.BlockPlayerCell:
@@ -83,7 +83,13 @@ namespace Services.Cards.Spawners
         case PlayingActionType.MultiplierProperty:
           return new MultiplierPropertyStrategy(staticData.ForStrategy(actionType), field);
         case PlayingActionType.CancelPlayerProperty:
-          return new CancelPropertyStrategy(staticData.ForStrategy(actionType), field, Vector2Int.up);
+          return new CancelPlayerPropertyStrategy(staticData.ForStrategy(actionType), field, Vector2Int.up);
+        case PlayingActionType.GoldByCancelAndBlocking:
+          return new GoldByCancelAndBlockingStrategy(staticData.ForStrategy(actionType), playerGold);
+        case PlayingActionType.TakeCardByCancel:
+          return new TakeCardByCancelStrategy(staticData.ForStrategy(actionType), playerDeck);
+        case PlayingActionType.TakeLessCard:
+          return new DecreaseCardTakeStrategy(staticData.ForStrategy(actionType), playerDeck);
         default:
           throw new ArgumentOutOfRangeException(nameof(actionType), actionType, null);
       }

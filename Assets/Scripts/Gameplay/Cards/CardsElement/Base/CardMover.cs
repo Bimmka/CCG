@@ -14,26 +14,17 @@ namespace Gameplay.Cards.CardsElement.Base
       this.data = data;
     }
     
-    public void MoveTo(Vector3 localPosition)
-    {
-      Debug.Log($"Local: {cardTransform.localPosition} End: {localPosition}");
+    public void MoveTo(Vector3 localPosition) => 
       MoveSequence(localPosition);
-    }
 
-    private void MoveSequence(Vector3 endPosition)
-    {
+    private void MoveSequence(Vector3 endPosition) => 
       cardTransform.DOLocalMove(UpMovePosition(endPosition), data.UpDuration).SetEase(Ease.InOutSine).OnComplete(() => ForwardMove(endPosition));
-    }
 
-    private void ForwardMove(Vector3 endPosition)
-    {
+    private void ForwardMove(Vector3 endPosition) => 
       cardTransform.DOLocalMove(ForwardMovePosition(endPosition), data.MoveDuration).SetEase(Ease.InOutSine).OnComplete(() => DownMove(endPosition));
-    }
 
-    private void DownMove(Vector3 endPosition)
-    {
+    private void DownMove(Vector3 endPosition) => 
       cardTransform.DOLocalMove(endPosition, data.DownDuration).SetEase(Ease.InOutSine);
-    }
 
     private Vector3 UpMovePosition(Vector3 endPosition) => 
       new Vector3(

@@ -29,6 +29,8 @@ namespace Gameplay.GameMachine
     private StateMachine stateMachine;
     private IPlayerGold playerGold;
 
+    private bool isGameEnd;
+
     public PrepareGameState PrepareGameStateState { get; private set; }
     public PlayerStartTurn PlayerStartTurnState { get; private set; }
     public PlayerTurn PlayerTurnState { get; private set; }
@@ -100,13 +102,16 @@ namespace Gameplay.GameMachine
 
     private void OnActionsEnd()
     {
-      if (true)
+      if (isGameEnd)
+        stateMachine.ChangeState(GameEndState);
+      else
         stateMachine.ChangeState(PlayerStartTurnState);
     }
 
     private void OnGoldEnded()
     {
-      
+      isGameEnd = true;
+      actionPipeline.SetIsInterraptActions();
     }
   }
 }

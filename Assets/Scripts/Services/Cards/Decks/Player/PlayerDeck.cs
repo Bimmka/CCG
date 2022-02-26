@@ -34,9 +34,12 @@ namespace Services.Cards.Decks.Player
       CurrentNumberOfCardsToTake = minNumberOfCardsToTake;
     }
 
-    public void IncNumberOfCardsToTake(int additionalCardsCount)
+    public void ChangeNumberOfCardsToTake(int additionalCardsCount)
     {
       CurrentNumberOfCardsToTake += additionalCardsCount;
+
+      if (CurrentNumberOfCardsToTake < 0)
+        CurrentNumberOfCardsToTake = 0;
     }
 
     public CardStaticData GetCard()

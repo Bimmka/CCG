@@ -9,6 +9,7 @@ namespace Gameplay.Cards.CardsElement.Base
   {
     [SerializeField] private CardView view;
     [SerializeField] private CardMoverStaticData moverData;
+    
     private CardUseStrategy useStrategy;
     private CardStaticData data;
     
@@ -76,6 +77,9 @@ namespace Gameplay.Cards.CardsElement.Base
     public void Invert() => 
       ((IInvertableCard)useStrategy).Invert();
 
+    public void Trigger() => 
+      ((ITriggered)useStrategy).Trigger();
+
 
     public bool IsCanBeInverted() => 
       useStrategy is IInvertableCard;
@@ -85,6 +89,9 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public bool IsCanBeBlocking() => 
       data.ImmuneType == CardImmuneType.Blocking;
+
+    public bool IsCanBeTriggered(CardUseStrategy strategy) => 
+      useStrategy is ITriggered && ((ITriggered)useStrategy).IsCanBeTriggered(strategy);
 
     private void ResetUseStrategy()
     {

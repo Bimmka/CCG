@@ -41,12 +41,12 @@ namespace Gameplay.Table
 
     public void SetUnlockView()
     {
-      Debug.Log("Unlocked");
+      
     }
 
     public void SetLockedView()
     {
-      Debug.Log("Locked");
+      
     }
   }
 }

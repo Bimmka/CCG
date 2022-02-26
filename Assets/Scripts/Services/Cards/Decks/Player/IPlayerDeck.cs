@@ -9,7 +9,7 @@ namespace Services.Cards.Decks.Player
     event Action Empty;
     event Action<int> CardUsed;
     void ShuffleDeck();
-    void IncNumberOfCardsToTake(int additionalCardsCount);
+    void ChangeNumberOfCardsToTake(int additionalCardsCount);
     void SetMinNumberOfCardsToTake(int count);
     void ResetNumberOfCardsToTake();
   }

@@ -7,12 +7,5 @@ namespace StaticData.Gameplay.Cards.Strategies
   public class TakeAdditionalCardStrategyStaticData : CardStrategyStaticData
   {
     public int AdditionalCardCount = 1;
-    
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-      Type = PlayingActionType.TakeAdditionalCard;
-    }
-#endif
   }
 }

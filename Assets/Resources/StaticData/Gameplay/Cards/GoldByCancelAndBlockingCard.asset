@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee1e0ec06cb54fc5905f7541af9fc61c, type: 3}
+  m_Name: GoldByCancelAndBlockingCard
+  m_EditorClassIdentifier: 
+  ID: 13
+  Name: Gold By Cancel And Blocking
+  Description: Gold By Cancel And Blocking
+  PlayingZoneType: 2
+  ActionType: 13
+  ImmuneType: 0
+  Shirt: {fileID: 0}
+  Icon: {fileID: 0}
+  SecondIcon: {fileID: 0}
+  MainArt: {fileID: 0}

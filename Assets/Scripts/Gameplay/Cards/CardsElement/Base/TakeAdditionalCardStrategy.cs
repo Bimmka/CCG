@@ -19,7 +19,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
     public override void Use(Vector2Int cardPosition)
     {
-      deck.IncNumberOfCardsToTake(AdditionalCardsCount);
+      deck.ChangeNumberOfCardsToTake(AdditionalCardsCount);
       NotifyAboutEnd();
     }
   }

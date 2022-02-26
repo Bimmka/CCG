@@ -23,8 +23,17 @@ namespace Gameplay.Cards.CardsElement.Base
         for (int i = 0; i < field.Size.x; i++)
         {
           cell = field.Cell(new Vector2Int(i, rowIndex));
-          if (cell != null && cell.IsFill && cell.CurrentCard.IsCanBeBlocking())
-            cell.CurrentCard.Block();
+          if (cell != null && cell.IsFill)
+          {
+            if (cell.CurrentCard.IsCanBeTriggered(this))
+            {
+              cell.CurrentCard.Trigger();
+              cell.CurrentCard.Activate(cardPosition);
+            }
+            
+            if (cell.CurrentCard.IsCanBeBlocking())
+              cell.CurrentCard.Block();
+          }
         }
 
         rowIndex--;

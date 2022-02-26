@@ -15,7 +15,7 @@
     DefFromBlocking,
     MultiplierProperty,
     CancelPlayerProperty, 
-    GoldByCancelAndDefBlocking,
+    GoldByCancelAndBlocking,
     TakeCardByCancel,
     TakeLessCard,
     

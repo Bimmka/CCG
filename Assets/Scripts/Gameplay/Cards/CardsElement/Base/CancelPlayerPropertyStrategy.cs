@@ -4,13 +4,12 @@ using UnityEngine;
 
 namespace Gameplay.Cards.CardsElement.Base
 {
-  public class CancelPropertyStrategy : CardUseStrategy
+  public class CancelPlayerPropertyStrategy : CardUseStrategy
   {
-    private readonly Vector2Int cardPosition;
     private readonly Field field;
     private readonly Vector2Int useDirection;
 
-    public CancelPropertyStrategy(CardStrategyStaticData data, Field field, Vector2Int useDirection) : base(data)
+    public CancelPlayerPropertyStrategy(CardStrategyStaticData data, Field field, Vector2Int useDirection) : base(data)
     {
       this.field = field;
       this.useDirection = useDirection;

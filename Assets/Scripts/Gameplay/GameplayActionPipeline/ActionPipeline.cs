@@ -58,11 +58,15 @@ namespace Gameplay.GameplayActionPipeline
       IEnumerable<FieldCell> cells = field.PlayerRow;
       foreach (FieldCell fieldCell in cells)
       {
-        if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
+        if (fieldCell.IsFill)
         {
           activatedCells.Add(fieldCell);
-          fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
-          yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
+          if (fieldCell.CurrentCard.IsActivated == false)
+          {
+
+            fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
+            yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
+          }
         }
       }
     }
@@ -78,12 +82,16 @@ namespace Gameplay.GameplayActionPipeline
           StopAllCoroutines();
           yield break;
         }
-        
-        if (fieldCell.IsFill && fieldCell.CurrentCard.IsActivated == false)
+
+        if (fieldCell.IsFill)
         {
           activatedCells.Add(fieldCell);
-          fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
-          yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
+          if (fieldCell.CurrentCard.IsActivated == false)
+          {
+
+            fieldCell.CurrentCard.Activate(fieldCell.GridPosition);
+            yield return StartCoroutine(WaitCardActivateEnd(fieldCell.CurrentCard));
+          }
         }
       }
     }

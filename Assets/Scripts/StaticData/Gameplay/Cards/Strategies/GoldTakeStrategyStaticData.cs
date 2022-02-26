@@ -1,5 +1,4 @@
-﻿using StaticData.Gameplay.Cards.Elements;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace StaticData.Gameplay.Cards.Strategies
 {
@@ -7,12 +6,5 @@ namespace StaticData.Gameplay.Cards.Strategies
   public class GoldTakeStrategyStaticData : CardStrategyStaticData
   {
     public int GoldTakeCount = 10;
-    
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-      Type = PlayingActionType.GetGold;
-    }
-#endif
   }
 }
