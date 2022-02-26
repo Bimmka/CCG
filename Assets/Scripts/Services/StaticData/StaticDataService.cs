@@ -6,6 +6,7 @@ using Services.UI.Factory;
 using StaticData.Gameplay.Cards.Decks;
 using StaticData.Gameplay.Cards.Elements;
 using StaticData.Gameplay.Cards.Strategies;
+using StaticData.Gameplay.Player;
 using StaticData.Gameplay.Table;
 using StaticData.UI;
 using UnityEngine;
@@ -18,6 +19,8 @@ namespace Services.StaticData
     private Dictionary<string, List<CardStaticData>> opponentDecks;
     private Dictionary<PlayingActionType, CardStrategyStaticData> strategies;
     private DeckStaticData playerDeck;
+
+    private PlayerGoldStaticData playerGoldStaticData;
 
     private FieldCreateStaticData fieldCreateStaticData;
     
@@ -39,6 +42,8 @@ namespace Services.StaticData
       playerDeck = Resources.Load<DeckStaticData>(AssetsPath.PlayerDeckPath);
 
       fieldCreateStaticData = Resources.Load<FieldCreateStaticData>(AssetsPath.FieldCreatePath);
+      
+      playerGoldStaticData = Resources.Load<PlayerGoldStaticData>(AssetsPath.PlayerGoldPath);
     }
     
     public WindowInstantiateData ForWindow(WindowId windowId) =>
@@ -61,5 +66,8 @@ namespace Services.StaticData
       strategies.TryGetValue(actionType, out CardStrategyStaticData staticData)
         ? staticData 
         : null;
+
+    public PlayerGoldStaticData ForPlayerGold() => 
+      playerGoldStaticData;
   }
 }

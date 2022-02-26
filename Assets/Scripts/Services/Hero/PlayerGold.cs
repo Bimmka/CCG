@@ -8,10 +8,12 @@ namespace Services.Hero
     public event Action Ended;
 
     public int Count { get; private set; }
+    public int MaxCount { get; private set; }
 
-    public void Set(int count)
+    public void Set(int count, int maxCount)
     {
       Count = count;
+      MaxCount = maxCount;
       NotifyAboutChange();
     }
 

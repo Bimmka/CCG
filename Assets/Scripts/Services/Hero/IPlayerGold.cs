@@ -7,7 +7,8 @@ namespace Services.Hero
     event Action Changed;
     event Action Ended;
     int Count { get; }
-    void Set(int count);
+    int MaxCount { get; }
+    void Set(int count, int maxCount);
     void Add(int count);
     void Steal(int count);
     void Reset();

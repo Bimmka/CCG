@@ -6,9 +6,11 @@ using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
 using Services.FieldCreate;
+using Services.Hero;
 using Services.Random;
 using Services.StaticData;
 using Services.UI.Factory;
+using StaticData.Gameplay.Player;
 using UnityEngine;
 
 
@@ -24,6 +26,7 @@ namespace GameStates.States
     private readonly IOpponentDeck opponentDeck;
     private readonly IPlayerDeck playerDeck;
     private readonly IRandomService randomService;
+    private readonly IPlayerGold playerGold;
 
     private string lastPayload;
 
@@ -34,7 +37,8 @@ namespace GameStates.States
       IStaticDataService staticData,
       IOpponentDeck opponentDeck,
       IPlayerDeck playerDeck,
-      IRandomService randomService)
+      IRandomService randomService, 
+      IPlayerGold playerGold)
     {
       this.sceneLoader = sceneLoader;
       this.gameStateMachine = gameStateMachine;
@@ -44,6 +48,7 @@ namespace GameStates.States
       this.opponentDeck = opponentDeck;
       this.playerDeck = playerDeck;
       this.randomService = randomService;
+      this.playerGold = playerGold;
     }
 
     public void Enter(string payload)
@@ -69,7 +74,14 @@ namespace GameStates.States
       GameObject hero = gameFactory.CreateHero();
       GameObject hud = CreateHud(hero, uiFactory.UIRoot);
       Camera camera = Camera.main;
+      UpdatePlayerGold();
       SetCameraToHud(hud, camera);
+    }
+
+    private void UpdatePlayerGold()
+    {
+      PlayerGoldStaticData goldData = staticData.ForPlayerGold();
+      playerGold.Set(goldData.MinValue, goldData.MinValue);
     }
 
     private void UpdateRandomService()

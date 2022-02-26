@@ -24,7 +24,7 @@ namespace UI.Displaying
 
     private void UpdateBar()
     {
-      UpdateHpBar(gold.Count, 100);
+      UpdateHpBar(gold.Count, gold.MaxCount);
     }
 
     private void UpdateHpBar(float current, float max) => 

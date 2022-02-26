@@ -3,6 +3,7 @@ using Gameplay.Cards.CardsElement.Base;
 using Services.UI.Factory;
 using StaticData.Gameplay.Cards.Elements;
 using StaticData.Gameplay.Cards.Strategies;
+using StaticData.Gameplay.Player;
 using StaticData.Gameplay.Table;
 using StaticData.UI;
 
@@ -16,5 +17,6 @@ namespace Services.StaticData
     List<CardStaticData> ForOpponent(string levelName);
     List<CardStaticData> ForPlayer();
     CardStrategyStaticData ForStrategy(PlayingActionType actionType);
+    PlayerGoldStaticData ForPlayerGold();
   }
 }
