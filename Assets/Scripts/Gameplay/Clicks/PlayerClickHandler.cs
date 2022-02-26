@@ -91,7 +91,7 @@ namespace Gameplay.Clicks
 
     private void ProcessingCell(CardStaticData card, FieldCell cell)
     {
-      if (IsCanSetCardToCell(card, cell))
+      if (IsCanSetCardToCell(card, cell) && cell.IsLocking == false)
         cell.SetUnlockView();
       else
         cell.SetLockedView();

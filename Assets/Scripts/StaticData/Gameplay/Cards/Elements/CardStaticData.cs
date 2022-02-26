@@ -10,5 +10,10 @@ namespace StaticData.Gameplay.Cards.Elements
     public string Name;
     public string Description;
     public PlayingZoneType PlayingZoneType;
+    public PlayingActionType ActionType;
+    public Sprite Shirt;
+    public Sprite Icon;
+    public Sprite SecondIcon;
+    public Sprite MainArt;
   }
 }

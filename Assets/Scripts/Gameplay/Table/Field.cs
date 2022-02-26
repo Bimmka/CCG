@@ -7,14 +7,14 @@ namespace Gameplay.Table
   public class Field : MonoBehaviour
   {
     private readonly Dictionary<Vector2Int, FieldCell> field = new Dictionary<Vector2Int, FieldCell>(15);
-    private int playerRows;
 
     public Transform FieldParent { get; private set; }
     public Transform PlayerDeckParent { get; private set; }
     public Vector2Int Size { get; private set; }
-    public int FirstCommonRow => Size.y - playerRows - 2;
-    public IEnumerable<FieldCell> PlayerRow => field.Values.Where(x => x.GridPosition.y == Size.y - playerRows);
-    public IEnumerable<FieldCell> OpponentDownRow => field.Values.Where(x => x.GridPosition.y == Size.y - playerRows - 1);
+    public int FirstCommonRow => Size.y - PlayerRows - 2;
+    public int PlayerRows { get; private set; }
+    public IEnumerable<FieldCell> PlayerRow => field.Values.Where(x => x.GridPosition.y == Size.y - PlayerRows);
+    public IEnumerable<FieldCell> OpponentDownRow => field.Values.Where(x => x.GridPosition.y == Size.y - PlayerRows - 1);
 
     public void SetFieldParent(Transform parent) => 
       FieldParent = parent;
@@ -25,7 +25,7 @@ namespace Gameplay.Table
       Size = size;
 
     public void SetPlayerRowsCount(int playerRows) => 
-      this.playerRows = playerRows;
+      this.PlayerRows = playerRows;
 
     public void AddCell(FieldCell cell, Vector2Int position) => 
       field.Add(position, cell);
@@ -55,7 +55,7 @@ namespace Gameplay.Table
 
     public bool IsPlayerCell(Vector2Int position)
     {
-      return position.y == Size.y - playerRows;
+      return position.y == Size.y - PlayerRows;
     }
 
     public bool IsHaveCardInRow(int rowIndex)
@@ -79,12 +79,28 @@ namespace Gameplay.Table
         finishCell = field[new Vector2Int(i, rowIndex + 1)];
         if (cell.IsFill)
         {
-          cell.CurrentCard.MoveTo(finishCell.LocalPosition);
+          cell.CurrentCard.Mover.MoveTo(finishCell.LocalPosition);
           finishCell.SetCard(cell.CurrentCard);
           cell.RemoveCard();
         }
       }
       
+    }
+
+    public FieldCell Cell(Vector2Int gridPosition)
+    {
+      if (field.ContainsKey(gridPosition))
+        return field[gridPosition];
+
+      return null;
+    }
+
+    public void UnlockCells()
+    {
+      foreach (KeyValuePair<Vector2Int,FieldCell> fieldCell in field)
+      {
+        fieldCell.Value.Unlock();
+      }
     }
   }
   

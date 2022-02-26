@@ -68,7 +68,7 @@ namespace Gameplay.GameMachine
       PrepareGameStateState = new PrepareGameState(this, stateMachine);
       PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand, clickHandler);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
-      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler, actionPipeline);
+      PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler, actionPipeline, field);
       GameEndState = new GameEnd(this, stateMachine);
     }
 

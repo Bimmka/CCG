@@ -21,10 +21,14 @@ namespace Services.Cards.Hand
       collectedCards = new List<CardStaticData>(maxCardCount);
     }
 
-    public void ResetCards()
-    {
+    public void ResetCards() => 
       collectedCards.Clear();
-    }
+
+    public void ResetSaveCard() => 
+      IsNeedSaveCard = false;
+
+    public void SetSaveCard() => 
+      IsNeedSaveCard = true;
 
     public void AddCard(CardStaticData card)
     {

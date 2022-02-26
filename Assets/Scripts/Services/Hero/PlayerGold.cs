@@ -1,0 +1,39 @@
+﻿using System;
+
+namespace Services.Hero
+{
+  public class PlayerGold : IPlayerGold
+  {
+    public event Action Changed;
+    
+    public int Count { get; private set; }
+
+    public void Set(int count)
+    {
+      Count = count;
+      NotifyAboutChange();
+    }
+
+    public void Add(int count)
+    {
+      Count += count;
+      NotifyAboutChange();
+    }
+
+    public void Steal(int count)
+    {
+      Count -= count;
+      if (Count < 0)
+        Count = 0;
+      NotifyAboutChange();
+    }
+
+    public void Reset()
+    {
+      Count = 0;
+    }
+
+    private void NotifyAboutChange() => 
+      Changed?.Invoke();
+  }
+}

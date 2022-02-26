@@ -13,5 +13,7 @@ namespace Services.Cards.Hand
     void ReleaseCard();
     bool IsCanAddCard();
     void ResetCards();
+    void ResetSaveCard();
+    void SetSaveCard();
   }
 }

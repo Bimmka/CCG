@@ -54,10 +54,16 @@ namespace Gameplay.Cards.Hand
     public void ReleaseHand()
     {
       if (hand.IsNeedSaveCard)
+      {
+        hand.ResetSaveCard();
         return;
+      }
       
       hand.ReleaseCard();
     }
+
+    public void SaveHandForTurn() => 
+      hand.SetSaveCard();
 
     private void NotifyAboutAddedCard(CardStaticData card) => 
       AddedCard?.Invoke(card);
