@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Cards.Spawners;
 using Gameplay.Table;
@@ -25,6 +26,12 @@ namespace Gameplay.Cards.Decks
       deck = playerDeck;
       deck.Empty += OnDeckEnded;
       deck.CardUsed += OnCardUsed;
+    }
+
+    private void OnDestroy()
+    {
+      deck.Empty -= OnDeckEnded;
+      deck.CardUsed -= OnCardUsed;
     }
 
     public void Init()

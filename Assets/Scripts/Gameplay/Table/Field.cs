@@ -79,7 +79,7 @@ namespace Gameplay.Table
         finishCell = field[new Vector2Int(i, rowIndex + 1)];
         if (cell.IsFill)
         {
-          cell.CurrentCard.Mover.MoveTo(finishCell.LocalPosition);
+          cell.CurrentCard.Mover.MoveTo(finishCell.OffsetedYLocalPosition);
           finishCell.SetCard(cell.CurrentCard);
           cell.RemoveCard();
         }

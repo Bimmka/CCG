@@ -10,6 +10,7 @@ using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
 using Services.Cards.Spawners;
 using Services.FieldCreate;
+using Services.Hero;
 using Services.Progress;
 using Services.Random;
 using Services.UI.Factory;
@@ -50,6 +51,7 @@ namespace Bootstrapp
           BindOpponentDeck();
           BindCardSpawner();
           BindPlayerHand();
+          BindPLayerGold();
         }
 
 
@@ -103,9 +105,10 @@ namespace Bootstrapp
         private void BindCardSpawner() => 
           Container.Bind<ICardSpawnerService>().To<ICardSpawnerService>().FromInstance(allServices.Single<ICardSpawnerService>()).AsCached();
 
-        private void BindPlayerHand()
-        {
+        private void BindPlayerHand() => 
           Container.Bind<IPlayerHand>().To<IPlayerHand>().FromInstance(allServices.Single<IPlayerHand>()).AsCached();
-        }
+
+        private void BindPLayerGold() => 
+          Container.Bind<IPlayerGold>().To<IPlayerGold>().FromInstance(allServices.Single<IPlayerGold>()).AsCached();
     }
 }

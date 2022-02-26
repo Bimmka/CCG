@@ -6,6 +6,7 @@ using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Cards.Hand;
 using Gameplay.Cards.Spawners;
 using Gameplay.Table;
+using StaticData.Gameplay.Cards.Components;
 using UnityEngine;
 
 namespace Gameplay.GameplayActionPipeline
@@ -15,6 +16,7 @@ namespace Gameplay.GameplayActionPipeline
     [SerializeField] private Field field;
     [SerializeField] private CardSpawner cardSpawner;
     [SerializeField] private GameplayPlayerHand playerHand;
+    [SerializeField] private CardMoverStaticData cardMoverStaticData;
     
     private readonly List<FieldCell> activatedCells = new List<FieldCell>(20);
 
@@ -35,18 +37,19 @@ namespace Gameplay.GameplayActionPipeline
 
     private IEnumerator ActivateActions()
     {
+      Debug.Log("ActivatePlayerActions");
       yield return StartCoroutine(ActivatePlayerActions());
-
+      Debug.Log("ActivateOpponentActions");
       yield return StartCoroutine(ActivateOpponentActions());
-
+      Debug.Log("DiscardPlayerHand");
       DiscardPlayerHand();
-
+      Debug.Log("WaitDestroyCards");
       yield return StartCoroutine(WaitDestroyCards());
-
+      Debug.Log("WaitCardMove");
       yield return StartCoroutine(WaitCardMove());
-
+      Debug.Log("SpawnNewCards");
       SpawnNewCards();
-      
+      Debug.Log("NotifyAboutEnded");
       NotifyAboutEnded();  
     }
 
@@ -118,7 +121,7 @@ namespace Gameplay.GameplayActionPipeline
         if (field.IsHaveCardInRow(rowIndex))
         {
           field.MoveCardInRowDown(rowIndex);
-          yield return new WaitForSeconds(1f);
+          yield return new WaitForSeconds(cardMoverStaticData.TotalDuration);
         }
 
         rowIndex--;

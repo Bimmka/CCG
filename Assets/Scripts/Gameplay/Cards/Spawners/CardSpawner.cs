@@ -38,7 +38,7 @@ namespace Gameplay.Cards.Spawners
         if (IsApplyOpponentSpawn())
           rowCells[i].SetCard(
             cardSpawnerService.SpawnEnemyCard(
-              UppedPosition(rowCells[i].LocalPosition),
+              UppedPosition(rowCells[i].OffsetedYLocalPosition),
               field.FieldParent, 
               opponentDeck.GetRandomCard()
             )
@@ -54,7 +54,7 @@ namespace Gameplay.Cards.Spawners
         if (IsApplyOpponentSpawn())
           rowCells[i].SetCard(
             cardSpawnerService.SpawnEnemyCard(
-              UppedPosition(rowCells[i].LocalPosition),
+              UppedPosition(rowCells[i].OffsetedYLocalPosition),
             field.FieldParent, 
               opponentDeck.GetRandomCard()
               )

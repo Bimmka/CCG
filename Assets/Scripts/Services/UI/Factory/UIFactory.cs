@@ -2,6 +2,7 @@
 using ConstantsValue;
 using GameStates;
 using Services.Assets;
+using Services.Hero;
 using Services.Progress;
 using Services.StaticData;
 using StaticData.UI;
@@ -16,11 +17,11 @@ namespace Services.UI.Factory
     private readonly IGameStateMachine gameStateMachine;
     private readonly IAssetProvider assets;
     private readonly IStaticDataService staticData;
-    private readonly IPersistentProgressService progressService;
 
     private Transform uiRoot;
 
     private Camera mainCamera;
+    private IPlayerGold playerGold;
 
     public Transform UIRoot => uiRoot;
     public event Action<WindowId,BaseWindow> Spawned;
@@ -29,12 +30,12 @@ namespace Services.UI.Factory
     public UIFactory(IGameStateMachine gameStateMachine,
       IAssetProvider assets,
       IStaticDataService staticData, 
-      IPersistentProgressService progressService)
+      IPlayerGold playerGold)
     {
       this.gameStateMachine = gameStateMachine;
       this.assets = assets;
       this.staticData = staticData;
-      this.progressService = progressService;
+      this.playerGold = playerGold;
     }
 
     public void CreateUIRoot()

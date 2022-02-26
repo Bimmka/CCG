@@ -1,4 +1,5 @@
 using System;
+using StaticData.Gameplay.Cards.Components;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 
@@ -7,13 +8,10 @@ namespace Gameplay.Cards.CardsElement.Base
   public class Card : MonoBehaviour
   {
     [SerializeField] private CardView view;
-
+    [SerializeField] private CardMoverStaticData moverData;
     private CardUseStrategy useStrategy;
     private CardStaticData data;
-
     
-
-
     public PlayingZoneType PlayingZoneType { get; private set; }
     public bool IsActivated { get; private set; }
     public bool IsCanceled { get; private set; }
@@ -23,31 +21,35 @@ namespace Gameplay.Cards.CardsElement.Base
     public event Action<Card> Hiden;
     public event Action<Card> Destroyed;
 
+    private void Awake()
+    {
+      Mover = new CardMover(transform, moverData);
+    }
+
     public void Construct(CardStaticData staticData, CardUseStrategy newStrategy)
     {
       data = staticData;
       PlayingZoneType = data.PlayingZoneType;
       useStrategy = newStrategy;
       useStrategy.Ended += OnUseEnd;
+      view.SetView(data);
     }
 
     public void Destroy()
     {
       UpdateStatus(CardStatus.Destroying);
-      Hide();
+      view.Hide();
       UpdateStatus(CardStatus.None);
       ResetData();
       Destroyed?.Invoke(this);
     }
 
-    public void Show()
-    {
-      gameObject.SetActive(true);
-    }
+    public void Show() => 
+      view.Show();
 
     public void Hide()
     {
-      gameObject.SetActive(false);
+      view.Hide();
       UpdateStatus(CardStatus.None);
     }
 

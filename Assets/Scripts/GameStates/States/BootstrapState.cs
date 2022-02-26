@@ -50,6 +50,7 @@ namespace GameStates.States
       RegisterStaticDataService();
       RegisterProgress();
       RegisterAssets();
+      RegisterPlayerGold();
       RegisterUIFactory();
       RegisterWindowsService();
       RegisterGameFactory();
@@ -57,7 +58,6 @@ namespace GameStates.States
       RegisterPlayerDeck();
       RegisterOpponentDeck();
       RegisterPlayerHand();
-      RegisterPlayerGold();
       RegisterCardFactory(cardPrefab);
       RegisterCardSpawner();
     }
@@ -69,7 +69,7 @@ namespace GameStates.States
         services.Single<IAssetProvider>(), 
         services.Single<IStaticDataService>(),
         services.Single<IWindowsService>(), 
-        services.Single<IPersistentProgressService>()
+        services.Single<IPlayerGold>()
         ));
     }
 
@@ -101,7 +101,7 @@ namespace GameStates.States
         services.Single<IGameStateMachine>(),
         services.Single<IAssetProvider>(),
         services.Single<IStaticDataService>(), 
-        services.Single<IPersistentProgressService>()));
+        services.Single<IPlayerGold>()));
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));

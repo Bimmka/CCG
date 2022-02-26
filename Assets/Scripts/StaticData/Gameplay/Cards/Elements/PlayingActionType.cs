@@ -14,6 +14,10 @@
     PlayerShuffle,
     DefFromBlocking,
     MultiplierProperty,
-    CancelPlayerProperty
+    CancelPlayerProperty, 
+    GoldByCancelAndDefBlocking,
+    TakeCardByCancel,
+    TakeLessCard,
+    
   }
 }

@@ -439,6 +439,7 @@ MonoBehaviour:
   field: {fileID: 1854374829}
   cardSpawner: {fileID: 2036451840}
   playerHand: {fileID: 957779937}
+  cardMoverStaticData: {fileID: 11400000, guid: 101c2b2928923a445a68c4c2ba07f721, type: 2}
 --- !u!1 &464834616
 GameObject:
   m_ObjectHideFlags: 0

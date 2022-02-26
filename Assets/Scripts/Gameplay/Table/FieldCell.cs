@@ -1,4 +1,5 @@
-﻿using Gameplay.Cards.CardsElement.Base;
+﻿using ConstantsValue;
+using Gameplay.Cards.CardsElement.Base;
 using UnityEngine;
 
 namespace Gameplay.Table
@@ -12,7 +13,7 @@ namespace Gameplay.Table
     public Vector2Int GridPosition { get; private set; }
     public PlayingZoneType Type { get; private set; }
     public bool IsLocking => lockTurnsCount > 0;
-    public Vector3 LocalPosition => transform.localPosition;
+    public Vector3 OffsetedYLocalPosition => transform.localPosition + Vector3.up * Constants.YOffset;
     public bool IsFill => CurrentCard != null;
 
     public void SetCellType(PlayingZoneType type) => 
@@ -34,7 +35,8 @@ namespace Gameplay.Table
 
     public void Unlock()
     {
-      lockTurnsCount--;
+      if (lockTurnsCount > 0)
+        lockTurnsCount--;
     }
 
     public void SetUnlockView()

@@ -59,7 +59,7 @@ namespace Services.Cards.Spawners
       switch (actionType)
       {
         case PlayingActionType.GoldSteal:
-          return new GetGoldStrategy(staticData.ForStrategy(actionType), playerGold);
+          return new GoldStealStrategy(staticData.ForStrategy(actionType), playerGold);
         case PlayingActionType.CancelOpponentProperty:
           return new CancelPropertyStrategy(staticData.ForStrategy(actionType), field, Vector2Int.down);
         case PlayingActionType.GetGold:

@@ -7,6 +7,7 @@ using Gameplay.GameMachine.States;
 using Gameplay.GameplayActionPipeline;
 using Gameplay.Table;
 using Services.FieldCreate;
+using Services.Hero;
 using UI.Windows.PlayerHand;
 using UnityEngine;
 using Zenject;
@@ -26,7 +27,8 @@ namespace Gameplay.GameMachine
     private IFieldCreateService fieldCreateService;
 
     private StateMachine stateMachine;
-    
+    private IPlayerGold playerGold;
+
     public PrepareGameState PrepareGameStateState { get; private set; }
     public PlayerStartTurn PlayerStartTurnState { get; private set; }
     public PlayerTurn PlayerTurnState { get; private set; }
@@ -34,9 +36,11 @@ namespace Gameplay.GameMachine
     public GameEnd GameEndState { get; private set; }
 
     [Inject]
-    private void Construct(IFieldCreateService fieldCreateService)
+    private void Construct(IFieldCreateService fieldCreateService, IPlayerGold playerGold)
     {
       this.fieldCreateService = fieldCreateService;
+      this.playerGold = playerGold;
+      this.playerGold.Ended += OnGoldEnded;
     }
 
     private void Awake()
@@ -49,6 +53,8 @@ namespace Gameplay.GameMachine
     {
       playerHandWindow.EndTurnClicked -= OnTurnEndClicked;
       actionPipeline.Ended -= OnActionsEnd;
+      playerGold.Ended -= OnGoldEnded;
+      playerGold.Reset();
     }
 
     private void Start()
@@ -96,6 +102,11 @@ namespace Gameplay.GameMachine
     {
       if (true)
         stateMachine.ChangeState(PlayerStartTurnState);
+    }
+
+    private void OnGoldEnded()
+    {
+      
     }
   }
 }

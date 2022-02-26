@@ -29,7 +29,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
         rowIndex--;
       }
-      
+      NotifyAboutEnd();
     }
 
     private bool IsCorrectIndex(int playerRowIndex) => 

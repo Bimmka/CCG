@@ -99,7 +99,7 @@ namespace Gameplay.Clicks
 
     private void SetCardToCell(CardStaticData card, FieldCell cell)
     {
-      Card gameCard = cardSpawner.SpawnPlayerCard(card, cell.LocalPosition, field.FieldParent);
+      Card gameCard = cardSpawner.SpawnPlayerCard(card, cell.OffsetedYLocalPosition, field.FieldParent);
       cell.SetCard(gameCard);
     }
 

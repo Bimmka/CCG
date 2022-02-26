@@ -5,7 +5,8 @@ namespace Services.Hero
   public class PlayerGold : IPlayerGold
   {
     public event Action Changed;
-    
+    public event Action Ended;
+
     public int Count { get; private set; }
 
     public void Set(int count)
@@ -24,7 +25,10 @@ namespace Services.Hero
     {
       Count -= count;
       if (Count < 0)
+      {
         Count = 0;
+        NotifyAboutEnded();
+      }
       NotifyAboutChange();
     }
 
@@ -35,5 +39,8 @@ namespace Services.Hero
 
     private void NotifyAboutChange() => 
       Changed?.Invoke();
+
+    private void NotifyAboutEnded() => 
+      Ended?.Invoke();
   }
 }

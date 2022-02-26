@@ -51,6 +51,7 @@ namespace Services.Cards.Decks.Player
     
     public void ResetNumberOfCardsToTake() => 
       CurrentNumberOfCardsToTake = minNumberOfCardsToTake;
+    
 
     private void NotifyAboutUse(int index) => 
       CardUsed?.Invoke(index);
