@@ -17,6 +17,7 @@ using Services.Random;
 using Services.StaticData;
 using Services.UI.Factory;
 using Services.UI.Windows;
+using UnityEngine.Audio;
 
 namespace GameStates
 {
@@ -25,11 +26,12 @@ namespace GameStates
     private readonly Dictionary<Type, IExitableState> _states;
     private IExitableState _activeState;
 
-    public GameStateMachine(ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab)
+    public GameStateMachine(ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner,
+      Card cardPrefab, AudioMixer mixer)
     {
       _states = new Dictionary<Type, IExitableState>
       {
-        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner, cardPrefab),
+        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner, cardPrefab, mixer),
         [typeof(LoadProgressState)] = new LoadProgressState(this, sceneLoader, services.Single<IPersistentProgressService>()),
         [typeof(GameLoopState)] = new GameLoopState(this),
         [typeof(LoadGameLevelState)] = new LoadGameLevelState(

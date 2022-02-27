@@ -2,6 +2,7 @@
 using ConstantsValue;
 using GameStates;
 using Services.Assets;
+using Services.Audio;
 using Services.Hero;
 using Services.Progress;
 using Services.StaticData;
@@ -9,6 +10,7 @@ using StaticData.UI;
 using UI.Base;
 using UI.Windows;
 using UI.Windows.LooseMenu;
+using UI.Windows.MainMenu;
 using UnityEngine;
 
 namespace Services.UI.Factory
@@ -24,6 +26,7 @@ namespace Services.UI.Factory
     private Camera mainCamera;
     private IPlayerGold playerGold;
     private readonly IPlayerTurns playerTurns;
+    private readonly IAudioServiceSettings audioSettings;
 
     public Transform UIRoot => uiRoot;
     public event Action<WindowId,BaseWindow> Spawned;
@@ -33,13 +36,15 @@ namespace Services.UI.Factory
       IAssetProvider assets,
       IStaticDataService staticData, 
       IPlayerGold playerGold,
-      IPlayerTurns playerTurns)
+      IPlayerTurns playerTurns,
+      IAudioServiceSettings audioSettings)
     {
       this.gameStateMachine = gameStateMachine;
       this.assets = assets;
       this.staticData = staticData;
       this.playerGold = playerGold;
       this.playerTurns = playerTurns;
+      this.audioSettings = audioSettings;
     }
 
     public void CreateUIRoot()
@@ -59,6 +64,9 @@ namespace Services.UI.Factory
         case WindowId.DeathMenu:
           CreateDeathMenuWindow(config, id, gameStateMachine, playerTurns);
           break;
+        case WindowId.Settings:
+          CreateSettingsWindow(config, id, audioSettings);
+          break;
         default:
           CreateWindow(config, id);
           break;
@@ -76,6 +84,13 @@ namespace Services.UI.Factory
     {
       BaseWindow window = InstantiateWindow(config);
       ((UIDeathMenu) window).Construct(stateMachine, turns);
+      NotifyAboutCreateWindow(id, window);
+    }
+
+    private void CreateSettingsWindow(WindowInstantiateData config, WindowId id, IAudioServiceSettings settings)
+    {
+      BaseWindow window = InstantiateWindow(config);
+      ((UISettingsMenu) window).Construct(settings);
       NotifyAboutCreateWindow(id, window);
     }
 

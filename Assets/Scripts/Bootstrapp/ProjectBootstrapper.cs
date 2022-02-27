@@ -1,6 +1,4 @@
-using System.Collections;
 using Audio;
-using ConstantsValue;
 using Gameplay.Cards.CardsElement.Base;
 using GameStates;
 using SceneLoading;
@@ -18,7 +16,7 @@ using Services.Random;
 using Services.UI.Factory;
 using Services.UI.Windows;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.Audio;
 using Zenject;
 
 namespace Bootstrapp
@@ -29,6 +27,7 @@ namespace Bootstrapp
       [SerializeField] private LoadingCurtain curtain;
       [SerializeField] private Card cardPrefab;
       [SerializeField] private MainAudioSource audioSourcePrefab;
+      [SerializeField] private AudioMixer mixer;
 
         private LoadingCurtain spawnedCurtain;
         private GameBootstrapp spawnedGameBootstrapp;
@@ -80,7 +79,7 @@ namespace Bootstrapp
         private void InstantiateBootstrapper()
         {
           spawnedGameBootstrapp = Instantiate(gameBootstrapp, transform);
-          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab);
+          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab, mixer);
         }
 
         private void InstantiateAudio() => 

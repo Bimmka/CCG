@@ -5,5 +5,6 @@
     None = 0,
     MainMenu = 1,
     DeathMenu = 2,
+    Settings = 3
   }
 }

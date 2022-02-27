@@ -77,3 +77,4 @@ MonoBehaviour:
   curtain: {fileID: 8075571456176229582, guid: f20aee6b00472ae49a0feb1e2abbf484, type: 3}
   cardPrefab: {fileID: 270799776064698423, guid: a0ae86c58cfcd9d448b583df8f925275, type: 3}
   audioSourcePrefab: {fileID: 8814196921744111285, guid: 64cfb987886aa41439bf16f3be7dfd2a, type: 3}
+  mixer: {fileID: 24100000, guid: c987727ad7ddd7c43b207dbccdb83937, type: 2}

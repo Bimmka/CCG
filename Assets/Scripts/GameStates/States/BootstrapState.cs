@@ -17,6 +17,7 @@ using Services.Random;
 using Services.StaticData;
 using Services.UI.Factory;
 using Services.UI.Windows;
+using UnityEngine.Audio;
 
 namespace GameStates.States
 {
@@ -26,12 +27,12 @@ namespace GameStates.States
     private readonly IGameStateMachine gameStateMachine;
     private readonly AllServices services;
 
-    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab)
+    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer)
     {
       this.gameStateMachine = gameStateMachine;
       this.sceneLoader = sceneLoader;
       this.services = services;
-      RegisterServices(coroutineRunner, cardPrefab);
+      RegisterServices(coroutineRunner, cardPrefab, mixer);
     }
 
     public void Enter()
@@ -44,7 +45,7 @@ namespace GameStates.States
       
     }
 
-    private void RegisterServices(ICoroutineRunner coroutineRunner, Card cardPrefab)
+    private void RegisterServices(ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer)
     {
       RegisterStateMachine();
       RegisterRandom();
@@ -53,6 +54,8 @@ namespace GameStates.States
       RegisterAssets();
       RegisterPlayerGold();
       RegisterPlayerTurn();
+      RegisterAudioSettings(mixer);
+      RegisterAudioService();
       RegisterUIFactory();
       RegisterWindowsService();
       RegisterGameFactory();
@@ -62,8 +65,6 @@ namespace GameStates.States
       RegisterPlayerHand();
       RegisterCardFactory(cardPrefab, coroutineRunner);
       RegisterCardSpawner();
-      RegisterAudioSettings();
-      RegisterAudioService();
     }
 
     private void RegisterGameFactory()
@@ -106,7 +107,8 @@ namespace GameStates.States
         services.Single<IAssetProvider>(),
         services.Single<IStaticDataService>(), 
         services.Single<IPlayerGold>(),
-        services.Single<IPlayerTurns>()));
+        services.Single<IPlayerTurns>(),
+        services.Single<IAudioServiceSettings>()));
 
     private void RegisterWindowsService() => 
       services.RegisterSingle(new WindowsService(services.Single<IUIFactory>()));
@@ -148,8 +150,8 @@ namespace GameStates.States
     private void RegisterPlayerTurn() => 
       services.RegisterSingle(new PlayerTurns());
 
-    private void RegisterAudioSettings() => 
-      services.RegisterSingle(new AudioServiceSettings());
+    private void RegisterAudioSettings(AudioMixer mixer) => 
+      services.RegisterSingle(new AudioServiceSettings(mixer));
 
     private void RegisterAudioService() => 
       services.RegisterSingle(new AudioService(services.Single<IAudioServiceSettings>(), services.Single<IStaticDataService>()));
