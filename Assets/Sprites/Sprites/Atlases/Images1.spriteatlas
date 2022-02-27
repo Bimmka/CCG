@@ -51,6 +51,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: ee0b2e33ce1ea564a9781f1039ce607c, type: 3}
   - {fileID: 21300000, guid: 235cfc24f33ef19448d6566f270350d1, type: 3}
+  - {fileID: 21300000, guid: 2f5aa3f599bf7174d842404ae05494f8, type: 3}
   - {fileID: 21300000, guid: ffd6341660d61b94fbe2ae733209f5d9, type: 3}
   - {fileID: 21300000, guid: 1238bd87d9b05ed47b8d9a0b2917ac66, type: 3}
   - {fileID: 21300000, guid: d782a8c7d2ade3541815a261fdd025f6, type: 3}
@@ -60,9 +61,11 @@ SpriteAtlas:
   - {fileID: 21300000, guid: d9353fa91e79a34448fde87a5d9ca7b7, type: 3}
   - {fileID: 21300000, guid: 3db562adc9312c7489ee7e3fc711b918, type: 3}
   - {fileID: 21300000, guid: 01acbbdded46f1249b66ea8f7ed3f9a2, type: 3}
+  - {fileID: 21300000, guid: 0ce4e55f14ba51a419ba4df9652056b6, type: 3}
   m_PackedSpriteNamesToIndex:
   - SabotageStash
   - Stash
+  - LostGolddigger
   - torch
   - AntiGravityTrap
   - BagOfGold
@@ -72,6 +75,7 @@ SpriteAtlas:
   - dynamit
   - Scavenger
   - Wolfpit
+  - deck_shirt
   m_RenderDataMap: {}
   m_Tag: Images1
   m_IsVariant: 0
