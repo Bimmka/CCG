@@ -4,13 +4,13 @@ using GameStates;
 using Services.Assets;
 using Services.Audio;
 using Services.Hero;
-using Services.Progress;
 using Services.StaticData;
 using StaticData.UI;
 using UI.Base;
 using UI.Windows;
 using UI.Windows.LooseMenu;
 using UI.Windows.MainMenu;
+using UI.Windows.PauseMenu;
 using UnityEngine;
 
 namespace Services.UI.Factory
@@ -67,6 +67,9 @@ namespace Services.UI.Factory
         case WindowId.Settings:
           CreateSettingsWindow(config, id, audioSettings);
           break;
+        case WindowId.PauseMenu:
+          CreatePauseMenuWindow(config, id, gameStateMachine);
+          break;
         default:
           CreateWindow(config, id);
           break;
@@ -91,6 +94,13 @@ namespace Services.UI.Factory
     {
       BaseWindow window = InstantiateWindow(config);
       ((UISettingsMenu) window).Construct(settings);
+      NotifyAboutCreateWindow(id, window);
+    }
+
+    private void CreatePauseMenuWindow(WindowInstantiateData config, WindowId id, IGameStateMachine stateMachine)
+    {
+      BaseWindow window = InstantiateWindow(config);
+      ((UIPauseMenu) window).Construct(stateMachine);
       NotifyAboutCreateWindow(id, window);
     }
 

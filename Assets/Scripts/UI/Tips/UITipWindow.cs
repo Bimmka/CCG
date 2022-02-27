@@ -17,7 +17,6 @@ namespace UI.Tips
       {
         clickHandler.ClickedCard += OnHandCardClicked;
         clickHandler.RemovedCard += OnCardRemove;
-        clickHandler.Stopped += OnClickStop;
         FieldCell.Entered += OnCellEntered;
         FieldCell.Exited += OnCellExited;
       }
@@ -26,7 +25,6 @@ namespace UI.Tips
       {
         clickHandler.ClickedCard -= OnHandCardClicked;
         clickHandler.RemovedCard -= OnCardRemove;
-        clickHandler.Stopped -= OnClickStop;
         FieldCell.Entered -= OnCellEntered;
         FieldCell.Exited -= OnCellExited;
       }
@@ -39,7 +37,7 @@ namespace UI.Tips
 
       private void OnCellEntered(CardStaticData data)
       {
-        if (isTipHandCard)
+        if (isTipHandCard || clickHandler.IsStopped)
           return;
         
         tip.SetView(data);
@@ -47,7 +45,7 @@ namespace UI.Tips
 
       private void OnCellExited()
       {
-        if (isTipHandCard)
+        if (isTipHandCard || clickHandler.IsStopped)
           return;
         tip.Disable();
       }
@@ -56,12 +54,6 @@ namespace UI.Tips
       {
         tip.Disable();
         isTipHandCard = false;
-      }
-
-      private void OnClickStop()
-      {
-        OnDestroy();
-        tip.Disable();
       }
     }
 }

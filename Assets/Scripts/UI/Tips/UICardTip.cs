@@ -31,6 +31,8 @@ namespace UI.Tips
       mainViewImage.sprite = data.Icon;
       nameText.text = data.Name;
       descriptionText.text = data.Description;
+      shirtImage.sprite = data.Shirt;
+      shirtImage.color = data.ShortColor;
     }
 
     private void ChangeCanvasAlpha(float alpha)

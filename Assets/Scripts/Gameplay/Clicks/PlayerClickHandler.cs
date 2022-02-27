@@ -51,13 +51,17 @@ namespace Gameplay.Clicks
 
     public void StopClick()
     {
-      LockClick();
       IsStopped = true;
       Stopped?.Invoke();
     }
 
+    public void ContinueClick()
+    {
+      IsStopped = false;
+    }
+
     private bool IsCanClicked() => 
-      IsCanClick;
+      IsCanClick && IsStopped == false;
 
     private void OnCardHandClicked(CardStaticData card)
     {

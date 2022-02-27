@@ -5,13 +5,14 @@ using UI.Base;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Windows
+namespace UI.Windows.MainMenu
 {
     public class UIMainMenu : BaseWindow
     {
         [SerializeField] private Button playButton;
         [SerializeField] private Button faqButton;
         [SerializeField] private Button closeFaqButton;
+        [SerializeField] private Button quitGameButton;
         [SerializeField] private GameObject faqHolder;
         
         private IGameStateMachine stateMachine;
@@ -27,6 +28,7 @@ namespace UI.Windows
             playButton.onClick.AddListener(Play);
             faqButton.onClick.AddListener(OpenFaq);
             closeFaqButton.onClick.AddListener(CloseFaq);
+            quitGameButton.onClick.AddListener(QuitGame);
         }
 
         protected override void Cleanup()
@@ -35,6 +37,7 @@ namespace UI.Windows
             playButton.onClick.RemoveListener(Play);
             faqButton.onClick.RemoveListener(OpenFaq);
             closeFaqButton.onClick.RemoveListener(CloseFaq);
+            quitGameButton.onClick.RemoveListener(QuitGame);
         }
 
         private void OpenFaq() => 
@@ -42,6 +45,11 @@ namespace UI.Windows
 
         private void CloseFaq() => 
             faqHolder.SetActive(false);
+
+        private void QuitGame()
+        {
+            Application.Quit();    
+        }
 
         private void Play()
         {
