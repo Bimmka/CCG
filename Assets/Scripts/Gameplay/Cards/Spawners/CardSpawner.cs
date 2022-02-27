@@ -68,9 +68,9 @@ namespace Gameplay.Cards.Spawners
       }
     }
 
-    public List<Card> SpawnPlayerDeck()
+    public List<CardProps> SpawnPlayerDeck()
     {
-      List<Card> cards = new List<Card>(playerDeck.DeckLength());
+      List<CardProps> cards = new List<CardProps>(playerDeck.DeckLength());
       for (int i = 0; i < playerDeck.DeckLength(); i++)
       {
         cards.Add(cardSpawnerService.SpawnPlayerCardProps(UppedPosition(field.PlayerDeckParent.localPosition), field.PlayerDeckParent, i));

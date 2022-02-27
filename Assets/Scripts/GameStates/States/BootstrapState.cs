@@ -27,12 +27,13 @@ namespace GameStates.States
     private readonly IGameStateMachine gameStateMachine;
     private readonly AllServices services;
 
-    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer)
+    public BootstrapState(IGameStateMachine gameStateMachine, ISceneLoader sceneLoader, ref AllServices services,
+      ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer, CardProps propsPrefab)
     {
       this.gameStateMachine = gameStateMachine;
       this.sceneLoader = sceneLoader;
       this.services = services;
-      RegisterServices(coroutineRunner, cardPrefab, mixer);
+      RegisterServices(coroutineRunner, cardPrefab, mixer, propsPrefab);
     }
 
     public void Enter()
@@ -45,7 +46,8 @@ namespace GameStates.States
       
     }
 
-    private void RegisterServices(ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer)
+    private void RegisterServices(ICoroutineRunner coroutineRunner, Card cardPrefab, AudioMixer mixer,
+      CardProps propsPrefab)
     {
       RegisterStateMachine();
       RegisterRandom();
@@ -63,7 +65,7 @@ namespace GameStates.States
       RegisterPlayerDeck();
       RegisterOpponentDeck();
       RegisterPlayerHand();
-      RegisterCardFactory(cardPrefab, coroutineRunner);
+      RegisterCardFactory(cardPrefab, propsPrefab, coroutineRunner);
       RegisterCardSpawner();
     }
 
@@ -132,8 +134,11 @@ namespace GameStates.States
       services.RegisterSingle(new PlayerGold());
     }
 
-    private void RegisterCardFactory(Card prefab, ICoroutineRunner coroutineRunner) => 
-      services.RegisterSingle(new CardFactory(services.Single<IAssetProvider>(), prefab,
+    private void RegisterCardFactory(Card prefab, CardProps propsPrefab, ICoroutineRunner coroutineRunner) => 
+      services.RegisterSingle(new CardFactory(
+        services.Single<IAssetProvider>(),
+        prefab,
+        propsPrefab,
         services.Single<IStaticDataService>(),
         services.Single<IPlayerGold>(),
         services.Single<IPlayerDeck>(),

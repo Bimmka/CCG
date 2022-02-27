@@ -19,3 +19,5 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: c405379946891f7408f4a8fcedbf8af5, type: 3}
   - Name: CardUse
     Clip: {fileID: 8300000, guid: 7bc504cf644c9034981b6c3a1803fb55, type: 3}
+  - Name: DeathTheme
+    Clip: {fileID: 8300000, guid: bd9694c09cc6111469696254ecfc79ab, type: 3}

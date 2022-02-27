@@ -914,8 +914,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasGroup: {fileID: 946431042}
   mainViewImage: {fileID: 1528328673}
-  firstIcon: {fileID: 1528328672}
-  secondIcon: {fileID: 1528328671}
+  shirtImage: {fileID: 1528328672}
+  imageBackground: {fileID: 1528328671}
   nameText: {fileID: 1528328670}
   descriptionText: {fileID: 1528328668}
 --- !u!1 &957779935
@@ -1215,10 +1215,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 946431041}
     m_Modifications:
-    - target: {fileID: 6609381610339065068, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8723716983784695371, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1327,7 +1323,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
 --- !u!114 &1528328670 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9030716393783180012, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8722089634945957365, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
   m_PrefabInstance: {fileID: 1528328667}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1338,7 +1334,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1528328671 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3700689947216258349, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1131907062342484222, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
   m_PrefabInstance: {fileID: 1528328667}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1349,7 +1345,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1528328672 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6609381610339065068, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 7403166854107283954, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
   m_PrefabInstance: {fileID: 1528328667}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -1360,7 +1356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
 --- !u!114 &1528328673 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8723716982816848668, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
+  m_CorrespondingSourceObject: {fileID: 1013913436735538368, guid: c070c681bc4ee9d45aa433e85226cac6, type: 3}
   m_PrefabInstance: {fileID: 1528328667}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}

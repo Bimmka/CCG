@@ -19,7 +19,6 @@ namespace Audio
     {
       this.audioService = audioService;
       this.audioService.SaveMainThemeSource(this);
-      this.audioService.StartPlayMenuTheme();
     }
 
     private void OnDestroy()

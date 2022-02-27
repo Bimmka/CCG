@@ -10,9 +10,9 @@ namespace GameStates
     public readonly GameStateMachine StateMachine;
 
     public Game(ICoroutineRunner coroutineRunner, LoadingCurtain curtain, ref AllServices services, Card cardPrefab,
-      AudioMixer mixer)
+      AudioMixer mixer, CardProps propsPrefab)
     {
-      StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner,curtain), ref services, coroutineRunner, cardPrefab, mixer);
+      StateMachine = new GameStateMachine(new SceneLoader(coroutineRunner,curtain), ref services, coroutineRunner, cardPrefab, mixer, propsPrefab);
     }
   }
 }

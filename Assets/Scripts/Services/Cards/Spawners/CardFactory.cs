@@ -16,6 +16,7 @@ namespace Services.Cards.Spawners
   public class CardFactory : ICardFactory
   {
     private readonly Card prefab;
+    private readonly CardProps propsPrefab;
     private readonly IStaticDataService staticData;
     private readonly IPlayerGold playerGold;
     private readonly IPlayerDeck playerDeck;
@@ -28,6 +29,7 @@ namespace Services.Cards.Spawners
 
     public CardFactory(IAssetProvider assetProvider, 
       Card cardPrefab, 
+      CardProps cardPropsPrefab,
       IStaticDataService staticDataService, 
       IPlayerGold playerGold, 
       IPlayerDeck playerDeck, 
@@ -38,6 +40,7 @@ namespace Services.Cards.Spawners
     {
       assets = assetProvider;
       prefab = cardPrefab;
+      propsPrefab = cardPropsPrefab;
       staticData = staticDataService;
       this.playerGold = playerGold;
       this.playerDeck = playerDeck;
@@ -61,9 +64,9 @@ namespace Services.Cards.Spawners
       return pooledCard;
     }
 
-    public Card SpawnPropsCard( Transform parent, bool isPlayer)
+    public CardProps SpawnPropsCard( Transform parent, bool isPlayer)
     {
-      return assets.Instantiate(prefab, parent);
+      return assets.Instantiate(propsPrefab, parent);
     }
 
     public void SetCurrentField(Field field)

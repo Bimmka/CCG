@@ -36,9 +36,9 @@ namespace Services.Cards.Spawners
       return SpawnCard(localPosition, parent, data, true);
     }
 
-    public Card SpawnPlayerCardProps(Vector3 localPosition, Transform parent, int index)
+    public CardProps SpawnPlayerCardProps(Vector3 localPosition, Transform parent, int index)
     {
-      Card card = cardFactory.SpawnPropsCard(parent, true);
+      CardProps card = cardFactory.SpawnPropsCard(parent, true);
       card.transform.localPosition += Vector3.up * index * (card.transform.localScale.y);
       return card;
     }

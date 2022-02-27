@@ -7,6 +7,8 @@ namespace StaticData.Gameplay.Cards.Components
   {
     public float DissolveBackgroundDuration= 0.2f;
     public float DissolveMainImageDuration = 0.2f;
+    public float DissolveMainBackgroundImageDuration = 0.2f;
+    public float DissolveNameImageDuration = 0.2f;
     public float DissolveFirstIconDuration = 0.2f;
     public float DissolveSecondIconDuration = 0.2f;
     public float FadeNameTextDuration = 0.2f;
@@ -33,6 +35,12 @@ namespace StaticData.Gameplay.Cards.Components
       
       if (max < FadeDescriptionDuration)
         max = FadeDescriptionDuration;
+
+      if (max < DissolveMainBackgroundImageDuration)
+        max = DissolveMainBackgroundImageDuration;
+
+      if (max < DissolveNameImageDuration)
+        max = DissolveNameImageDuration;
 
       return max;
     }

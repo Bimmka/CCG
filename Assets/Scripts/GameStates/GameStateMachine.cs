@@ -27,11 +27,11 @@ namespace GameStates
     private IExitableState _activeState;
 
     public GameStateMachine(ISceneLoader sceneLoader, ref AllServices services, ICoroutineRunner coroutineRunner,
-      Card cardPrefab, AudioMixer mixer)
+      Card cardPrefab, AudioMixer mixer, CardProps propsPrefab)
     {
       _states = new Dictionary<Type, IExitableState>
       {
-        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner, cardPrefab, mixer),
+        [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader,ref services, coroutineRunner, cardPrefab, mixer, propsPrefab),
         [typeof(LoadProgressState)] = new LoadProgressState(this, sceneLoader, services.Single<IPersistentProgressService>()),
         [typeof(GameLoopState)] = new GameLoopState(this),
         [typeof(LoadGameLevelState)] = new LoadGameLevelState(

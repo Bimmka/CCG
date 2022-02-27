@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Cards.Spawners;
 using Gameplay.Table;
@@ -16,7 +15,7 @@ namespace Gameplay.Cards.Decks
     [SerializeField] private Field field;
 
     private IPlayerDeck deck;
-    private List<Card> spawnedCards;
+    private List<CardProps> spawnedCards;
 
     public int NumberOfCardsToTake => deck.CurrentNumberOfCardsToTake;
       

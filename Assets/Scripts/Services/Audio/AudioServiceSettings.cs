@@ -36,9 +36,9 @@ namespace Services.Audio
 
     public void Load()
     {
-      SetMainVolume(PlayerPrefs.GetFloat(Constants.Master,1f));
-      SetEffectsVolume(PlayerPrefs.GetFloat(Constants.Effect, 1f));
-      SetBackgroundVolume(PlayerPrefs.GetFloat(Constants.Background, 1f));
+      SetMainVolume(PlayerPrefs.GetFloat(Constants.Master,0.5f));
+      SetEffectsVolume(PlayerPrefs.GetFloat(Constants.Effect, 0.5f));
+      SetBackgroundVolume(PlayerPrefs.GetFloat(Constants.Background, 0.5f));
     }
 
     public void Save()

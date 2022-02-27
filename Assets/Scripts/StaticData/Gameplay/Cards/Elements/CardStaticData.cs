@@ -13,8 +13,8 @@ namespace StaticData.Gameplay.Cards.Elements
     public PlayingActionType ActionType;
     public CardImmuneType ImmuneType = CardImmuneType.Blocking;
     public Sprite Shirt;
+    public Color ShortColor;
     public Sprite Icon;
-    public Sprite SecondIcon;
-    public Sprite MainArt;
+    public Sprite ArtBackground;
   }
 }

@@ -28,11 +28,13 @@ namespace Bootstrapp
       [SerializeField] private Card cardPrefab;
       [SerializeField] private MainAudioSource audioSourcePrefab;
       [SerializeField] private AudioMixer mixer;
-
+      [SerializeField] private CardProps propsPrefab;
+      
         private LoadingCurtain spawnedCurtain;
         private GameBootstrapp spawnedGameBootstrapp;
         private MainAudioSource spawnedAudioSource;
         private AllServices allServices;
+        
 
         public override void InstallBindings()
         {
@@ -79,7 +81,7 @@ namespace Bootstrapp
         private void InstantiateBootstrapper()
         {
           spawnedGameBootstrapp = Instantiate(gameBootstrapp, transform);
-          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab, mixer);
+          spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab, mixer, propsPrefab);
         }
 
         private void InstantiateAudio() => 

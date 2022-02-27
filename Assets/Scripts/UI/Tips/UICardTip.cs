@@ -9,8 +9,8 @@ namespace UI.Tips
   {
     [SerializeField] private CanvasGroup canvasGroup;
     [SerializeField] private Image mainViewImage;
-    [SerializeField] private Image firstIcon;
-    [SerializeField] private Image secondIcon;
+    [SerializeField] private Image shirtImage;
+    [SerializeField] private Image imageBackground; 
     [SerializeField] private TextMeshProUGUI nameText;
     [SerializeField] private TextMeshProUGUI descriptionText;
     

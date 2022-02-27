@@ -9,7 +9,7 @@ namespace Services.Cards.Spawners
   {
     Card SpawnEnemyCard(Vector3 localPosition,Transform parent, CardStaticData data);
     Card SpawnPlayerCard(Vector3 localPosition, Transform parent, CardStaticData data);
-    Card SpawnPlayerCardProps(Vector3 localPosition, Transform playerDeckParent, int index);
+    CardProps SpawnPlayerCardProps(Vector3 localPosition, Transform playerDeckParent, int index);
     void SetField(Field field);
     void ResetPool();
   }

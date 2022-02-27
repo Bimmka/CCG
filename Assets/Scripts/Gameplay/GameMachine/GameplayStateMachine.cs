@@ -6,6 +6,7 @@ using Gameplay.Clicks;
 using Gameplay.GameMachine.States;
 using Gameplay.GameplayActionPipeline;
 using Gameplay.Table;
+using Services.Audio;
 using Services.FieldCreate;
 using Services.Hero;
 using Services.UI.Windows;
@@ -31,6 +32,7 @@ namespace Gameplay.GameMachine
     private IPlayerGold playerGold;
     private IPlayerTurns playerTurns;
     private IWindowsService windowsService;
+    private IAudioService audioService;
 
     private bool isGameEnd;
 
@@ -41,13 +43,13 @@ namespace Gameplay.GameMachine
     public GameEnd GameEndState { get; private set; }
 
     [Inject]
-    private void Construct(IFieldCreateService fieldCreateService, IPlayerGold playerGold, IPlayerTurns playerTurns, IWindowsService windowsService)
+    private void Construct(IFieldCreateService fieldCreateService, IPlayerGold playerGold, IPlayerTurns playerTurns, IWindowsService windowsService, IAudioService audioService)
     {
       this.fieldCreateService = fieldCreateService;
       this.playerTurns = playerTurns;
       this.windowsService = windowsService;
+      this.audioService = audioService;
       this.playerGold = playerGold;
-      
       this.playerGold.Ended += OnGoldEnded;
     }
 
@@ -84,7 +86,7 @@ namespace Gameplay.GameMachine
       PlayerStartTurnState = new PlayerStartTurn(this, stateMachine, playerHand, clickHandler);
       PlayerTurnState = new PlayerTurn(this, stateMachine);
       PlayerEndTurnState = new PlayerEndTurn(this, stateMachine, clickHandler, actionPipeline, field);
-      GameEndState = new GameEnd(this, stateMachine, windowsService);
+      GameEndState = new GameEnd(this, stateMachine, windowsService, audioService);
     }
 
     private void InitStateMachine()

@@ -53,6 +53,7 @@ namespace Gameplay.Clicks
     {
       LockClick();
       IsStopped = true;
+      Stopped?.Invoke();
     }
 
     private bool IsCanClicked() => 
