@@ -115,6 +115,7 @@ MonoBehaviour:
   backgroundDisolve: {fileID: 6783961135418758268}
   mainImageDisolve: {fileID: 1830451268527482991}
   data: {fileID: 11400000, guid: 38230713168c36248972600b1b9818ee, type: 2}
+  objectRenderer: {fileID: 5276585574335259408}
   iconImage: {fileID: 1988317861591819511}
   secondIconImage: {fileID: 5915226417887272164}
   iconImageDisolve: {fileID: 3877608654891321944}

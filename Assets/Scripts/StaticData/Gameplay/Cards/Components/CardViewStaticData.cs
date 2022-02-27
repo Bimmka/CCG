@@ -11,6 +11,7 @@ namespace StaticData.Gameplay.Cards.Components
     public float DissolveSecondIconDuration = 0.2f;
     public float FadeNameTextDuration = 0.2f;
     public float FadeDescriptionDuration = 0.2f;
+    public float ObjectDissolveDuration = 0.2f;
     public float MaxTextAlpha = 1f;
     public float MinTextAlpha = 0f;
 
