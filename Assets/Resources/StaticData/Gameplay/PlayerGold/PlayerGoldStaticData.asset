@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eca372087e4143d08dc825bf55f53b66, type: 3}
   m_Name: PlayerGoldStaticData
   m_EditorClassIdentifier: 
-  MinValue: 20
+  MinValue: 100
   MaxValue: 100

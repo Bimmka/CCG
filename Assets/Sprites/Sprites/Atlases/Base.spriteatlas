@@ -51,6 +51,7 @@ SpriteAtlas:
   m_PackedSprites:
   - {fileID: 21300000, guid: e5a9cb11fb43f564c981c73b361a78a2, type: 3}
   - {fileID: 21300000, guid: 3b5b1824748fb3049a918b0199159eba, type: 3}
+  - {fileID: 21300000, guid: 5801598503c97214293626ee05eebf43, type: 3}
   - {fileID: 21300000, guid: f4c7f587e6a79f440af229b7f80ac866, type: 3}
   - {fileID: 21300000, guid: cdd156385773f5e4289df4510e2d8e45, type: 3}
   - {fileID: 21300000, guid: 9d4b94c82afa8124a91ed04b24382c2b, type: 3}
@@ -61,6 +62,7 @@ SpriteAtlas:
   m_PackedSpriteNamesToIndex:
   - Particle
   - paper_texture
+  - Botton
   - UI_Round
   - CardFrame
   - Pixel

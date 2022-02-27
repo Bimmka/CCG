@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 8192
+      m_MaxTextureSize: 4096
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
@@ -56,11 +56,14 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1238bd87d9b05ed47b8d9a0b2917ac66, type: 3}
   - {fileID: 21300000, guid: d782a8c7d2ade3541815a261fdd025f6, type: 3}
   - {fileID: 21300000, guid: 6f99bc8874ce09d44acbb42140d48f96, type: 3}
+  - {fileID: 21300000, guid: 944ea3a8f487c5a4fb730e98af557432, type: 3}
   - {fileID: 21300000, guid: b3b679b814003474491b64d033160d4f, type: 3}
+  - {fileID: 21300000, guid: 2c5125d8843d8ec439140d8d01b795ce, type: 3}
   - {fileID: 21300000, guid: a4b69d6922a20f042bfea9825249403e, type: 3}
   - {fileID: 21300000, guid: d9353fa91e79a34448fde87a5d9ca7b7, type: 3}
   - {fileID: 21300000, guid: 3db562adc9312c7489ee7e3fc711b918, type: 3}
   - {fileID: 21300000, guid: 01acbbdded46f1249b66ea8f7ed3f9a2, type: 3}
+  - {fileID: 21300000, guid: ad79453f1f6948844bc67edbaea90599, type: 3}
   - {fileID: 21300000, guid: 0ce4e55f14ba51a419ba4df9652056b6, type: 3}
   m_PackedSpriteNamesToIndex:
   - SabotageStash
@@ -70,11 +73,14 @@ SpriteAtlas:
   - AntiGravityTrap
   - BagOfGold
   - QuakeTrap
+  - Drill
   - FraudFrog
+  - LostDiary
   - HiddenPassage
   - dynamit
   - Scavenger
   - Wolfpit
+  - GoldRush
   - deck_shirt
   m_RenderDataMap: {}
   m_Tag: Images1
