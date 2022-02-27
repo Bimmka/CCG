@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: GetGoldCard
   m_EditorClassIdentifier: 
   ID: 2
-  Name: Lost beg of gold
+  Name: Lost bag of gold
   Description: Gives 10 gold
   PlayingZoneType: 1
   ActionType: 2
   ImmuneType: 0
   Shirt: {fileID: 21300000, guid: cdd156385773f5e4289df4510e2d8e45, type: 3}
-  ShortColor: {r: 1, g: 0, b: 0, a: 1}
-  Icon: {fileID: 21300000, guid: ffd6341660d61b94fbe2ae733209f5d9, type: 3}
-  ArtBackground: {fileID: 0}
+  ShortColor: {r: 0.95686275, g: 0.7176471, b: 0.17254902, a: 1}
+  Icon: {fileID: 21300000, guid: d782a8c7d2ade3541815a261fdd025f6, type: 3}
+  ArtBackground: {fileID: 21300000, guid: 9d4b94c82afa8124a91ed04b24382c2b, type: 3}

@@ -19,6 +19,6 @@ MonoBehaviour:
   ActionType: 3
   ImmuneType: 0
   Shirt: {fileID: 21300000, guid: cdd156385773f5e4289df4510e2d8e45, type: 3}
-  ShortColor: {r: 0.44705886, g: 0.26666668, b: 0.25882354, a: 1}
+  ShortColor: {r: 0.42352942, g: 0.10980392, b: 0.078431375, a: 1}
   Icon: {fileID: 21300000, guid: d9353fa91e79a34448fde87a5d9ca7b7, type: 3}
   ArtBackground: {fileID: 21300000, guid: 9d4b94c82afa8124a91ed04b24382c2b, type: 3}

@@ -53,18 +53,24 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 235cfc24f33ef19448d6566f270350d1, type: 3}
   - {fileID: 21300000, guid: ffd6341660d61b94fbe2ae733209f5d9, type: 3}
   - {fileID: 21300000, guid: 1238bd87d9b05ed47b8d9a0b2917ac66, type: 3}
+  - {fileID: 21300000, guid: d782a8c7d2ade3541815a261fdd025f6, type: 3}
+  - {fileID: 21300000, guid: 6f99bc8874ce09d44acbb42140d48f96, type: 3}
   - {fileID: 21300000, guid: b3b679b814003474491b64d033160d4f, type: 3}
   - {fileID: 21300000, guid: a4b69d6922a20f042bfea9825249403e, type: 3}
   - {fileID: 21300000, guid: d9353fa91e79a34448fde87a5d9ca7b7, type: 3}
+  - {fileID: 21300000, guid: 3db562adc9312c7489ee7e3fc711b918, type: 3}
   - {fileID: 21300000, guid: 01acbbdded46f1249b66ea8f7ed3f9a2, type: 3}
   m_PackedSpriteNamesToIndex:
   - SabotageStash
   - Stash
   - torch
   - AntiGravityTrap
+  - BagOfGold
+  - QuakeTrap
   - FraudFrog
   - HiddenPassage
   - dynamit
+  - Scavenger
   - Wolfpit
   m_RenderDataMap: {}
   m_Tag: Images1
