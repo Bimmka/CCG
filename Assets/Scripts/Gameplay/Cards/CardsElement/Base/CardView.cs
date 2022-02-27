@@ -14,6 +14,7 @@ namespace Gameplay.Cards.CardsElement.Base
    
     [SerializeField] private UIDissolve iconImageDisolve;
     [SerializeField] private UIDissolve secondIconImageDisolve;
+    [SerializeField] private ParticleSystem particles;
     
     private MaterialPropertyBlock propBlock;
 
@@ -40,6 +41,18 @@ namespace Gameplay.Cards.CardsElement.Base
       StartCoroutine(Dissolve(secondIconImageDisolve, 1f,  data.DissolveSecondIconDuration, 1, IsBigger));
       StartCoroutine(DissolveObject(0f, 1f, data.ObjectDissolveDuration, 1, IsBigger));
       StartCoroutine(Wait(data.TotalTime(),callback,Deactivate));
+    }
+
+    public void ShowParticles()
+    {
+      particles.transform.gameObject.SetActive(true);
+      particles.Play();
+    }
+
+    public void RemoveParticles()
+    {
+      particles.Stop();
+      particles.transform.gameObject.SetActive(false);
     }
 
     private IEnumerator DissolveObject(float startValue, float endValue, float duration, int direction, Func<float, float, bool> isEnded)

@@ -10,6 +10,8 @@ namespace Services.Audio
     private readonly IAudioServiceSettings settings;
     private readonly IStaticDataService staticData;
 
+    private readonly int ChangeDuration = 1;
+
     public AudioService(IAudioServiceSettings serviceSettings, IStaticDataService staticData)
     {
       settings = serviceSettings;
@@ -23,7 +25,7 @@ namespace Services.Audio
 
     public void ChangeMainTheme(string clipName)
     {
-      mainSource.DOFade(0f, 1f).OnComplete(() => ChangeMainSound(clipName));
+      mainSource.DOFade(0f, ChangeDuration).OnComplete(() => ChangeMainSound(clipName));
     }
 
     public void PlayerEffect(string clipName)
@@ -35,13 +37,13 @@ namespace Services.Audio
     {
       mainSource.clip = staticData.ForAudio("MenuTheme");
       mainSource.Play();
-      mainSource.DOFade(1f, 1f);
+      mainSource.DOFade(1f, ChangeDuration);
     }
 
     private void ChangeMainSound(string clipName)
     {
       mainSource.clip = staticData.ForAudio(clipName);
-      mainSource.DOFade(settings.MainVolume, 1f).OnComplete(() => ChangeMainSound(clipName));
+      mainSource.DOFade(settings.MainVolume, ChangeDuration);
       mainSource.Play();
     }
   }

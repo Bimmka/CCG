@@ -15,7 +15,7 @@ namespace Gameplay.Cards.CardsElement.Base
     private readonly IRandomService randomService;
     private readonly ICoroutineRunner coroutineRunner;
 
-    public OpponentShuffleStrategy(CardStrategyStaticData data, Field field, IRandomService randomService, ICoroutineRunner coroutineRunner) : base(data)
+    public OpponentShuffleStrategy(CardStrategyStaticData data,  Field field, IRandomService randomService, ICoroutineRunner coroutineRunner) : base(data, coroutineRunner)
     {
       this.field = field;
       this.randomService = randomService;

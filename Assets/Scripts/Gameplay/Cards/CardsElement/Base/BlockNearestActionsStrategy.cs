@@ -1,4 +1,6 @@
-﻿using Gameplay.Table;
+﻿using System.Collections;
+using Gameplay.Table;
+using Services;
 using StaticData.Gameplay.Cards.Strategies;
 using UnityEngine;
 
@@ -8,12 +10,18 @@ namespace Gameplay.Cards.CardsElement.Base
   {
     private readonly Field field;
 
-    public BlockNearestActionsStrategy(CardStrategyStaticData data, Field field) : base(data)
+    public BlockNearestActionsStrategy(CardStrategyStaticData data, ICoroutineRunner coroutineRunner, Field field) : base(data, coroutineRunner)
     {
       this.field = field;
     }
 
+    
     public override void Use(Vector2Int cardPosition)
+    {
+      coroutineRunner.StartCoroutine(Using(cardPosition));
+    }
+
+    private IEnumerator Using(Vector2Int cardPosition)
     {
       int rowIndex = field.Size.y - field.PlayerRows;
 
@@ -28,6 +36,7 @@ namespace Gameplay.Cards.CardsElement.Base
           {
             if (cell.CurrentCard.IsCanBeTriggered(this))
             {
+              
               cell.CurrentCard.Trigger();
               cell.CurrentCard.Activate(cardPosition);
             }
@@ -35,9 +44,11 @@ namespace Gameplay.Cards.CardsElement.Base
             if (cell.CurrentCard.IsCanBeBlocking())
               cell.CurrentCard.Block();
           }
+          yield return new WaitForSeconds(1f);
         }
 
         rowIndex--;
+        yield return new WaitForSeconds(1f);
       }
       NotifyAboutEnd();
     }

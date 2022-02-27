@@ -1,4 +1,6 @@
-﻿using Services.Cards.Decks.Player;
+﻿using System.Collections;
+using Services;
+using Services.Cards.Decks.Player;
 using StaticData.Gameplay.Cards.Strategies;
 using UnityEngine;
 
@@ -10,19 +12,25 @@ namespace Gameplay.Cards.CardsElement.Base
     private readonly int decCardCount;
     private bool isDec = true;
     
-    public DecreaseCardTakeStrategy(CardStrategyStaticData data, IPlayerDeck playerDeck) : base(data)
+    public DecreaseCardTakeStrategy(CardStrategyStaticData data, ICoroutineRunner coroutineRunner, IPlayerDeck playerDeck) : base(data, coroutineRunner)
     {
       decCardCount = ((TakeAdditionalCardStrategyStaticData) data).AdditionalCardCount;
       this.playerDeck = playerDeck;
     }
 
-    public override void Use(Vector2Int startPosition)
+    public override void Use(Vector2Int cardPosition)
     {
+      coroutineRunner.StartCoroutine(Using());
+    }
+
+    private IEnumerator Using()
+    {
+      yield return new WaitForSeconds(1f);
       if (isDec)
         playerDeck.ChangeNumberOfCardsToTake(-decCardCount);
       else
         playerDeck.ChangeNumberOfCardsToTake(decCardCount);
-      
+      yield return new WaitForSeconds(1f);
       NotifyAboutEnd();
     }
 

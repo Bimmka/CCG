@@ -26,7 +26,7 @@ namespace Services.Hero
     public void Steal(int count)
     {
       Count -= count;
-      if (Count < 0)
+      if (Count <= 0)
       {
         Count = 0;
         NotifyAboutEnded();

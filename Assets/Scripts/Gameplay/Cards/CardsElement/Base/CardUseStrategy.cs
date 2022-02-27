@@ -1,4 +1,5 @@
 ﻿using System;
+using Services;
 using Services.Cards.Decks.Player;
 using StaticData.Gameplay.Cards.Strategies;
 using UnityEngine;
@@ -7,13 +8,15 @@ namespace Gameplay.Cards.CardsElement.Base
 {
   public abstract class CardUseStrategy : ICardUseStrategy
   {
-    
+    protected readonly ICoroutineRunner coroutineRunner;
+
     private int currentOperationsNumber;
     protected int OperationsCount => currentOperationsNumber;
     public event Action Ended;
 
-    public CardUseStrategy(CardStrategyStaticData data)
+    public CardUseStrategy(CardStrategyStaticData data, ICoroutineRunner coroutineRunner)
     {
+      this.coroutineRunner = coroutineRunner;
       currentOperationsNumber = data.MinOperationsNumber;
     }
     public abstract void Use(Vector2Int startPosition);

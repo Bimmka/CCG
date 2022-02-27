@@ -1,4 +1,6 @@
-﻿using Services.Hero;
+﻿using System.Collections;
+using Services;
+using Services.Hero;
 using StaticData.Gameplay.Cards.Strategies;
 using UnityEngine;
 
@@ -11,7 +13,7 @@ namespace Gameplay.Cards.CardsElement.Base
 
     private bool isGet = true;
 
-    public GetGoldStrategy(CardStrategyStaticData data, IPlayerGold playerGold) : base(data)
+    public GetGoldStrategy(CardStrategyStaticData data, ICoroutineRunner coroutineRunner,  IPlayerGold playerGold) : base(data, coroutineRunner)
     {
       this.playerGold = playerGold;
       GoldCount = ((GoldTakeStrategyStaticData) data).GoldTakeCount;
@@ -19,11 +21,19 @@ namespace Gameplay.Cards.CardsElement.Base
     
     public override void Use(Vector2Int cardPosition)
     {
+      coroutineRunner.StartCoroutine(Steal());
+    }
+    
+    private IEnumerator Steal()
+    {
+      yield return new WaitForSeconds(1f);
       if (isGet)
         playerGold.Add(GoldCount);
       else
         playerGold.Steal(GoldCount);
       
+      NotifyAboutEnd();
+      yield return new WaitForSeconds(1f);
       NotifyAboutEnd();
     }
 

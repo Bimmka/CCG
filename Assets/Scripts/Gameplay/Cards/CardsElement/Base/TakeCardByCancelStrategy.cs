@@ -1,4 +1,6 @@
-﻿using Services.Cards.Decks.Player;
+﻿using System.Collections;
+using Services;
+using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
 using StaticData.Gameplay.Cards.Strategies;
 using UnityEngine;
@@ -12,17 +14,22 @@ namespace Gameplay.Cards.CardsElement.Base
     
     private bool isTriggered;
     
-    public TakeCardByCancelStrategy(CardStrategyStaticData data, IPlayerDeck playerDeck ) : base(data)
+    public TakeCardByCancelStrategy(CardStrategyStaticData data, ICoroutineRunner coroutineRunner, IPlayerDeck playerDeck ) : base(data, coroutineRunner)
     {
       this.playerDeck = playerDeck;
       additionalCard = ((TakeAdditionalCardStrategyStaticData) data).AdditionalCardCount;
     }
-
-    public override void Use(Vector2Int startPosition)
+    public override void Use(Vector2Int cardPosition)
     {
+      coroutineRunner.StartCoroutine(Using());
+    }
+
+    private IEnumerator Using()
+    {
+      yield return new WaitForSeconds(1f);
       if (isTriggered)
         playerDeck.ChangeNumberOfCardsToTake(additionalCard);
-      
+      yield return new WaitForSeconds(1f);
       NotifyAboutEnd();
     }
 

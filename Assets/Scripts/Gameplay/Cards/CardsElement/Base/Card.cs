@@ -59,6 +59,7 @@ namespace Gameplay.Cards.CardsElement.Base
         return;
       
       UpdateStatus(CardStatus.Using);
+      view.ShowParticles();
       useStrategy.Use(cardPosition);
     }
 
@@ -96,8 +97,11 @@ namespace Gameplay.Cards.CardsElement.Base
       useStrategy = null;
     }
 
-    private void OnUseEnd() => 
+    private void OnUseEnd()
+    {
+      view.RemoveParticles();
       UpdateStatus(CardStatus.None);
+    }
 
     private void OnDestroyed()
     {
