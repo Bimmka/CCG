@@ -1,42 +1,37 @@
 ﻿using System;
+using Services.Random;
 using StaticData.Gameplay.Cards.Elements;
-using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace UI.Windows.PlayerHand
 {
   public class UIPlayerHandCard : MonoBehaviour, IPointerClickHandler
   {
-    [SerializeField] private Image mainViewImage;
-    [SerializeField] private TextMeshProUGUI nameText;
-    [SerializeField] private TextMeshProUGUI descriptionText;
-    
+    [SerializeField] private UIPlayerHandCardView view;
     private CardStaticData data;
 
     public event Action<CardStaticData> Clicked; 
     public int CardID => data == null ? -1 : data.ID;
 
-    public void Show()
+    public void Construct(IRandomService randomService)
     {
-      gameObject.SetActive(true);
+      view.Construct(randomService);
     }
 
-    public void Hide()
-    {
-      gameObject.SetActive(false);
-    }
+    public void Show(Action callback = null) => 
+      view.Show(callback);
 
-    public void ForceHide()
-    {
-      gameObject.SetActive(false);
-    }
+    public void Hide(Action callback = null) => 
+      view.Hide(callback);
+
+    public void ForceHide() => 
+      view.ForceHide();
 
     public void SetData(CardStaticData data)
     {
       this.data = data;
-      DisplayCardData();
+      view.SetView(data);
     }
 
     public void OnPointerClick(PointerEventData eventData) => 
@@ -45,20 +40,6 @@ namespace UI.Windows.PlayerHand
     public void ResetData()
     {
       data = null;
-      ResetView();
-    }
-
-    private void ResetView()
-    {
-      mainViewImage.sprite = null;
-      nameText.text = "";
-      descriptionText.text = "";
-    }
-
-    private void DisplayCardData()
-    {
-      nameText.text = data.Name;
-      descriptionText.text = data.Description;
     }
   }
 }

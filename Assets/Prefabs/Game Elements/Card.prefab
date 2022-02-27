@@ -112,10 +112,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgroundImage: {fileID: 8098207414903995091}
   mainImage: {fileID: 3972445018127845056}
-  iconImage: {fileID: 1988317861591819511}
-  secondIconImage: {fileID: 5915226417887272164}
   backgroundDisolve: {fileID: 6783961135418758268}
   mainImageDisolve: {fileID: 1830451268527482991}
+  data: {fileID: 11400000, guid: 38230713168c36248972600b1b9818ee, type: 2}
+  iconImage: {fileID: 1988317861591819511}
+  secondIconImage: {fileID: 5915226417887272164}
   iconImageDisolve: {fileID: 3877608654891321944}
   secondIconImageDisolve: {fileID: 8957940168662512203}
 --- !u!1 &8287946017069330146
@@ -540,6 +541,10 @@ PrefabInstance:
     - target: {fileID: 3648206171700489991, guid: 5c92510aa3d4ec744853ec8f4da8a2bc, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0.000000029802322
+      objectReference: {fileID: 0}
+    - target: {fileID: 6838407673675974792, guid: 5c92510aa3d4ec744853ec8f4da8a2bc, type: 3}
+      propertyPath: m_Type
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6838407673675974792, guid: 5c92510aa3d4ec744853ec8f4da8a2bc, type: 3}
       propertyPath: m_Color.b

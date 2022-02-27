@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Gameplay.Cards.Hand;
 using Services.Assets;
+using Services.Random;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,14 +21,18 @@ namespace UI.Windows.PlayerHand
     private readonly Queue<UIPlayerHandCard> pool = new Queue<UIPlayerHandCard>(10);
     
     private IAssetProvider assets;
+    private IRandomService randomService;
 
     public event Action<CardStaticData> Clicked;
     public event Action EndTurnClicked;
     public event Func<bool> IsCanClicked;
-
+    
     [Inject]
-    private void Construct(IAssetProvider assetProvider) => 
+    private void Construct(IAssetProvider assetProvider, IRandomService randomService)
+    {
       assets = assetProvider;
+      this.randomService = randomService;
+    }
 
     private void Awake()
     {
@@ -46,11 +51,6 @@ namespace UI.Windows.PlayerHand
     public void ReturnCard(CardStaticData card)
     {
       Debug.Log("Returned Card");
-    }
-
-    public void RemoveCard(CardStaticData card)
-    {
-      OnCardRemoved(card);
     }
 
     private void OnCardAdded(CardStaticData card)
@@ -75,9 +75,15 @@ namespace UI.Windows.PlayerHand
 
     private void RemoveCard(UIPlayerHandCard cardInHand)
     {
-      cardsInHand.Remove(cardInHand);
-      cardInHand.Hide();
       cardInHand.ResetData();
+      cardInHand.transform.SetParent(transform, true);
+      cardInHand.Hide(() => OnCardRemoved(cardInHand));
+    }
+
+    private void OnCardRemoved(UIPlayerHandCard cardInHand)
+    {
+      cardsInHand.Remove(cardInHand);
+      
       pool.Enqueue(cardInHand);
     }
 
@@ -85,6 +91,7 @@ namespace UI.Windows.PlayerHand
     {
       UIPlayerHandCard cardInHand = pool.Dequeue();
       cardInHand.SetData(card);
+      cardInHand.transform.SetParent(cardsParent);
       cardInHand.transform.SetAsLastSibling();
       cardInHand.Show();
       SaveInHand(cardInHand);
@@ -93,6 +100,7 @@ namespace UI.Windows.PlayerHand
     private void CreateCard(CardStaticData card)
     {
       UIPlayerHandCard cardInHand = assets.Instantiate(prefab, cardsParent);
+      cardInHand.Construct(randomService);
       cardInHand.Clicked += OnCardClick;
       cardInHand.ForceHide();
       cardInHand.SetData(card);

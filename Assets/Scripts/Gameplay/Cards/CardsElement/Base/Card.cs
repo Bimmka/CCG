@@ -22,7 +22,6 @@ namespace Gameplay.Cards.CardsElement.Base
     public CardStaticData Data => data;
 
     public event Action<Card> Hiden;
-    public event Action<Card> Destroyed;
 
     private void Awake()
     {

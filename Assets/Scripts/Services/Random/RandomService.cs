@@ -18,6 +18,12 @@
     public float NextFloat() => 
       (float) NextDouble();
 
+    public float NextFloat(float min, float max)
+    {
+      float number = NextFloat();
+      return number * max + number * min;
+    }
+
     public double NextDouble() => 
       random.NextDouble();
 

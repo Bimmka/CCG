@@ -18,7 +18,7 @@ MonoBehaviour:
   PlayingZoneType: 2
   ActionType: 14
   ImmuneType: 0
-  Shirt: {fileID: 21300012, guid: 975570a90d56c477582e12d440dc9931, type: 3}
-  Icon: {fileID: 21300006, guid: 975570a90d56c477582e12d440dc9931, type: 3}
+  Shirt: {fileID: 21300000, guid: 756cbeffa943f7a4f8976c3a77e55747, type: 3}
+  Icon: {fileID: 21300000, guid: b227b87f2f8d2824c8865fa5b6bfc1ef, type: 3}
   SecondIcon: {fileID: 0}
-  MainArt: {fileID: 0}
+  MainArt: {fileID: 21300000, guid: 3b5b1824748fb3049a918b0199159eba, type: 3}
