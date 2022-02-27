@@ -2,6 +2,7 @@
 using Gameplay.Cards.CardsElement.Base;
 using Gameplay.Table;
 using Services.Assets;
+using Services.Audio;
 using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
 using Services.Hero;
@@ -21,10 +22,19 @@ namespace Services.Cards.Spawners
     private readonly IPlayerHand playerHand;
     private readonly ICoroutineRunner coroutineRunner;
     private readonly IRandomService randomService;
+    private readonly IAudioService audioService;
     private readonly IAssetProvider assets;
     private Field field;
 
-    public CardFactory(IAssetProvider assetProvider, Card cardPrefab, IStaticDataService staticDataService, IPlayerGold playerGold, IPlayerDeck playerDeck, IPlayerHand playerHand, ICoroutineRunner coroutineRunner, IRandomService randomService)
+    public CardFactory(IAssetProvider assetProvider, 
+      Card cardPrefab, 
+      IStaticDataService staticDataService, 
+      IPlayerGold playerGold, 
+      IPlayerDeck playerDeck, 
+      IPlayerHand playerHand, 
+      ICoroutineRunner coroutineRunner, 
+      IRandomService randomService, 
+      IAudioService audioService)
     {
       assets = assetProvider;
       prefab = cardPrefab;
@@ -34,12 +44,14 @@ namespace Services.Cards.Spawners
       this.playerHand = playerHand;
       this.coroutineRunner = coroutineRunner;
       this.randomService = randomService;
+      this.audioService = audioService;
     }
     
     public Card CreateCard(Transform transform, CardStaticData data, bool isPlayer)
     {
       Card card = assets.Instantiate(prefab, transform);
       card.Construct(data, CreateStrategy(data.ActionType));
+      card.SetAudio(audioService);
       return card;
     }
 

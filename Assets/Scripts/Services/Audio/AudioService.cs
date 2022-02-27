@@ -1,4 +1,5 @@
-﻿using DG.Tweening;
+﻿using Audio;
+using DG.Tweening;
 using Services.StaticData;
 using UnityEngine;
 
@@ -6,7 +7,7 @@ namespace Services.Audio
 {
   public class AudioService : IAudioService
   {
-    private AudioSource mainSource;
+    private MainAudioSource mainSource;
     private readonly IAudioServiceSettings settings;
     private readonly IStaticDataService staticData;
 
@@ -18,32 +19,32 @@ namespace Services.Audio
       this.staticData = staticData;
     }
 
-    public void SaveMainThemeSource(AudioSource source)
+    public void SaveMainThemeSource(MainAudioSource source)
     {
       mainSource = source;
     }
 
     public void ChangeMainTheme(string clipName)
     {
-      mainSource.DOFade(0f, ChangeDuration).OnComplete(() => ChangeMainSound(clipName));
+      mainSource.ChangeVolume(0f, ChangeDuration,() => ChangeMainSound(clipName));
     }
 
     public void PlayerEffect(string clipName)
     {
-      
+      mainSource.PlayEffect(staticData.ForAudio(clipName));
     }
 
     public void StartPlayMenuTheme()
     {
-      mainSource.clip = staticData.ForAudio("MenuTheme");
+      mainSource.SetClip(staticData.ForAudio("MenuTheme"));
       mainSource.Play();
-      mainSource.DOFade(1f, ChangeDuration);
+      mainSource.ChangeVolume(1f, ChangeDuration);
     }
 
     private void ChangeMainSound(string clipName)
     {
-      mainSource.clip = staticData.ForAudio(clipName);
-      mainSource.DOFade(settings.MainVolume, ChangeDuration);
+      mainSource.SetClip(staticData.ForAudio(clipName));
+      mainSource.ChangeVolume(settings.MainVolume, ChangeDuration);
       mainSource.Play();
     }
   }

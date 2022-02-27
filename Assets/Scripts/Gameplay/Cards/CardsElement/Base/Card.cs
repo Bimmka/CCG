@@ -1,4 +1,5 @@
 using System;
+using Services.Audio;
 using StaticData.Gameplay.Cards.Components;
 using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
@@ -9,10 +10,12 @@ namespace Gameplay.Cards.CardsElement.Base
   {
     [SerializeField] private CardView view;
     [SerializeField] private CardMoverStaticData moverData;
-    
+
     private CardUseStrategy useStrategy;
     private CardStaticData data;
-    
+    private IAudioService audioService;
+
+    private const string ClipName = "CardUse";
     public PlayingZoneType PlayingZoneType { get; private set; }
     public bool IsActivated { get; private set; }
     public bool IsCanceled { get; private set; }
@@ -26,6 +29,11 @@ namespace Gameplay.Cards.CardsElement.Base
     private void Awake()
     {
       Mover = new CardMover(transform, moverData);
+    }
+
+    public void SetAudio(IAudioService audioService)
+    {
+      this.audioService = audioService;
     }
 
     public void Construct(CardStaticData staticData, CardUseStrategy newStrategy)
@@ -60,6 +68,7 @@ namespace Gameplay.Cards.CardsElement.Base
       
       UpdateStatus(CardStatus.Using);
       view.ShowParticles();
+      audioService.PlayerEffect(ClipName);
       useStrategy.Use(cardPosition);
     }
 

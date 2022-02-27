@@ -139,7 +139,8 @@ namespace GameStates.States
         services.Single<IPlayerDeck>(),
         services.Single<IPlayerHand>(),
         coroutineRunner,
-        services.Single<IRandomService>()));
+        services.Single<IRandomService>(),
+        services.Single<IAudioService>()));
 
     private void RegisterCardSpawner() => 
       services.RegisterSingle(new CardSpawnerService(services.Single<ICardFactory>()));

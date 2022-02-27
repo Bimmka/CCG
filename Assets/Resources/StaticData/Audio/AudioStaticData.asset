@@ -17,3 +17,5 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: 39de1dd5f6cda9942ac6475c2d219302, type: 3}
   - Name: GameTheme
     Clip: {fileID: 8300000, guid: c405379946891f7408f4a8fcedbf8af5, type: 3}
+  - Name: CardUse
+    Clip: {fileID: 8300000, guid: 7bc504cf644c9034981b6c3a1803fb55, type: 3}
