@@ -13,7 +13,7 @@ namespace UI.Displaying
     {
       this.gold = gold;
       this.gold.Changed += UpdateBar;
-      UpdateBar();
+      hpBar.SetValue(gold.Count, gold.MaxCount);
     }
 
     private void OnDestroy()
@@ -28,6 +28,6 @@ namespace UI.Displaying
     }
 
     private void UpdateHpBar(float current, float max) => 
-      hpBar.SetValue(current, max);
+      hpBar.FillValue(current, max);
   }
 }

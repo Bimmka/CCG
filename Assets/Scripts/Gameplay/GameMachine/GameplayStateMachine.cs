@@ -121,6 +121,7 @@ namespace Gameplay.GameMachine
     private void OnGoldEnded()
     {
       isGameEnd = true;
+      clickHandler.StopClick();
       actionPipeline.SetIsInterraptActions();
     }
   }

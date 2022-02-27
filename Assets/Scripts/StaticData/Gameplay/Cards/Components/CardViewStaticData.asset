@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4359a6d6f15c42de875eadb7d5690ad7, type: 3}
   m_Name: CardViewStaticData
   m_EditorClassIdentifier: 
-  DissolveBackgroundDuration: 0.2
-  DissolveMainImageDuration: 0.2
-  DissolveFirstIconDuration: 0.2
-  DissolveSecondIconDuration: 0.2
-  FadeNameTextDuration: 0.2
-  FadeDescriptionDuration: 0.2
+  DissolveBackgroundDuration: 1
+  DissolveMainImageDuration: 1
+  DissolveFirstIconDuration: 1
+  DissolveSecondIconDuration: 1
+  FadeNameTextDuration: 1
+  FadeDescriptionDuration: 1
   MaxTextAlpha: 1
   MinTextAlpha: 0

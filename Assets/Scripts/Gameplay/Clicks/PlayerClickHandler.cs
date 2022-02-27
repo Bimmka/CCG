@@ -23,9 +23,12 @@ namespace Gameplay.Clicks
     private readonly RaycastHit[] hits = new RaycastHit[1];
 
     public bool IsCanClick { get; private set; }
+    public bool IsStopped { get; set; }
 
     public event Action<CardStaticData> ClickedCard;
     public event Action RemovedCard;
+
+    public event Action Stopped;
 
     private void Awake()
     {
@@ -40,14 +43,16 @@ namespace Gameplay.Clicks
       handWindow.Clicked -= OnCardHandClicked;
     }
 
-    public void LockClick()
-    {
+    public void LockClick() => 
       IsCanClick = false;
-    }
 
-    public void UnlockCLick()
-    {
+    public void UnlockCLick() => 
       IsCanClick = true;
+
+    public void StopClick()
+    {
+      LockClick();
+      IsStopped = true;
     }
 
     private bool IsCanClicked() => 

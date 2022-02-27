@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b12dcf8f714013a07e4886da6a5ac5, type: 3}
-  m_Name: UICardViewStaticData
+  m_Script: {fileID: 11500000, guid: 5adb19c618874004b3ecaec1796a2a71, type: 3}
+  m_Name: BarDisplayingStaticData
   m_EditorClassIdentifier: 
-  MaxAngle: 75
-  MinAngle: 25
-  YOffset: 150
-  Duration: 1
+  BarFillDuration: 1
