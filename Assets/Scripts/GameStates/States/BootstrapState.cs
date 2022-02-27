@@ -4,6 +4,7 @@ using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
 using Services.Assets;
+using Services.Audio;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
@@ -61,6 +62,8 @@ namespace GameStates.States
       RegisterPlayerHand();
       RegisterCardFactory(cardPrefab, coroutineRunner);
       RegisterCardSpawner();
+      RegisterAudioSettings();
+      RegisterAudioService();
     }
 
     private void RegisterGameFactory()
@@ -144,5 +147,11 @@ namespace GameStates.States
     
     private void RegisterPlayerTurn() => 
       services.RegisterSingle(new PlayerTurns());
+
+    private void RegisterAudioSettings() => 
+      services.RegisterSingle(new AudioServiceSettings());
+
+    private void RegisterAudioService() => 
+      services.RegisterSingle(new AudioService(services.Single<IAudioServiceSettings>(), services.Single<IStaticDataService>()));
   }
 }

@@ -6,6 +6,7 @@ using GameStates.States;
 using GameStates.States.Interfaces;
 using SceneLoading;
 using Services;
+using Services.Audio;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
@@ -40,7 +41,8 @@ namespace GameStates
           services.Single<IOpponentDeck>(),
           services.Single<IPlayerDeck>(),
           services.Single<IRandomService>(),
-          services.Single<IPlayerGold>()
+          services.Single<IPlayerGold>(),
+          services.Single<IAudioService>()
         ),
         [typeof(MainMenuState)] = new MainMenuState(services.Single<IUIFactory>(), services.Single<IWindowsService>(), sceneLoader)
       };

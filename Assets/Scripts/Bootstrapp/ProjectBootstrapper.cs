@@ -1,10 +1,12 @@
 using System.Collections;
+using Audio;
 using ConstantsValue;
 using Gameplay.Cards.CardsElement.Base;
 using GameStates;
 using SceneLoading;
 using Services;
 using Services.Assets;
+using Services.Audio;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
 using Services.Cards.Hand;
@@ -26,16 +28,18 @@ namespace Bootstrapp
       [SerializeField] private GameBootstrapp gameBootstrapp;
       [SerializeField] private LoadingCurtain curtain;
       [SerializeField] private Card cardPrefab;
-        
+      [SerializeField] private MainAudioSource audioSourcePrefab;
 
         private LoadingCurtain spawnedCurtain;
         private GameBootstrapp spawnedGameBootstrapp;
+        private MainAudioSource spawnedAudioSource;
         private AllServices allServices;
 
         public override void InstallBindings()
         {
           InstantiateComponents();
           BindComponents();
+          InitAudio();
         }
 
         private void BindComponents()
@@ -53,6 +57,8 @@ namespace Bootstrapp
           BindPlayerHand();
           BindPLayerGold();
           BindPlayerTurn();
+          BindAudio();
+      
         }
 
 
@@ -61,6 +67,7 @@ namespace Bootstrapp
           InitServices();
           InstantiateCurtain();
           InstantiateBootstrapper();
+          InstantiateAudio();
         }
 
 
@@ -75,6 +82,9 @@ namespace Bootstrapp
           spawnedGameBootstrapp = Instantiate(gameBootstrapp, transform);
           spawnedGameBootstrapp.Init(ref allServices, spawnedCurtain, cardPrefab);
         }
+
+        private void InstantiateAudio() => 
+          spawnedAudioSource = Instantiate(audioSourcePrefab, transform);
 
         private void BindProgressService() => 
           Container.Bind<IPersistentProgressService>().To<IPersistentProgressService>().FromInstance(allServices.Single<IPersistentProgressService>()).AsCached();
@@ -114,5 +124,15 @@ namespace Bootstrapp
 
         private void BindPlayerTurn() => 
           Container.Bind<IPlayerTurns>().To<IPlayerTurns>().FromInstance(allServices.Single<IPlayerTurns>()).AsCached();
+
+        private void BindAudio()
+        {
+          Container.Bind<IAudioService>().To<IAudioService>().FromInstance(allServices.Single<IAudioService>()).AsCached();
+        }
+
+        private void InitAudio()
+        {
+          spawnedAudioSource.Construct(allServices.Single<IAudioService>());  
+        }
     }
 }

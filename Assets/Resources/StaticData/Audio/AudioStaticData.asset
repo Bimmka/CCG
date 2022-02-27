@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a4bffb1f46e41a48440170f194731ff, type: 3}
+  m_Name: AudioStaticData
+  m_EditorClassIdentifier: 
+  Clips:
+  - Name: MenuTheme
+    Clip: {fileID: 8300000, guid: 39de1dd5f6cda9942ac6475c2d219302, type: 3}
+  - Name: GameTheme
+    Clip: {fileID: 8300000, guid: c405379946891f7408f4a8fcedbf8af5, type: 3}

@@ -10,5 +10,6 @@
     public static string PlayerDeckPath = "StaticData/Gameplay/PlayerDeck/DeckStaticData";
     public static string CardStrategies = "StaticData/Gameplay/CardsUseStrategies";
     public static string PlayerGoldPath = "StaticData/Gameplay/PlayerGold/PlayerGoldStaticData";
+    public static string AudioClipsPath = "StaticData/Audio/AudioStaticData";
   }
 }

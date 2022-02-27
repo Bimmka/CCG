@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 990ce90e4eff4b959b774c050df4ae7e, type: 3}
   m_Name: DeathMenuAnimationData
   m_EditorClassIdentifier: 
-  ShadowMaxAlpha: 190
+  ShadowMaxAlpha: 0.6
   ShadowDuration: 2
   ShadowDelay: 1
   BackgroundDuration: 2

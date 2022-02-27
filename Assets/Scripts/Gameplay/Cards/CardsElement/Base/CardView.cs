@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using Coffee.UIExtensions;
-using StaticData.Gameplay.Cards.Elements;
 using UnityEngine;
 using UnityEngine.UI;
 

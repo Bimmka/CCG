@@ -3,6 +3,7 @@ using System.Linq;
 using ConstantsValue;
 using Gameplay.Cards.CardsElement.Base;
 using Services.UI.Factory;
+using StaticData.Audio;
 using StaticData.Gameplay.Cards.Decks;
 using StaticData.Gameplay.Cards.Elements;
 using StaticData.Gameplay.Cards.Strategies;
@@ -18,6 +19,7 @@ namespace Services.StaticData
     private Dictionary<WindowId, WindowInstantiateData> windows;
     private Dictionary<string, List<CardStaticData>> opponentDecks;
     private Dictionary<PlayingActionType, CardStrategyStaticData> strategies;
+    private Dictionary<string, AudioClip> audioClips;
     private DeckStaticData playerDeck;
 
     private PlayerGoldStaticData playerGoldStaticData;
@@ -38,6 +40,10 @@ namespace Services.StaticData
       strategies = Resources.
         LoadAll<CardStrategyStaticData>(AssetsPath.CardStrategies)
         .ToDictionary(x => x.Type, x => x);
+      
+      audioClips = Resources.
+        Load<AudioStaticData>(AssetsPath.AudioClipsPath).Clips
+        .ToDictionary(x => x.Name, x => x.Clip);
       
       playerDeck = Resources.Load<DeckStaticData>(AssetsPath.PlayerDeckPath);
 
@@ -69,5 +75,10 @@ namespace Services.StaticData
 
     public PlayerGoldStaticData ForPlayerGold() => 
       playerGoldStaticData;
+
+    public AudioClip ForAudio(string clipName) => 
+      audioClips.TryGetValue(clipName, out AudioClip clip) 
+        ? clip
+        : null;
   }
 }

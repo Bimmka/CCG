@@ -2,6 +2,7 @@
 using Gameplay.Table;
 using GameStates.States.Interfaces;
 using SceneLoading;
+using Services.Audio;
 using Services.Cards.Decks.GameOpponent;
 using Services.Cards.Decks.Player;
 using Services.Factories.GameFactories;
@@ -27,6 +28,7 @@ namespace GameStates.States
     private readonly IPlayerDeck playerDeck;
     private readonly IRandomService randomService;
     private readonly IPlayerGold playerGold;
+    private readonly IAudioService audioService;
 
     private string lastPayload;
 
@@ -38,7 +40,8 @@ namespace GameStates.States
       IOpponentDeck opponentDeck,
       IPlayerDeck playerDeck,
       IRandomService randomService, 
-      IPlayerGold playerGold)
+      IPlayerGold playerGold, 
+      IAudioService audioService)
     {
       this.sceneLoader = sceneLoader;
       this.gameStateMachine = gameStateMachine;
@@ -49,12 +52,14 @@ namespace GameStates.States
       this.playerDeck = playerDeck;
       this.randomService = randomService;
       this.playerGold = playerGold;
+      this.audioService = audioService;
     }
 
     public void Enter(string payload)
     {
       lastPayload = payload;
       sceneLoader.Load(payload, OnLoaded);
+      audioService.ChangeMainTheme("GameTheme");
       InitDecks();
       UpdateRandomService();
     }

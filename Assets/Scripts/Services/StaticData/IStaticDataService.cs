@@ -6,6 +6,7 @@ using StaticData.Gameplay.Cards.Strategies;
 using StaticData.Gameplay.Player;
 using StaticData.Gameplay.Table;
 using StaticData.UI;
+using UnityEngine;
 
 namespace Services.StaticData
 {
@@ -18,5 +19,6 @@ namespace Services.StaticData
     List<CardStaticData> ForPlayer();
     CardStrategyStaticData ForStrategy(PlayingActionType actionType);
     PlayerGoldStaticData ForPlayerGold();
+    AudioClip ForAudio(string clipName);
   }
 }

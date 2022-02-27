@@ -18,5 +18,6 @@ MonoBehaviour:
   DissolveSecondIconDuration: 1
   FadeNameTextDuration: 1
   FadeDescriptionDuration: 1
+  ObjectDissolveDuration: 1
   MaxTextAlpha: 1
   MinTextAlpha: 0
