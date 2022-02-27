@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: DefFromBlockingCard
   m_EditorClassIdentifier: 
   ID: 10
-  Name: Def From Blocking
-  Description: Def From Blocking
+  Name: Drill
+  Description: 'Protects all cards on right from it against blocking '
   PlayingZoneType: 2
   ActionType: 10
   ImmuneType: 1

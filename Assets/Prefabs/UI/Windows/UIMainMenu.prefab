@@ -110,8 +110,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 377.24225, y: -61.51}
-  m_SizeDelta: {x: 754.4845, y: 123.02}
+  m_AnchoredPosition: {x: 452.7121, y: -268.49}
+  m_SizeDelta: {x: 905.4242, y: 536.98}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2324247946373770993
 CanvasRenderer:
@@ -141,11 +141,14 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'New Textdfdf
-
-    dfd
-
-    fdfdf'
+  m_text: "    After \u201CPlay\u201D button is pressed, You will see next elements
+    of play field.\r\n    Your goal: is to protect your treasures from scavengers,
+    and do it for as long as you can.\r\n    At the beginning of each turn You will
+    get 2 cards. Each card has it\u2019s own properties, for more info about properties,
+    move cursor to the card and additional info will appear at left part of screen.
+    Properties are used at the end of each turn.You should place your cards in proper
+    slots and accept \u201CEnd turn\u201D.\r\n    After the properties were activated,
+    You\u2019ll get all bonuses and restrictions for next turn.\r\n    Good luck!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -179,7 +182,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -264,7 +267,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 123.02}
+  m_SizeDelta: {x: 0, y: 536.98}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &6241483349005986326
 MonoBehaviour:
@@ -461,8 +464,8 @@ RectTransform:
   m_Father: {fileID: 7128944520629862038}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.27672926, y: 0.28944445}
-  m_AnchorMax: {x: 0.72149986, y: 0.8006667}
+  m_AnchorMin: {x: 0.23268752, y: 0.19255558}
+  m_AnchorMax: {x: 0.7664375, y: 0.8095556}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

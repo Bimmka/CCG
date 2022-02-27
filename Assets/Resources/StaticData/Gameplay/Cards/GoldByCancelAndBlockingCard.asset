@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldByCancelAndBlockingCard
   m_EditorClassIdentifier: 
   ID: 13
-  Name: Gold By Cancel And Blocking
-  Description: Gold By Cancel And Blocking
+  Name: Trolley
+  Description: Steals 11 gold, gives 11 gold if caught in wolf pit
   PlayingZoneType: 2
   ActionType: 13
   ImmuneType: 0

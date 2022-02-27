@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BlockNearestActionsCard
   m_EditorClassIdentifier: 
   ID: 7
-  Name: Block Neares Actions
-  Description: Block Neares Actions
+  Name: Quake trap
+  Description: Blocks all properties in current turn
   PlayingZoneType: 1
   ActionType: 7
   ImmuneType: 0

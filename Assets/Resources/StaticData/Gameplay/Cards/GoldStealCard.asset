@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoldStealCard
   m_EditorClassIdentifier: 
   ID: 0
-  Name: Gold Steal
-  Description: Steal Gold
+  Name: Scav
+  Description: Steals 10 gold
   PlayingZoneType: 2
   ActionType: 0
   ImmuneType: 0

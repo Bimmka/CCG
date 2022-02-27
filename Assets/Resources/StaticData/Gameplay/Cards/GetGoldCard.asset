@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GetGoldCard
   m_EditorClassIdentifier: 
   ID: 2
-  Name: Get Gold
-  Description: Get Gold
+  Name: Lost beg of gold
+  Description: Gives 10 gold
   PlayingZoneType: 1
   ActionType: 2
   ImmuneType: 0

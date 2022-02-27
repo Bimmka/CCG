@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: CancelPlayerProperty
   m_EditorClassIdentifier: 
   ID: 12
-  Name: Cancel Player Property
-  Description: Cancel Player Property
+  Name: Torch
+  Description: Cancels properti of card in front of it
   PlayingZoneType: 2
   ActionType: 12
   ImmuneType: 0

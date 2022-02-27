@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TakeLessCardCard
   m_EditorClassIdentifier: 
   ID: 15
-  Name: Take Less Card
-  Description: Take Less Card
+  Name: Stash sabotage
+  Description: You will get less cards by 1 in your hand next turn
   PlayingZoneType: 2
   ActionType: 15
   ImmuneType: 0

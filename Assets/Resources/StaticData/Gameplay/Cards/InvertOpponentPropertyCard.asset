@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: InvertOpponentPropertyCard
   m_EditorClassIdentifier: 
   ID: 5
-  Name: Invert Propert
-  Description: Invert Property
+  Name: Caged fraudfrog
+  Description: Inverts property of card in front of it
   PlayingZoneType: 1
   ActionType: 5
   ImmuneType: 0

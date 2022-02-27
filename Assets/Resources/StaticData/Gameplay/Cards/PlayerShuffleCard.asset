@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: PlayerShuffleCard
   m_EditorClassIdentifier: 
   ID: 9
-  Name: PlayerShuffle
-  Description: PlayerShuffle
+  Name: State of brief antigravity
+  Description: 'Shuffles all cards on field '
   PlayingZoneType: 1
   ActionType: 9
   ImmuneType: 0

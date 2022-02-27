@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TakeCardByCancelCard
   m_EditorClassIdentifier: 
   ID: 14
-  Name: Take Card By Cancel
-  Description: Take Card By Cancel
+  Name: Lost diary
+  Description: Gives additional card for the next turn if caught in wolf pit
   PlayingZoneType: 2
   ActionType: 14
   ImmuneType: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: TakeAddtionalCardCard
   m_EditorClassIdentifier: 
   ID: 4
-  Name: Take Addtional Card
-  Description: Take Addtional Card
+  Name: Stash
+  Description: 'Gives additional card for next turn '
   PlayingZoneType: 1
   ActionType: 4
   ImmuneType: 0

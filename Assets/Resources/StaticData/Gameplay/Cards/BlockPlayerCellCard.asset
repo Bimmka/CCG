@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BlockPlayerCellCard
   m_EditorClassIdentifier: 
   ID: 3
-  Name: Block Player Cell
-  Description: Block Player Cell
+  Name: Dynamite
+  Description: Blocks 1 players slot in front of it for the next turn
   PlayingZoneType: 2
   ActionType: 3
   ImmuneType: 0

@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SaveHandCard
   m_EditorClassIdentifier: 
   ID: 6
-  Name: Save Hand
-  Description: Save Hand
+  Name: Hiden passage
+  Description: Saves rest of cards in your hand for the next turn
   PlayingZoneType: 1
   ActionType: 6
   ImmuneType: 0

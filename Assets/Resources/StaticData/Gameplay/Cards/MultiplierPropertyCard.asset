@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: MultiplierPropertyCard
   m_EditorClassIdentifier: 
   ID: 11
-  Name: Multiplier Property
-  Description: Multiplier Property
+  Name: Gold rush
+  Description: "Doubles properties of cards in it\u2019s row"
   PlayingZoneType: 2
   ActionType: 11
   ImmuneType: 0
